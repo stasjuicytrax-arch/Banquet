@@ -3,104 +3,230 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#30282D">
+  <meta name="theme-color" content="#30282d">
   <meta name="robots" content="noindex">
-  <title>Случайности · Превью сайта</title>
+  <meta name="description" content="Свадьбы, корпоративы и события в 12 минутах от центра Перми.">
+  <title>Случайности · Банкетная площадка в Перми</title>
   <link rel="preload" href="prototype/hero-background.webp" as="image">
-  <link rel="stylesheet" href="prototype/hero.css">
-  <script src="prototype/hero.js" defer></script>
+  <link rel="stylesheet" href="./prototype/site-effects.css">
+  <link rel="stylesheet" href="./prototype/site.css">
+  <script src="./prototype/site.js" defer></script>
 </head>
-<body>
-  <a class="skip" href="#main">К содержанию</a>
-  <main id="main">
-    <section class="hero" id="top" aria-labelledby="hero-title">
-      <svg class="scene" viewBox="0 0 1600 1000" preserveAspectRatio="xMaxYMid slice" aria-hidden="true" focusable="false">
-        <defs>
-          <path id="drop-shape" d="M-375 51C-386-105-251-243-50-292C129-337 311-273 370-125C434 37 332 199 153 270C-51 350-345 285-375 51Z"/>
-          <clipPath id="drop-cutout">
-            <use id="drop-clip" href="#drop-shape" transform="translate(1175 535) rotate(-7)"/>
-          </clipPath>
-          <radialGradient id="drop-volume" cx="57%" cy="42%" r="63%">
-            <stop offset="54%" stop-color="#f9f2ee" stop-opacity="0"/>
-            <stop offset="83%" stop-color="#f0c1ce" stop-opacity=".09"/>
-            <stop offset="96%" stop-color="#e9dcfa" stop-opacity=".28"/>
-            <stop offset="100%" stop-color="#3c5549" stop-opacity=".18"/>
-          </radialGradient>
-          <linearGradient id="drop-glint" x1="10%" y1="0%" x2="91%" y2="100%">
-            <stop offset="0%" stop-color="#fff2d8" stop-opacity=".02"/>
-            <stop offset="20%" stop-color="#fff3d7" stop-opacity=".85"/>
-            <stop offset="32%" stop-color="#ffe6d5" stop-opacity=".32"/>
-            <stop offset="51%" stop-color="#eacbcd" stop-opacity=".14"/>
-            <stop offset="74%" stop-color="#c2a9e9" stop-opacity=".56"/>
-            <stop offset="89%" stop-color="#ffd8a5" stop-opacity=".98"/>
-            <stop offset="100%" stop-color="#f9f2ee" stop-opacity=".28"/>
-          </linearGradient>
-          <filter id="nav-liquid" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
-            <feImage href="prototype/glass-map.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" result="map"/>
-            <feDisplacementMap in="SourceGraphic" in2="map" scale="24" xChannelSelector="R" yChannelSelector="G"/>
-          </filter>
-        </defs>
-        <image id="scene-photo" href="prototype/hero-background.webp" width="1600" height="1000" preserveAspectRatio="xMidYMid slice"/>
-        <g clip-path="url(#drop-cutout)">
-          <use class="lens-picture" href="#scene-photo" transform="translate(-70 -32) scale(1.06)"/>
-        </g>
-        <g id="drop-rim" transform="translate(1175 535) rotate(-7)">
-          <use href="#drop-shape" fill="url(#drop-volume)" stroke="#f9f2ee" stroke-opacity=".2" stroke-width="1.5"/>
-          <use class="lens-halo" href="#drop-shape" fill="none" stroke="url(#drop-glint)" stroke-width="5"/>
-          <use href="#drop-shape" fill="none" stroke="url(#drop-glint)" stroke-width="1.8"/>
-        </g>
-      </svg>
-      <div class="shade" aria-hidden="true"></div>
-      <div class="film-grain" aria-hidden="true"></div>
-      <div class="cloud-seam" aria-hidden="true"></div>
-      <header class="hero-header frame">
-        <a class="brand" href="./" aria-label="Случайности, главная">
-          <img src="prototype/wordmark-light.svg" width="1376" height="222" alt="">
-        </a>
-        <nav class="hero-nav glass" aria-label="Навигация по превью">
-          <span class="glass-refraction" aria-hidden="true"></span>
-          <a href="prototype/calculator.html?event=wedding" aria-label="Свадьбы, пример расчёта">Свадьбы</a>
-          <a href="prototype/calculator.html?event=corporate" aria-label="Корпоративы, пример расчёта">Корпоративы</a>
-          <a href="#spaces">Пространства</a>
-        </nav>
-        <a class="contact glass" href="#location">Контакты</a>
-      </header>
-      <div class="hero-content frame">
-        <h1 id="hero-title">Случайности,<br>которые становятся<br>воспоминаниями</h1>
-        <p>Свадьбы, корпоративы и события<br>в 12 минутах от центра Перми</p>
-        <div class="hero-actions">
-          <a class="primary" href="prototype/calculator.html#event-date">Выбрать дату</a>
-          <a class="secondary glass" href="#spaces">Посмотреть площадку</a>
-        </div>
-      </div>
-    </section>
+<body class="home-page">
+  <div class="site-grain" aria-hidden="true"></div>
+  <svg class="glass-definition" width="0" height="0" aria-hidden="true" focusable="false">
+    <filter id="de-liquid" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+      <feImage id="liquid-map" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" result="map"/>
+      <feDisplacementMap in="SourceGraphic" in2="map" scale="32" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </svg>
 
-    <div class="ambient-clouds" aria-hidden="true"></div>
-    <section class="location frame" id="location" aria-labelledby="location-title">
-      <div>
-        <h2 id="location-title">Ближе, чем вы думаете</h2>
-        <p class="distance"><strong>12</strong> минут</p>
-        <p class="origin">от центра Перми</p>
-        <address>Пермь, ул. Космонавта Леонова, 61/1</address>
-        <ul class="location-facts">
-          <li>Парковка на 20 машин</li>
-          <li>Праздники под открытым небом</li>
-        </ul>
+  <a class="skip" href="#main">К содержанию</a>
+  <header class="site-header">
+    <div class="nav-pill">
+      <div class="nav-glass glass glass-nav" aria-hidden="true"></div>
+      <a class="nav-logo" href="./" aria-label="Случайности, главная">
+        <img src="./prototype/wordmark-light.svg" width="1376" height="222" alt="">
+        <img class="nav-logo-dark" src="./prototype/wordmark.svg" width="1376" height="222" alt="">
+      </a>
+      <nav class="nav-links" aria-label="Основное меню">
+        <a class="nav-item" style="--i:0" href="./weddings/">Свадьбы</a>
+<a class="nav-item" style="--i:1" href="./corporate/">Корпоративы</a>
+<a class="nav-item" style="--i:2" href="./spaces/">Пространства</a>
+<a class="nav-item" style="--i:3" href="./contacts/">Контакты</a>
+      </nav>
+      <a class="nav-item nav-cta primary" style="--i:4" href="./contacts/#request">Выбрать дату</a>
+      <button class="nav-burger" type="button" aria-label="Открыть меню" aria-haspopup="dialog" aria-controls="mobile-menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </header>
+  <dialog class="nav-dialog" id="mobile-menu" aria-label="Меню">
+    <div class="dialog-header">
+      <a href="./" aria-label="Случайности, главная"><img src="./prototype/wordmark-light.svg" width="1376" height="222" alt=""></a>
+      <button class="icon-button" type="button" data-close aria-label="Закрыть меню"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+    </div>
+    <nav aria-label="Все страницы"><a href="./weddings/" class="dialog-link" style="--i:0">Свадьбы</a>
+<a href="./corporate/" class="dialog-link" style="--i:1">Корпоративы</a>
+<a href="./spaces/" class="dialog-link" style="--i:2">Пространства</a>
+<a href="./menu/" class="dialog-link" style="--i:3">Кухня и меню</a>
+<a href="./gallery/" class="dialog-link" style="--i:4">Фото и видео</a>
+<a href="./stay/" class="dialog-link" style="--i:5">Проживание</a>
+<a href="./prices/" class="dialog-link" style="--i:6">Цены и услуги</a>
+<a href="./contacts/" class="dialog-link" style="--i:7">Контакты</a></nav>
+    <a class="primary" href="./contacts/#request">Выбрать дату</a>
+  </dialog>
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <img class="hero-photo" src="prototype/hero-background.webp" width="1586" height="992" fetchpriority="high" alt="">
+      <div class="hero-shade" aria-hidden="true"></div>
+      <div class="cloud-seam" aria-hidden="true"><span></span><span></span></div>
+      <div class="frame hero-content">
+        <h1 id="hero-title"><span>Случайности,</span><span>которые становятся</span><span>воспоминаниями</span></h1>
+        <p>Свадьбы, корпоративы и события<br>в 12 минутах от центра Перми</p>
+        <div class="actions"><a class="primary" href="contacts/#request">Выбрать дату</a><a class="secondary" href="#spaces">Посмотреть площадку</a></div>
       </div>
-      <img class="location-image" src="prototype/grounds.webp" width="980" height="551" loading="lazy" alt="Банкетные столы среди деревьев под гирляндами">
     </section>
-    <section class="spaces frame" id="spaces" aria-labelledby="spaces-title">
-      <h2 id="spaces-title">Выберите своё пространство</h2>
-      <ul class="space-names">
-        <li>Купольный шатёр</li><li>Летняя площадка</li><li>Веранды</li><li>Территория под открытым небом</li>
-      </ul>
-      <img src="design/03-spaces.webp" width="1586" height="992" loading="lazy" alt="Макет галереи площадок. Купольный шатёр вмещает до 150 гостей">
+    <section class="location" id="location" aria-labelledby="location-title">
+    <div class="location-inner frame section">
+      <div data-reveal>
+        <h2 id="location-title">Ближе, чем вы думаете</h2>
+        <p class="distance"><strong>12</strong> минут</p><p class="origin">от центра Перми</p>
+        <address>Пермь, ул. Космонавта Леонова, 61/1</address>
+        <ul class="location-facts"><li>Парковка на 20 машин</li><li>Праздники под открытым небом</li></ul>
+      </div>
+      <div class="location-visual">
+        <img class="location-image" src="./prototype/grounds.webp" alt="Банкетные столы среди деревьев" loading="lazy" decoding="async">
+        <a class="map-link" href="https://yandex.ru/maps/?text=%D0%9F%D0%B5%D1%80%D0%BC%D1%8C%2C%20%D1%83%D0%BB.%20%D0%9A%D0%BE%D1%81%D0%BC%D0%BE%D0%BD%D0%B0%D0%B2%D1%82%D0%B0%20%D0%9B%D0%B5%D0%BE%D0%BD%D0%BE%D0%B2%D0%B0%2C%2061%2F1" target="_blank" rel="noopener">
+    <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M4 51c14-23 28-4 40-23M7 14c16 5 17 22 39 23M23 59c0-16 23-24 33-32M9 38c5-9 11-11 23-20" fill="none" stroke="currentColor" opacity=".34"/><path d="M42 18a10 10 0 0 1 20 0c0 9-10 17-10 17S42 27 42 18Z" fill="currentColor"/><circle cx="52" cy="18" r="3.8" fill="#f9f2ee"/></svg>
+    <span>Открыть на карте</span>
+  </a>
+      </div>
+    </div>
+  </section>
+    <section class="frame section spaces" id="spaces" aria-labelledby="spaces-title">
+    <h2 id="spaces-title">Выберите своё пространство</h2>
+    <div class="space-strip" data-spaces data-active="0">
+      <div class="space-tile">
+        <button type="button" class="space-pick" aria-pressed="true" aria-controls="space-details" data-space="0">
+          <img class="" src="./prototype/dome.webp" alt="" loading="lazy" decoding="async">
+          <span>Купольный шатёр</span>
+        </button>
+      </div>
+<div class="space-tile">
+        <button type="button" class="space-pick" aria-pressed="false" aria-controls="space-details" data-space="1">
+          <img class="" src="./prototype/dance.webp" alt="" loading="lazy" decoding="async">
+          <span>Летняя площадка</span>
+        </button>
+      </div>
+<div class="space-tile">
+        <button type="button" class="space-pick" aria-pressed="false" aria-controls="space-details" data-space="2">
+          <img class="" src="./prototype/veranda.webp" alt="" loading="lazy" decoding="async">
+          <span>Веранды</span>
+        </button>
+      </div>
+<div class="space-tile">
+        <button type="button" class="space-pick" aria-pressed="false" aria-controls="space-details" data-space="3">
+          <img class="" src="./prototype/grounds.webp" alt="" loading="lazy" decoding="async">
+          <span>Под открытым небом</span>
+        </button>
+      </div>
+    </div>
+    <div id="space-details" class="space-details">
+      <div class="space-info" data-space-info="0">
+        <div><h3>До 150 гостей</h3><p>Банкетная рассадка, свет и звук. Подходит для свадеб, корпоративов и больших праздников.</p></div>
+        <a class="primary sage" href="./spaces/#dome">Подробнее</a>
+      </div>
+<div class="space-info" data-space-info="1" hidden>
+        <div><h3>Вечеринка на улице</h3><p>Открытая площадка для танцев, диджей-сетов и вечерней программы со светом и звуком.</p></div>
+        <a class="primary sage" href="./spaces/#summer">Подробнее</a>
+      </div>
+<div class="space-info" data-space-info="2" hidden>
+        <div><h3>Для встреч и отдыха</h3><p>Крытые зоны для общения, встречи гостей и паузы между частями программы.</p></div>
+        <a class="primary sage" href="./spaces/#verandas">Подробнее</a>
+      </div>
+<div class="space-info" data-space-info="3" hidden>
+        <div><h3>Зелёная территория</h3><p>Пространство для выездной церемонии, фотозон и праздника среди деревьев.</p></div>
+        <a class="primary sage" href="./spaces/#outdoors">Подробнее</a>
+      </div>
+    </div>
+  </section>
+    <section class="gifts-section" id="gifts">
+      <div class="frame section"><div class="section-intro" data-reveal><h2>Свадебные подарки от «Случайностей»</h2>
+      <a class="text-link" href="weddings/#gifts">Все свадебные подарки</a></div><div class="gift-gallery"><article class="gift">
+    <img class="" src="./prototype/tesla.webp" alt="" loading="lazy" decoding="async"><h3>Tesla с водителем</h3><p>Автомобиль с личным водителем на весь день свадьбы.</p>
+  </article>
+<article class="gift">
+    <img class="" src="./prototype/couple.webp" alt="" loading="lazy" decoding="async"><h3>Номер для молодожёнов</h3><p>После праздника можно остаться на площадке.</p>
+  </article>
+<article class="gift">
+    <img class="" src="./prototype/spa.webp" alt="" loading="lazy" decoding="async"><h3>Хамам и бассейн</h3><p>Три часа отдыха на следующий день после свадьбы.</p>
+  </article></div></div>
     </section>
-  </main>
-  <footer class="site-footer frame">
-    <p>Превью сайта «Случайности»</p>
-    <a href="prototype/calculator.html">Открыть калькулятор</a>
-    <label class="cloud-option" id="cloud-option" hidden><input id="cloud-toggle" type="checkbox"> Облака по всей странице</label>
+    <section id="kitchen" class="feature-section ">
+    <div class="frame section feature">
+      <img class="feature-image" src="./prototype/kitchen.webp" alt="Повар готовит блюда на кухне" loading="lazy" decoding="async">
+      <div class="feature-copy" data-reveal><h2>Своя кухня</h2><p>Готовим горячие блюда прямо на площадке. Составляем меню под формат праздника и подаём блюда к столу.</p>
+      <a class="text-link" href="menu/">Посмотреть меню</a></div>
+    </div>
+  </section>
+    <section id="production" class="feature-section feature-dark reversed">
+    <div class="frame section feature">
+      <img class="feature-image" src="./prototype/dance.webp" alt="Танцы перед сценой на открытом воздухе" loading="lazy" decoding="async">
+      <div class="feature-copy" data-reveal><h2>Здесь праздник звучит по-настоящему</h2><p>Свет, звук, экраны и уличная дискотека. Диджеи и техническая команда помогают собрать программу под ваш формат.</p>
+      <a class="text-link" href="corporate/#production">Технические возможности</a></div>
+    </div>
+  </section>
+    <section id="team" class="feature-section ">
+    <div class="frame section feature">
+      <img class="feature-image" src="./prototype/team.webp" alt="Координатор готовит банкетный зал" loading="lazy" decoding="async">
+      <div class="feature-copy" data-reveal><h2>От идеи до последнего танца</h2><p>Персональный менеджер, ведущие, артисты, декор и сценарий. Можно доверить команде весь праздник или выбрать отдельные услуги.</p>
+      <a class="text-link" href="prices/">Обсудить мероприятие</a></div>
+    </div>
+  </section>
+    <section id="stay" class="feature-section feature-soft reversed">
+    <div class="frame section feature">
+      <img class="feature-image" src="./prototype/room.webp" alt="Светлый гостевой номер" loading="lazy" decoding="async">
+      <div class="feature-copy" data-reveal><h2>Праздник закончился. Отдых продолжается.</h2><p>На площадке семь номеров. Гости могут остаться после вечеринки, а молодожёнов ждёт отдельный номер.</p>
+      <a class="text-link" href="stay/">Посмотреть проживание</a></div>
+    </div>
+  </section>
+    <section class="section frame" id="gallery"><div class="section-intro" data-reveal><h2>Здесь уже случилось счастье</h2><a class="text-link" href="gallery/">Открыть галерею</a></div><div class="gallery" data-gallery>
+    <div class="photo-grid"><figure data-photo-group="weddings">
+      <button type="button" data-photo data-src="./prototype/dome.webp" data-caption="Сервировка в купольном шатре" aria-label="Увеличить фото: Сервировка в купольном шатре"><img class="" src="./prototype/dome.webp" alt="Сервировка в купольном шатре" loading="lazy" decoding="async"></button>
+      <figcaption>Сервировка в купольном шатре</figcaption>
+    </figure>
+<figure data-photo-group="weddings">
+      <button type="button" data-photo data-src="./prototype/dancing-guests.webp" data-caption="Вечерний ужин под гирляндами" aria-label="Увеличить фото: Вечерний ужин под гирляндами"><img class="" src="./prototype/dancing-guests.webp" alt="Вечерний ужин под гирляндами" loading="lazy" decoding="async"></button>
+      <figcaption>Вечерний ужин под гирляндами</figcaption>
+    </figure>
+<figure data-photo-group="parties">
+      <button type="button" data-photo data-src="./prototype/dance.webp" data-caption="Танцы под открытым небом" aria-label="Увеличить фото: Танцы под открытым небом"><img class="" src="./prototype/dance.webp" alt="Танцы под открытым небом" loading="lazy" decoding="async"></button>
+      <figcaption>Танцы под открытым небом</figcaption>
+    </figure></div>
+    <p data-gallery-empty role="status" hidden>Фотографии в этой категории пока не добавлены.</p>
+    <dialog class="photo-dialog" aria-label="Просмотр фотографий">
+      <button class="icon-button close-photo" type="button" data-close aria-label="Закрыть фото"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+      <img alt=""><div class="photo-controls"><button type="button" data-prev aria-label="Предыдущее фото">←</button><p></p><button type="button" data-next aria-label="Следующее фото">→</button></div>
+    </dialog>
+  </div></section>
+    <section class="request-section" id="request" aria-labelledby="request-title">
+    <div class="frame section request-layout">
+      <div><h2 id="request-title">Давайте устроим вашу случайность</h2>
+        <p>Подготовьте параметры праздника, чтобы обсудить их с командой площадки.</p>
+        <a class="text-link" href="./prototype/calculator.html">Открыть пример расчёта</a>
+      </div>
+      <form class="request-form" data-request>
+        <fieldset disabled>
+        <div class="request-fields">
+          <div><label for="request-event">Формат</label><select id="request-event" name="event"><option value="wedding">Свадьба</option><option value="corporate">Корпоратив</option><option value="birthday">День рождения</option><option value="other">Другое событие</option></select></div>
+          <label>Количество гостей<input name="guests" type="number" inputmode="numeric" min="1" max="150" required></label>
+          <label>Желаемая дата<input name="date" type="date"></label>
+          <label>Имя <small>по желанию</small><input name="contact" autocomplete="given-name" maxlength="80"></label>
+          <label>Телефон <small>по желанию</small><input name="phone" type="tel" autocomplete="tel" maxlength="28"></label>
+          <label class="request-check"><input type="checkbox" name="fullService">Организация под ключ</label>
+        </div>
+        <p class="form-note">Черновик можно скачать. Данные остаются в браузере до скачивания.</p>
+        <button class="primary sage" type="submit">Подготовить заявку</button>
+        </fieldset>
+        <noscript><p class="form-note">Для подготовки черновика включите JavaScript.</p></noscript>
+        <div class="request-result" data-request-result hidden>
+          <p role="status" data-request-status></p>
+          <a class="text-link" data-request-download download="sluchaynosti-request.txt">Скачать черновик</a>
+        </div>
+      </form>
+    </div>
+  </section></main>
+  <footer class="site-footer">
+    <div class="frame footer-inner">
+      <div><a href="./" aria-label="Случайности, главная"><img src="./prototype/wordmark-light.svg" width="1376" height="222" alt=""></a><address>Пермь, ул. Космонавта Леонова, 61/1</address></div>
+      <nav aria-label="Разделы сайта"><a href="./weddings/" class="footer-link" style="--i:0">Свадьбы</a>
+<a href="./corporate/" class="footer-link" style="--i:1">Корпоративы</a>
+<a href="./spaces/" class="footer-link" style="--i:2">Пространства</a>
+<a href="./menu/" class="footer-link" style="--i:3">Кухня и меню</a>
+<a href="./gallery/" class="footer-link" style="--i:4">Фото и видео</a>
+<a href="./stay/" class="footer-link" style="--i:5">Проживание</a>
+<a href="./prices/" class="footer-link" style="--i:6">Цены и услуги</a>
+<a href="./contacts/" class="footer-link" style="--i:7">Контакты</a></nav>
+    </div>
   </footer>
 </body>
 </html>

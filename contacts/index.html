@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#30282d">
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Адрес банкетной площадки Случайности и параметры заявки.">
+  <title>Контакты · Случайности</title>
+
+  <link rel="stylesheet" href="../prototype/site-effects.css">
+  <link rel="stylesheet" href="../prototype/site.css">
+  <script src="../prototype/site.js" defer></script>
+</head>
+<body>
+  <div class="site-grain" aria-hidden="true"></div>
+  <svg class="glass-definition" width="0" height="0" aria-hidden="true" focusable="false">
+    <filter id="de-liquid" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+      <feImage id="liquid-map" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" result="map"/>
+      <feDisplacementMap in="SourceGraphic" in2="map" scale="32" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </svg>
+
+  <a class="skip" href="#main">К содержанию</a>
+  <header class="site-header" data-light>
+    <div class="nav-pill">
+      <div class="nav-glass glass glass-nav" aria-hidden="true"></div>
+      <a class="nav-logo" href="../" aria-label="Случайности, главная">
+        <img src="../prototype/wordmark-light.svg" width="1376" height="222" alt="">
+        <img class="nav-logo-dark" src="../prototype/wordmark.svg" width="1376" height="222" alt="">
+      </a>
+      <nav class="nav-links" aria-label="Основное меню">
+        <a class="nav-item" style="--i:0" href="../weddings/">Свадьбы</a>
+<a class="nav-item" style="--i:1" href="../corporate/">Корпоративы</a>
+<a class="nav-item" style="--i:2" href="../spaces/">Пространства</a>
+<a class="nav-item" style="--i:3" href="../contacts/" aria-current="page">Контакты</a>
+      </nav>
+      <a class="nav-item nav-cta primary" style="--i:4" href="../contacts/#request">Выбрать дату</a>
+      <button class="nav-burger" type="button" aria-label="Открыть меню" aria-haspopup="dialog" aria-controls="mobile-menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </header>
+  <dialog class="nav-dialog" id="mobile-menu" aria-label="Меню">
+    <div class="dialog-header">
+      <a href="../" aria-label="Случайности, главная"><img src="../prototype/wordmark-light.svg" width="1376" height="222" alt=""></a>
+      <button class="icon-button" type="button" data-close aria-label="Закрыть меню"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+    </div>
+    <nav aria-label="Все страницы"><a href="../weddings/" class="dialog-link" style="--i:0">Свадьбы</a>
+<a href="../corporate/" class="dialog-link" style="--i:1">Корпоративы</a>
+<a href="../spaces/" class="dialog-link" style="--i:2">Пространства</a>
+<a href="../menu/" class="dialog-link" style="--i:3">Кухня и меню</a>
+<a href="../gallery/" class="dialog-link" style="--i:4">Фото и видео</a>
+<a href="../stay/" class="dialog-link" style="--i:5">Проживание</a>
+<a href="../prices/" class="dialog-link" style="--i:6">Цены и услуги</a>
+<a href="../contacts/" class="dialog-link" style="--i:7" aria-current="page">Контакты</a></nav>
+    <a class="primary" href="../contacts/#request">Выбрать дату</a>
+  </dialog>
+  <main id="main"><section class="page-intro frame section"><div><h1>Контакты</h1><p>Пермь, ул. Космонавта Леонова, 61/1</p></div></section><section class="frame contact-map" aria-label="Адрес на карте"><a class="map-link" href="https://yandex.ru/maps/?text=%D0%9F%D0%B5%D1%80%D0%BC%D1%8C%2C%20%D1%83%D0%BB.%20%D0%9A%D0%BE%D1%81%D0%BC%D0%BE%D0%BD%D0%B0%D0%B2%D1%82%D0%B0%20%D0%9B%D0%B5%D0%BE%D0%BD%D0%BE%D0%B2%D0%B0%2C%2061%2F1" target="_blank" rel="noopener">
+    <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M4 51c14-23 28-4 40-23M7 14c16 5 17 22 39 23M23 59c0-16 23-24 33-32M9 38c5-9 11-11 23-20" fill="none" stroke="currentColor" opacity=".34"/><path d="M42 18a10 10 0 0 1 20 0c0 9-10 17-10 17S42 27 42 18Z" fill="currentColor"/><circle cx="52" cy="18" r="3.8" fill="#f9f2ee"/></svg>
+    <span>Открыть на карте</span>
+  </a></section><section class="request-section" id="request" aria-labelledby="request-title">
+    <div class="frame section request-layout">
+      <div><h2 id="request-title">Давайте устроим вашу случайность</h2>
+        <p>Подготовьте параметры праздника, чтобы обсудить их с командой площадки.</p>
+        <a class="text-link" href="../prototype/calculator.html">Открыть пример расчёта</a>
+      </div>
+      <form class="request-form" data-request>
+        <fieldset disabled>
+        <div class="request-fields">
+          <div><label for="request-event">Формат</label><select id="request-event" name="event"><option value="wedding">Свадьба</option><option value="corporate">Корпоратив</option><option value="birthday">День рождения</option><option value="other">Другое событие</option></select></div>
+          <label>Количество гостей<input name="guests" type="number" inputmode="numeric" min="1" max="150" required></label>
+          <label>Желаемая дата<input name="date" type="date"></label>
+          <label>Имя <small>по желанию</small><input name="contact" autocomplete="given-name" maxlength="80"></label>
+          <label>Телефон <small>по желанию</small><input name="phone" type="tel" autocomplete="tel" maxlength="28"></label>
+          <label class="request-check"><input type="checkbox" name="fullService">Организация под ключ</label>
+        </div>
+        <p class="form-note">Черновик можно скачать. Данные остаются в браузере до скачивания.</p>
+        <button class="primary sage" type="submit">Подготовить заявку</button>
+        </fieldset>
+        <noscript><p class="form-note">Для подготовки черновика включите JavaScript.</p></noscript>
+        <div class="request-result" data-request-result hidden>
+          <p role="status" data-request-status></p>
+          <a class="text-link" data-request-download download="sluchaynosti-request.txt">Скачать черновик</a>
+        </div>
+      </form>
+    </div>
+  </section></main>
+  <footer class="site-footer">
+    <div class="frame footer-inner">
+      <div><a href="../" aria-label="Случайности, главная"><img src="../prototype/wordmark-light.svg" width="1376" height="222" alt=""></a><address>Пермь, ул. Космонавта Леонова, 61/1</address></div>
+      <nav aria-label="Разделы сайта"><a href="../weddings/" class="footer-link" style="--i:0">Свадьбы</a>
+<a href="../corporate/" class="footer-link" style="--i:1">Корпоративы</a>
+<a href="../spaces/" class="footer-link" style="--i:2">Пространства</a>
+<a href="../menu/" class="footer-link" style="--i:3">Кухня и меню</a>
+<a href="../gallery/" class="footer-link" style="--i:4">Фото и видео</a>
+<a href="../stay/" class="footer-link" style="--i:5">Проживание</a>
+<a href="../prices/" class="footer-link" style="--i:6">Цены и услуги</a>
+<a href="../contacts/" class="footer-link" style="--i:7" aria-current="page">Контакты</a></nav>
+    </div>
+  </footer>
+</body>
+</html>
