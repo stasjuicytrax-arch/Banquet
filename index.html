@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#30282D">
+  <meta name="robots" content="noindex">
+  <title>Случайности · Превью сайта</title>
+  <link rel="preload" href="prototype/hero-background.webp" as="image">
+  <link rel="stylesheet" href="prototype/hero.css">
+  <script src="prototype/hero.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">К содержанию</a>
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <svg class="scene" viewBox="0 0 1600 1000" preserveAspectRatio="xMaxYMid slice" aria-hidden="true" focusable="false">
+        <defs>
+          <path id="drop-shape" d="M-375 51C-386-105-251-243-50-292C129-337 311-273 370-125C434 37 332 199 153 270C-51 350-345 285-375 51Z"/>
+          <clipPath id="drop-cutout">
+            <use id="drop-clip" href="#drop-shape" transform="translate(1175 535) rotate(-7)"/>
+          </clipPath>
+          <radialGradient id="drop-volume" cx="57%" cy="42%" r="63%">
+            <stop offset="54%" stop-color="#f9f2ee" stop-opacity="0"/>
+            <stop offset="83%" stop-color="#f0c1ce" stop-opacity=".09"/>
+            <stop offset="96%" stop-color="#e9dcfa" stop-opacity=".28"/>
+            <stop offset="100%" stop-color="#3c5549" stop-opacity=".18"/>
+          </radialGradient>
+          <linearGradient id="drop-glint" x1="10%" y1="0%" x2="91%" y2="100%">
+            <stop offset="0%" stop-color="#fff2d8" stop-opacity=".02"/>
+            <stop offset="20%" stop-color="#fff3d7" stop-opacity=".85"/>
+            <stop offset="32%" stop-color="#ffe6d5" stop-opacity=".32"/>
+            <stop offset="51%" stop-color="#eacbcd" stop-opacity=".14"/>
+            <stop offset="74%" stop-color="#c2a9e9" stop-opacity=".56"/>
+            <stop offset="89%" stop-color="#ffd8a5" stop-opacity=".98"/>
+            <stop offset="100%" stop-color="#f9f2ee" stop-opacity=".28"/>
+          </linearGradient>
+          <filter id="nav-liquid" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+            <feImage href="prototype/glass-map.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" result="map"/>
+            <feDisplacementMap in="SourceGraphic" in2="map" scale="24" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+        </defs>
+        <image id="scene-photo" href="prototype/hero-background.webp" width="1600" height="1000" preserveAspectRatio="xMidYMid slice"/>
+        <g clip-path="url(#drop-cutout)">
+          <use class="lens-picture" href="#scene-photo" transform="translate(-70 -32) scale(1.06)"/>
+        </g>
+        <g id="drop-rim" transform="translate(1175 535) rotate(-7)">
+          <use href="#drop-shape" fill="url(#drop-volume)" stroke="#f9f2ee" stroke-opacity=".2" stroke-width="1.5"/>
+          <use class="lens-halo" href="#drop-shape" fill="none" stroke="url(#drop-glint)" stroke-width="5"/>
+          <use href="#drop-shape" fill="none" stroke="url(#drop-glint)" stroke-width="1.8"/>
+        </g>
+      </svg>
+      <div class="shade" aria-hidden="true"></div>
+      <div class="film-grain" aria-hidden="true"></div>
+      <div class="cloud-seam" aria-hidden="true"></div>
+      <header class="hero-header frame">
+        <a class="brand" href="./" aria-label="Случайности, главная">
+          <img src="prototype/wordmark-light.svg" width="1376" height="222" alt="">
+        </a>
+        <nav class="hero-nav glass" aria-label="Навигация по превью">
+          <span class="glass-refraction" aria-hidden="true"></span>
+          <a href="prototype/calculator.html?event=wedding" aria-label="Свадьбы, пример расчёта">Свадьбы</a>
+          <a href="prototype/calculator.html?event=corporate" aria-label="Корпоративы, пример расчёта">Корпоративы</a>
+          <a href="#spaces">Пространства</a>
+        </nav>
+        <a class="contact glass" href="#location">Контакты</a>
+      </header>
+      <div class="hero-content frame">
+        <h1 id="hero-title">Случайности,<br>которые становятся<br>воспоминаниями</h1>
+        <p>Свадьбы, корпоративы и события<br>в 12 минутах от центра Перми</p>
+        <div class="hero-actions">
+          <a class="primary" href="prototype/calculator.html#event-date">Выбрать дату</a>
+          <a class="secondary glass" href="#spaces">Посмотреть площадку</a>
+        </div>
+      </div>
+      <button class="motion-button glass" type="button" id="motion-toggle" aria-label="Остановить анимацию" aria-pressed="false" hidden>
+        <svg class="pause-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5v14m6-14v14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        <svg class="play-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 5 11 7-11 7V5Z" fill="currentColor"/></svg>
+      </button>
+    </section>
+
+    <div class="ambient-clouds" aria-hidden="true"></div>
+    <section class="location frame" id="location" aria-labelledby="location-title">
+      <div>
+        <h2 id="location-title">Ближе, чем вы думаете</h2>
+        <p class="distance"><strong>12</strong> минут</p>
+        <p class="origin">от центра Перми</p>
+        <address>Пермь, ул. Космонавта Леонова, 61/1</address>
+        <ul class="location-facts">
+          <li>Парковка на 20 машин</li>
+          <li>Праздники под открытым небом</li>
+        </ul>
+      </div>
+      <img class="location-image" src="prototype/grounds.webp" width="980" height="551" loading="lazy" alt="Банкетные столы среди деревьев под гирляндами">
+    </section>
+    <section class="spaces frame" id="spaces" aria-labelledby="spaces-title">
+      <h2 id="spaces-title">Выберите своё пространство</h2>
+      <ul class="space-names">
+        <li>Купольный шатёр</li><li>Летняя площадка</li><li>Веранды</li><li>Территория под открытым небом</li>
+      </ul>
+      <img src="design/03-spaces.webp" width="1586" height="992" loading="lazy" alt="Макет галереи площадок. Купольный шатёр вмещает до 150 гостей">
+    </section>
+  </main>
+  <footer class="site-footer frame">
+    <p>Превью сайта «Случайности»</p>
+    <a href="prototype/calculator.html">Открыть калькулятор</a>
+    <label class="cloud-option" id="cloud-option" hidden><input id="cloud-toggle" type="checkbox"> Облака по всей странице</label>
+  </footer>
+</body>
+</html>
