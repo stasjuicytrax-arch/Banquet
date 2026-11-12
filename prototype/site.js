@@ -100,26 +100,45 @@ const reveal = new IntersectionObserver((entries) => {
 document.querySelectorAll('[data-reveal]').forEach((element) => reveal.observe(element));
 
 document.querySelectorAll('[data-spaces]').forEach((gallery) => {
-  const controls = [...gallery.querySelectorAll('[data-space]')];
-  const details = [...gallery.querySelectorAll('[data-space-info]')];
+  const tabList = gallery.querySelector('[role="tablist"]');
+  const controls = [...tabList.querySelectorAll('[role="tab"]')];
+  const panels = controls.map((tab) => document.getElementById(tab.getAttribute('aria-controls')));
+  const horizontal = matchMedia('(max-width: 760px)');
+
+  function syncOrientation() {
+    tabList.setAttribute('aria-orientation', horizontal.matches ? 'horizontal' : 'vertical');
+  }
+
   function select(index) {
-    gallery.dataset.active = String(index);
-    controls.forEach((button, position) => {
-      button.setAttribute('aria-pressed', String(position === index));
-      details[position].hidden = position !== index;
+    controls.forEach((tab, position) => {
+      const active = position === index;
+      tab.setAttribute('aria-selected', String(active));
+      tab.tabIndex = active ? 0 : -1;
+      panels[position].setAttribute('aria-hidden', String(!active));
+      panels[position].inert = !active;
     });
   }
-  controls.forEach((button, index) => {
-    button.addEventListener('click', () => select(index));
-    button.addEventListener('keydown', (event) => {
-      const direction = { ArrowLeft: -1, ArrowRight: 1 }[event.key];
-      if (!direction) return;
+
+  controls.forEach((tab, index) => {
+    tab.addEventListener('click', () => select(index));
+    tab.addEventListener('keydown', (event) => {
+      const previous = horizontal.matches ? 'ArrowLeft' : 'ArrowUp';
+      const following = horizontal.matches ? 'ArrowRight' : 'ArrowDown';
+      let next = index;
+      switch (event.key) {
+        case previous: next = (index - 1 + controls.length) % controls.length; break;
+        case following: next = (index + 1) % controls.length; break;
+        case 'Home': next = 0; break;
+        case 'End': next = controls.length - 1; break;
+        default: return;
+      }
       event.preventDefault();
-      const next = (index + direction + controls.length) % controls.length;
       select(next);
       controls[next].focus();
     });
   });
+  syncOrientation();
+  horizontal.addEventListener('change', syncOrientation);
 });
 
 document.querySelectorAll('[data-gallery]').forEach((gallery) => {

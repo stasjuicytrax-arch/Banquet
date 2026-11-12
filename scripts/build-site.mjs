@@ -17,10 +17,25 @@ const routes = [
   ['contacts', 'Контакты'],
 ];
 const spaces = [
-  { id: 'dome', title: 'Купольный шатёр', file: 'dome.webp', note: 'До 150 гостей', text: 'Банкетная рассадка, свет и звук. Подходит для свадеб, корпоративов и больших праздников.' },
-  { id: 'summer', title: 'Летняя площадка', file: 'dance.webp', note: 'Вечеринка на улице', text: 'Открытая площадка для танцев, диджей-сетов и вечерней программы со светом и звуком.' },
-  { id: 'verandas', title: 'Веранды', file: 'veranda.webp', note: 'Для встреч и отдыха', text: 'Крытые зоны для общения, встречи гостей и паузы между частями программы.' },
-  { id: 'outdoors', title: 'Под открытым небом', file: 'grounds.webp', note: 'Зелёная территория', text: 'Пространство для выездной церемонии, фотозон и праздника среди деревьев.' },
+  {
+    id: 'restaurant', title: 'Ресторан', file: 'restaurant-reference.webp', guests: 50,
+    image: [1536, 1024], imageNote: 'Иллюстрация интерьера',
+    imageAlt: 'Длинный банкетный стол в зале ресторана',
+    text: 'Для семейного праздника, небольшого банкета или ужина с командой. Меню готовит кухня площадки.',
+  },
+  {
+    id: 'summer', title: 'Летняя площадка', file: 'veranda.webp', guests: 60,
+    image: [1536, 1024], imageNote: 'Иллюстрация летней площадки',
+    imageAlt: 'Гости за столом на крытой площадке среди деревьев',
+    text: 'Летний банкет среди зелени, встреча гостей или вечерняя программа на воздухе.',
+    aliases: ['verandas', 'outdoors'],
+  },
+  {
+    id: 'dome', title: 'Купольный шатёр', file: 'dome-concept.webp', guests: 150,
+    image: [1536, 1024], imageNote: 'Визуализация проекта', planned: true,
+    imageAlt: 'Геодезический купол с прозрачным фасадом на поляне',
+    text: 'На большой поляне планируется купольный шатёр для свадеб, корпоративов и больших банкетов.',
+  },
 ];
 const gifts = [
   ['tesla.webp', 'Tesla с водителем', 'Автомобиль с личным водителем на весь день свадьбы.'],
@@ -28,7 +43,7 @@ const gifts = [
   ['spa.webp', 'Хамам и бассейн', 'Три часа отдыха на следующий день после свадьбы.'],
 ];
 const pictures = [
-  ['dome.webp', 'Сервировка в купольном шатре', 'weddings'],
+  ['dome.webp', 'Пример сервировки в купольном шатре', 'weddings'],
   ['dancing-guests.webp', 'Вечерний ужин под гирляндами', 'weddings'],
   ['dance.webp', 'Танцы под открытым небом', 'parties'],
   ['grounds.webp', 'Столы среди деревьев', 'venue'],
@@ -108,11 +123,11 @@ function layout({ title, description, base = './', current = '', body, home = fa
   <meta name="robots" content="noindex">
   <meta name="description" content="${description}">
   <title>${title}</title>
-  ${home ? '<link rel="preload" href="prototype/hero-background.webp" as="image">' : ''}
+  ${home ? '<link rel="preload" href="prototype/grounds.webp" as="image">' : ''}
   <link rel="stylesheet" href="${base}prototype/site-effects.css">
-  <link rel="stylesheet" href="${base}prototype/site.css?v=3">
+  <link rel="stylesheet" href="${base}prototype/site.css?v=4">
   ${calculator ? `<link rel="stylesheet" href="${base}prototype/calculator.css">` : ''}
-  <script src="${base}prototype/site.js?v=3" defer></script>
+  <script src="${base}prototype/site.js?v=4" defer></script>
   ${calculator ? `<script src="${base}prototype/calculator.js" defer></script>` : ''}
 </head>
 <body${home ? ' class="home-page"' : ''}>
@@ -133,23 +148,31 @@ function layout({ title, description, base = './', current = '', body, home = fa
 
 function spaceGallery(base) {
   return `<section class="frame section spaces" id="spaces" aria-labelledby="spaces-title">
-    <h2 id="spaces-title">Выберите своё пространство</h2>
-    <div class="space-gallery" data-spaces data-active="0">
-    <div class="space-strip">
-      ${spaces.map((item, index) => `<div class="space-tile">
-        <button type="button" class="space-pick" aria-pressed="${index === 0}" aria-controls="space-details" data-space="${index}">
-          ${photo(base, item.file, '')}
-          <span>${item.title}</span>
-        </button>
-      </div>`).join('\n')}
+    <div class="spaces-intro">
+      <h2 id="spaces-title">Выберите своё пространство</h2>
+      <p>Ужин с близкими, летний банкет или большой праздник под куполом.</p>
     </div>
-    <div id="space-details" class="space-details">
-      ${spaces.map((item, index) => `<div class="space-info" data-space-info="${index}"${index ? ' hidden' : ''}>
-        <div><h3>${item.note}</h3><p>${item.text}</p></div>
-        ${link(base + 'spaces/#' + item.id, 'Подробнее')}
-      </div>`).join('\n')}
+    <div class="space-gallery" data-spaces>
+      <div class="space-tabs" role="tablist" aria-label="Пространства площадки">
+        ${spaces.map((item, index) => `<button class="space-tab" type="button" role="tab" id="space-tab-${item.id}" aria-selected="${index === 0}" tabindex="${index ? '-1' : '0'}" aria-controls="space-panel-${item.id}">
+          <span class="space-tab-title">${item.title}</span>
+          <span class="space-tab-meta">До ${item.guests} гостей${item.planned ? ' <span>· В проекте</span>' : ''}</span>
+        </button>`).join('\n')}
+      </div>
+      <div class="space-scenes">
+        ${spaces.map((item, index) => `<article class="space-scene" id="space-panel-${item.id}" role="tabpanel" tabindex="0" aria-labelledby="space-tab-${item.id}" aria-hidden="${Boolean(index)}"${index ? ' inert' : ''}>
+          <figure class="space-scene-media">
+            <img src="${base}prototype/${item.file}" width="${item.image[0]}" height="${item.image[1]}" alt="${item.imageAlt}" loading="lazy" decoding="async">
+            <figcaption>${item.imageNote}</figcaption>
+          </figure>
+          <div class="space-scene-copy">
+            <p>${item.text}</p>
+            ${link(base + 'spaces/#' + item.id, 'Подробнее')}
+          </div>
+        </article>`).join('\n')}
+      </div>
     </div>
-    </div>
+    <noscript>${link(base + 'spaces/', 'Посмотреть все пространства')}</noscript>
   </section>`;
 }
 
@@ -181,14 +204,13 @@ function mapLink() {
 function location() {
   return `<section class="location" id="location" aria-labelledby="location-title">
     <div class="location-inner frame section">
-      <div data-reveal>
-        <h2 id="location-title">Ближе, чем вы думаете</h2>
-        <p class="distance"><strong>12</strong> минут</p><p class="origin">от центра Перми</p>
-        <address>${address}</address>
-        <ul class="location-facts"><li>Парковка на 20 машин</li><li>Праздники под открытым небом</li></ul>
+      <div class="location-copy">
+        <h2 id="location-title">В Перми, среди зелени</h2>
+        <p>Ресторан и летняя площадка уже есть на территории. На большой поляне рядом планируем поставить купольный шатёр.</p>
       </div>
-      <div class="location-visual">
-        ${photo('./', 'grounds.webp', 'Банкетные столы среди деревьев', 'location-image')}
+      <div class="location-address">
+        <address>${address}</address>
+        <p>Парковка на 20 машин</p>
         ${mapLink()}
       </div>
     </div>
@@ -259,18 +281,19 @@ function gallery(base, full = false) {
 function home() {
   return layout({
     title: 'Случайности · Банкетная площадка в Перми',
-    description: 'Свадьбы, корпоративы и события в 12 минутах от центра Перми.',
+    description: 'Банкетная площадка «Случайности» в Перми. Ресторан, летняя площадка и проект купольного шатра.',
     home: true,
     body: `
     <section class="hero" aria-labelledby="hero-title">
-      <img class="hero-photo" src="prototype/hero-background.webp" width="1586" height="992" fetchpriority="high" alt="">
+      <img class="hero-photo" src="prototype/grounds.webp" width="980" height="551" fetchpriority="high" alt="">
       <div class="hero-shade" aria-hidden="true"></div>
       ${paperEdge(paperEdges.arrival, 'bottom', 'white')}
       <div class="frame hero-content">
         <h1 id="hero-title"><span>Случайности,</span><span>которые становятся</span><span>воспоминаниями</span></h1>
-        <p>Свадьбы, корпоративы и события<br>в 12 минутах от центра Перми</p>
+        <p>Банкетная площадка в Перми для свадеб,<br>корпоративов и частных праздников.</p>
         <div class="actions">${link('contacts/#request', 'Выбрать дату', 'primary')}${link('#spaces', 'Посмотреть площадку', 'secondary')}</div>
       </div>
+      <p class="hero-media-note">Иллюстративное фото</p>
     </section>
     ${location()}
     ${spaceGallery('./')}
@@ -282,7 +305,7 @@ function home() {
     ${feature({ id: 'production', title: 'Здесь праздник звучит по‑настоящему', text: 'Свет, звук, экраны и уличная дискотека. Диджеи и техническая команда помогают собрать программу под ваш формат.', file: 'dance.webp', alt: 'Танцы перед сценой на открытом воздухе', href: 'corporate/#production', action: 'Технические возможности', variant: 'feature-dark reversed', torn: true })}
     ${feature({ id: 'team', title: 'От идеи до последнего танца', text: 'Персональный менеджер, ведущие, артисты, декор и сценарий. Можно доверить команде весь праздник или выбрать отдельные услуги.', file: 'team.webp', alt: 'Координатор готовит банкетный зал', href: 'prices/', action: 'Обсудить мероприятие' })}
     ${feature({ id: 'stay', title: '<span>Праздник закончился.</span> <span>Отдых продолжается.</span>', text: 'На площадке семь номеров. Гости могут остаться после вечеринки, а молодожёнов ждёт отдельный номер.', file: 'room.webp', alt: 'Светлый гостевой номер', href: 'stay/', action: 'Посмотреть проживание', variant: 'feature-soft reversed feature-stay' })}
-    <section class="section frame" id="gallery"><div class="section-intro" data-reveal><h2>Здесь уже случилось счастье</h2>${link('gallery/', 'Открыть галерею')}</div>${gallery('./')}</section>
+    <section class="section frame" id="gallery"><div class="section-intro" data-reveal><h2>Как может выглядеть праздник</h2>${link('gallery/', 'Открыть галерею')}</div>${gallery('./')}</section>
     ${calculator()}
     ${requestForm('./')}`,
   });
@@ -297,19 +320,34 @@ function page(id, title, description, body) {
 }
 
 const pages = {
-  weddings: page('weddings', 'Свадьбы', 'Свадьба в купольном шатре или под открытым небом в Перми.',
-    pageIntro('Свадьбы', 'Церемония на зелёной территории, банкет под куполом и отдых после праздника. Соберём программу вокруг вашей даты.', 'dome.webp') +
+  weddings: page('weddings', 'Свадьбы', 'Свадебный банкет в ресторане или на летней площадке в Перми.',
+    pageIntro('Свадьбы', 'Церемония на зелёной территории, банкет в ресторане или на летней площадке и отдых после праздника. Соберём программу вокруг вашей даты.', 'dancing-guests.webp') +
     `<section class="gifts-section" id="gifts"><div class="frame section"><h2>Три подарка к вашей свадьбе</h2>${giftGallery('../')}<p class="fine-print">Доступность подарков и условия уточняются при обсуждении даты.</p></div></section>
     <section class="frame section prose"><h2>Как проходит свадьба</h2><details><summary>Где провести церемонию?</summary><p>На зелёной территории можно устроить выездную регистрацию и фотозону.</p></details>
-    <details><summary>Сколько гостей помещается под куполом?</summary><p>В купольном шатре можно принять до 150 гостей. Рассадку обсудим под формат банкета.</p></details>
+    <details><summary>На сколько гостей рассчитан проект купола?</summary><p>Купольный шатёр планируется на 150 гостей. Сроки и рассадку можно уточнить при обсуждении даты.</p></details>
     <details><summary>Можно остаться после свадьбы?</summary><p>На площадке семь гостевых номеров, в том числе отдельный номер для молодожёнов.</p></details>${link('../contacts/?event=wedding#request', 'Обсудить свадьбу', 'primary sage')}</section>`),
   corporate: page('corporate', 'Корпоративы и праздники', 'Площадки и техническая команда для корпоративных мероприятий в Перми.',
     pageIntro('Корпоративы и праздники', 'Деловая встреча, ужин для команды или вечеринка на воздухе. На площадке есть пространства для разных частей одного события.', 'dance.webp') +
     feature({ base: '../', id: 'production', title: 'Свет, звук и программа', text: 'Подбираем оборудование под формат мероприятия. Можно запланировать выступления, экран для презентаций, диджей-сет и танцы под открытым небом.', file: 'dancing-guests.webp', alt: 'Вечернее событие на открытом воздухе', href: '../contacts/?event=corporate#request', action: 'Подготовить запрос', variant: 'feature-dark' }) +
     `<section class="frame section prose"><h2>Организация под ключ</h2><p>Менеджер помогает со сценарием, ведущими, декором, кухней и техническим сопровождением.</p>${link('../prices/', 'Услуги и расчёт')}</section>`),
-  spaces: page('spaces', 'Наши пространства', 'Купольный шатёр, летняя площадка, веранды и зелёная территория.',
-    pageIntro('Наши пространства', 'Четыре зоны для церемоний, банкетов и вечеринок в 12 минутах от центра Перми.') +
-    spaces.map((item, index) => feature({ base: '../', id: item.id, title: item.title, text: item.text, file: item.file, alt: item.title, href: '../contacts/#request', action: 'Уточнить дату и условия', variant: index % 2 ? 'reversed feature-soft' : '' })).join('')),
+  spaces: page('spaces', 'Наши пространства', 'Ресторан на 50 гостей, летняя площадка на 60 и проект купольного шатра на 150 гостей.',
+    pageIntro('Наши пространства', 'Ресторан и летняя площадка на одной территории в Перми. На поляне рядом планируется купольный шатёр.') +
+    spaces.map((item, index) => `
+      ${(item.aliases ?? []).map((id) => `<div class="space-anchor" id="${id}" aria-hidden="true"></div>`).join('')}
+      <section class="feature-section${index % 2 ? ' reversed feature-soft' : ''}" id="${item.id}">
+        <div class="frame section feature">
+          <figure class="space-scene-media">
+            <img class="feature-image" src="../prototype/${item.file}" width="${item.image[0]}" height="${item.image[1]}" alt="${item.imageAlt}" loading="lazy" decoding="async">
+            <figcaption>${item.imageNote}</figcaption>
+          </figure>
+          <div class="feature-copy">
+            <h2>${item.title}</h2>
+            <p><strong>До ${item.guests} гостей${item.planned ? ' · В проекте' : ''}</strong></p>
+            <p>${item.text}</p>
+            ${link('../contacts/#request', 'Уточнить дату и условия')}
+          </div>
+        </div>
+      </section>`).join('')),
   menu: page('menu', 'Кухня и меню', 'Собственная кухня и индивидуальное меню для вашего мероприятия.',
     pageIntro('Кухня и меню', 'Повара работают на площадке. Горячие блюда готовятся к подаче, меню согласовывается под ваше событие.', 'kitchen.webp') +
     `<section class="frame section prose"><h2>Составим меню под ваш формат</h2><dl class="service-list">
@@ -318,7 +356,7 @@ const pages = {
     <div><dt>Пожелания гостей</dt><dd>Особые требования к блюдам можно указать при обсуждении меню.</dd></div></dl>
     ${link('../contacts/#request', 'Обсудить меню', 'primary sage')}</section>`),
   gallery: page('gallery', 'Фото и видео', 'Фотографии свадебных и вечерних форматов и пространств площадки.',
-    pageIntro('Фото и видео', 'Загляните в купол, на летнюю площадку и в гостевые зоны.') +
+    pageIntro('Фото и видео', 'Кадры для знакомства с форматами банкетов, летних праздников и размещения гостей.') +
     `<section class="frame section gallery-page" aria-label="Галерея">${gallery('../', true)}<p class="fine-print">В подборке используются иллюстративные кадры.</p></section>`),
   stay: page('stay', 'Проживание', 'Семь гостевых номеров на банкетной площадке в Перми.',
     pageIntro('Проживание', 'Семь номеров для тех, кто хочет остаться после праздника. Для молодожёнов предусмотрен отдельный номер.', 'room.webp') +
