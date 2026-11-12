@@ -46,7 +46,6 @@ function renderNav() {
   burger.tabIndex = !wide.matches || collapsed ? 0 : -1;
 }
 
-const hero = document.querySelector('.hero');
 function updateScroll() {
   scrollFrame = 0;
   const scroll = window.scrollY;
@@ -62,17 +61,12 @@ function updateScroll() {
       renderNav();
     }
   }
-  if (hero) {
-    const shift = reducedMotion.matches ? 0 : Math.min(scroll * .21, window.innerWidth * .11, 110);
-    hero.style.setProperty('--cloud-shift', shift + 'px');
-  }
 }
 
 window.addEventListener('scroll', () => {
   if (!scrollFrame) scrollFrame = requestAnimationFrame(updateScroll);
 }, { passive: true });
 wide.addEventListener('change', () => { measureNav(); renderNav(); });
-reducedMotion.addEventListener('change', updateScroll);
 new ResizeObserver(measureNav).observe(pill);
 measureNav();
 renderNav();

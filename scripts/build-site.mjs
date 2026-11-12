@@ -36,6 +36,16 @@ const pictures = [
   ['room.webp', 'Гостевой номер', 'venue'],
 ];
 
+const paperEdges = {
+  arrival: 'M0 46Q15 50 25 52L34 50Q50 44 65 47L77 46Q89 37 107 35L119 36L132 32Q151 34 161 29Q169 26 179 35L190 39Q203 40 216 48L228 46Q246 48 260 54Q277 58 292 50L310 46Q322 41 335 43L349 45Q358 40 369 40Q381 39 391 48L403 49Q411 47 427 53Q442 57 456 52L471 54L483 51Q496 50 507 42Q514 36 527 42L539 47Q548 47 560 53L574 51Q587 54 603 58Q615 61 631 56L646 55Q660 49 677 52L691 48L706 48Q723 47 739 38Q749 34 758 38L771 35Q784 34 796 40L810 38Q819 31 828 32Q837 33 846 42L860 46Q871 46 885 52L900 52Q912 56 925 51L938 50L949 53Q962 52 978 44L991 45Q1007 43 1026 33Q1037 29 1044 35L1057 37Q1067 36 1080 47L1094 47Q1105 48 1118 55Q1131 60 1145 54L1158 50Q1173 52 1185 47L1201 47Q1214 44 1222 39Q1231 34 1244 40L1256 38Q1275 33 1286 40L1301 44L1317 43Q1327 39 1340 44L1354 46Q1369 46 1382 52L1397 50L1412 55Q1426 51 1440 50V80H0Z',
+  eveningStart: 'M0 0H1440V42Q1428 36 1414 42L1397 46L1383 44Q1369 47 1356 53Q1348 56 1338 52L1324 50Q1308 46 1297 49L1284 46L1266 47Q1247 45 1235 39L1221 39Q1206 32 1194 38L1178 35Q1165 31 1153 40L1139 42Q1124 51 1108 48L1095 49Q1082 53 1071 50L1058 44Q1047 45 1036 39Q1029 36 1020 43L1005 48L987 48Q971 51 959 46L944 47Q929 48 916 54L904 53Q890 51 878 44L864 43Q851 36 839 41L824 44Q805 43 791 38L777 42Q759 45 748 51L733 51Q719 55 705 49L693 49Q680 56 665 51L652 47L638 48Q625 41 612 38L597 38Q585 39 568 33Q560 29 553 36L540 38Q529 46 515 46L502 48Q483 48 468 44L452 48L436 45Q422 41 412 47L396 50Q381 55 367 52L352 50Q341 55 326 50L312 46Q299 46 287 40L273 41L258 46Q244 42 231 42L216 44Q203 43 187 39L173 42Q160 41 145 36Q134 31 124 37L109 39Q96 44 82 46L68 45Q54 49 40 51L25 48Q12 51 0 49Z',
+  eveningEnd: 'M0 52Q13 48 24 44L38 45Q52 41 66 38L79 39Q92 39 108 34Q117 31 126 36L142 41L157 46Q169 43 181 47L194 51Q208 54 223 50L238 49Q253 45 267 50L280 51Q294 49 306 45L318 47Q331 45 348 40L363 40Q380 40 392 35Q399 31 410 37L423 43Q436 48 448 50L463 48L477 54Q491 55 506 51L520 48Q532 42 547 45L561 46Q576 43 592 42L605 45Q617 43 629 38L644 41L655 43Q669 39 676 34Q686 30 698 36L712 41Q727 44 742 44L756 47Q768 51 781 48L797 48Q810 52 825 55Q835 56 848 52L864 53Q877 52 890 48L904 47L919 45Q933 41 946 37L961 38Q976 37 990 33Q1001 29 1009 35L1024 39Q1035 43 1049 46L1064 44Q1081 47 1094 50L1108 47L1125 48Q1138 53 1153 49L1167 47Q1183 48 1199 45Q1210 40 1224 42L1238 42Q1250 36 1261 35L1274 38Q1288 39 1303 45L1319 45L1332 47Q1345 51 1358 52L1373 50Q1387 52 1401 55L1416 52L1440 53V80H0Z',
+};
+
+function paperEdge(path, position, surface = '') {
+  return `<svg class="paper-edge paper-edge--${position}${surface ? ' paper-edge--' + surface : ''}" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="${path}"/></svg>`;
+}
+
 function photo(base, file, alt, css = '') {
   return `<img class="${css}" src="${base}prototype/${file}" alt="${alt}" loading="lazy" decoding="async">`;
 }
@@ -100,9 +110,9 @@ function layout({ title, description, base = './', current = '', body, home = fa
   <title>${title}</title>
   ${home ? '<link rel="preload" href="prototype/hero-background.webp" as="image">' : ''}
   <link rel="stylesheet" href="${base}prototype/site-effects.css">
-  <link rel="stylesheet" href="${base}prototype/site.css?v=2">
+  <link rel="stylesheet" href="${base}prototype/site.css?v=3">
   ${calculator ? `<link rel="stylesheet" href="${base}prototype/calculator.css">` : ''}
-  <script src="${base}prototype/site.js?v=2" defer></script>
+  <script src="${base}prototype/site.js?v=3" defer></script>
   ${calculator ? `<script src="${base}prototype/calculator.js" defer></script>` : ''}
 </head>
 <body${home ? ' class="home-page"' : ''}>
@@ -112,9 +122,6 @@ function layout({ title, description, base = './', current = '', body, home = fa
       <feImage id="liquid-map" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" result="map"/>
       <feDisplacementMap in="SourceGraphic" in2="map" scale="32" xChannelSelector="R" yChannelSelector="G"/>
     </filter>
-    ${home ? `<filter id="cirrus-density" x="0" y="0" width="100%" height="100%">
-      <feComponentTransfer><feFuncA type="gamma" amplitude="1" exponent=".62" offset="0"/></feComponentTransfer>
-    </filter>` : ''}
   </svg>
   ${header(base, current)}
   <main id="main">${body}</main>
@@ -152,13 +159,15 @@ function giftGallery(base) {
   </article>`).join('\n')}</div>`;
 }
 
-function feature({ base = './', id = '', title, text, file, alt, href, action, variant = '' }) {
-  return `<section${id ? ` id="${id}"` : ''} class="feature-section ${variant}">
+function feature({ base = './', id = '', title, text, file, alt, href, action, variant = '', torn = false }) {
+  return `<section${id ? ` id="${id}"` : ''} class="feature-section ${variant}${torn ? ' feature-torn' : ''}">
+    ${torn ? paperEdge(paperEdges.eveningStart, 'top') : ''}
     <div class="frame section feature">
       ${photo(base, file, alt, 'feature-image')}
       <div class="feature-copy" data-reveal><h2>${title}</h2><p>${text}</p>
       ${href ? link(href, action) : ''}</div>
     </div>
+    ${torn ? paperEdge(paperEdges.eveningEnd, 'bottom') : ''}
   </section>`;
 }
 
@@ -256,7 +265,7 @@ function home() {
     <section class="hero" aria-labelledby="hero-title">
       <img class="hero-photo" src="prototype/hero-background.webp" width="1586" height="992" fetchpriority="high" alt="">
       <div class="hero-shade" aria-hidden="true"></div>
-      <div class="cloud-seam" aria-hidden="true"><span></span><span></span></div>
+      ${paperEdge(paperEdges.arrival, 'bottom', 'white')}
       <div class="frame hero-content">
         <h1 id="hero-title"><span>Случайности,</span><span>которые становятся</span><span>воспоминаниями</span></h1>
         <p>Свадьбы, корпоративы и события<br>в 12 минутах от центра Перми</p>
@@ -270,7 +279,7 @@ function home() {
       ${link('weddings/#gifts', 'Все свадебные подарки')}</div>${giftGallery('./')}</div>
     </section>
     ${feature({ id: 'kitchen', title: 'Своя кухня', text: 'Готовим горячие блюда прямо на площадке. Составляем меню под формат праздника и подаём блюда к столу.', file: 'kitchen.webp', alt: 'Повар готовит блюда на кухне', href: 'menu/', action: 'Посмотреть меню' })}
-    ${feature({ id: 'production', title: 'Здесь праздник звучит по-настоящему', text: 'Свет, звук, экраны и уличная дискотека. Диджеи и техническая команда помогают собрать программу под ваш формат.', file: 'dance.webp', alt: 'Танцы перед сценой на открытом воздухе', href: 'corporate/#production', action: 'Технические возможности', variant: 'feature-dark reversed' })}
+    ${feature({ id: 'production', title: 'Здесь праздник звучит по‑настоящему', text: 'Свет, звук, экраны и уличная дискотека. Диджеи и техническая команда помогают собрать программу под ваш формат.', file: 'dance.webp', alt: 'Танцы перед сценой на открытом воздухе', href: 'corporate/#production', action: 'Технические возможности', variant: 'feature-dark reversed', torn: true })}
     ${feature({ id: 'team', title: 'От идеи до последнего танца', text: 'Персональный менеджер, ведущие, артисты, декор и сценарий. Можно доверить команде весь праздник или выбрать отдельные услуги.', file: 'team.webp', alt: 'Координатор готовит банкетный зал', href: 'prices/', action: 'Обсудить мероприятие' })}
     ${feature({ id: 'stay', title: '<span>Праздник закончился.</span> <span>Отдых продолжается.</span>', text: 'На площадке семь номеров. Гости могут остаться после вечеринки, а молодожёнов ждёт отдельный номер.', file: 'room.webp', alt: 'Светлый гостевой номер', href: 'stay/', action: 'Посмотреть проживание', variant: 'feature-soft reversed feature-stay' })}
     <section class="section frame" id="gallery"><div class="section-intro" data-reveal><h2>Здесь уже случилось счастье</h2>${link('gallery/', 'Открыть галерею')}</div>${gallery('./')}</section>
