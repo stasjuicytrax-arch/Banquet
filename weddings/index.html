@@ -9,8 +9,10 @@
   <title>Свадьбы · Случайности</title>
 
   <link rel="stylesheet" href="../prototype/site-effects.css">
-  <link rel="stylesheet" href="../prototype/site.css">
-  <script src="../prototype/site.js" defer></script>
+  <link rel="stylesheet" href="../prototype/site.css?v=2">
+
+  <script src="../prototype/site.js?v=2" defer></script>
+
 </head>
 <body>
   <div class="site-grain" aria-hidden="true"></div>
@@ -19,6 +21,7 @@
       <feImage id="liquid-map" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" result="map"/>
       <feDisplacementMap in="SourceGraphic" in2="map" scale="32" xChannelSelector="R" yChannelSelector="G"/>
     </filter>
+
   </svg>
 
   <a class="skip" href="#main">К содержанию</a>
@@ -27,7 +30,6 @@
       <div class="nav-glass glass glass-nav" aria-hidden="true"></div>
       <a class="nav-logo" href="../" aria-label="Случайности, главная">
         <img src="../prototype/wordmark-light.svg" width="1376" height="222" alt="">
-        <img class="nav-logo-dark" src="../prototype/wordmark.svg" width="1376" height="222" alt="">
       </a>
       <nav class="nav-links" aria-label="Основное меню">
         <a class="nav-item" style="--i:0" href="../weddings/" aria-current="page">Свадьбы</a>

@@ -3,242 +3,64 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#F9F2EE">
+  <meta name="theme-color" content="#30282d">
   <meta name="robots" content="noindex">
+  <meta name="description" content="Пример расчёта стоимости мероприятия по формату и количеству гостей.">
   <title>Калькулятор мероприятия · Случайности</title>
-  <link rel="stylesheet" href="site-effects.css">
-  <style>
-    :root {
-      color-scheme: light;
-      --paper: #f9f2ee;
-      --ink: #30282d;
-      --sage: #3c5549;
-      --sage-deep: #2c4438;
-      --rose: #eacbcd;
-      --lilac: #ded5ec;
-      --muted: #62535c;
-      --rule: #c6b9bc;
-      --control: #fffaf7;
-      --focus: #795068;
-      font-family: Inter, "Segoe UI", sans-serif;
-      line-height: 1.5;
-      color: var(--ink);
-      background: var(--paper);
-    }
-    *, *::before, *::after { box-sizing: border-box; }
-    body { margin: 0; }
-    button, input { font: inherit; }
-    button { touch-action: manipulation; }
-    ::selection { color: var(--ink); background: var(--lilac); }
-    :focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
-    [hidden] { display: none !important; }
-    .wrap { width: min(1120px, calc(100% - clamp(32px, 10vw, 144px))); margin-inline: auto; }
-    .skip {
-      position: absolute;
-      z-index: 3;
-      inset: 12px auto auto 12px;
-      padding: 8px 16px;
-      color: var(--ink);
-      background: var(--paper);
-      transform: translateY(-200%);
-    }
-    .skip:focus { transform: none; }
-    .masthead {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      min-height: 78px;
-      gap: 16px;
-      border-bottom: 1px solid var(--rule);
-    }
-    .wordmark { display: block; width: clamp(128px, 18vw, 190px); height: auto; }
-    .demo-note { color: var(--muted); font-size: .875rem; text-align: right; }
-    main { padding-block: clamp(34px, 5vw, 72px) 64px; }
-    h1, h2, p, dl { margin: 0; }
-    h1 {
-      max-width: 14ch;
-      font-size: clamp(2.15rem, 5.35vw, 4.85rem);
-      line-height: 1.01;
-      font-weight: 650;
-      letter-spacing: -.04em;
-      text-wrap: balance;
-    }
-    .lede { margin-top: 16px; color: var(--muted); max-width: 56ch; }
-    .calculator {
-      margin-top: clamp(27px, 4vw, 49px);
-      display: grid;
-      grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
-      gap: clamp(28px, 6vw, 90px);
-      align-items: start;
-    }
-    .inputs { display: grid; gap: 22px; min-width: 0; }
-    fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
-    legend, .field-label { padding: 0; font-weight: 650; }
-    .formats { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 9px; }
-    .format { position: relative; }
-    .format input {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      margin: 0;
-      width: 100%;
-      height: 100%;
-      cursor: pointer;
-    }
-    .format span {
-      display: flex;
-      align-items: center;
-      min-height: 44px;
-      padding: 7px 14px;
-      border: 1px solid var(--rule);
-      border-radius: 999px;
-      background: var(--control);
-      transition: background-color .18s ease, border-color .18s ease;
-    }
-    .format:hover span { border-color: var(--sage); }
-    .format input:checked + span { color: var(--paper); background: var(--sage); border-color: var(--sage); }
-    .format input:focus-visible + span { outline: 3px solid var(--focus); outline-offset: 4px; }
-    .guest-heading { display: flex; justify-content: space-between; gap: 12px; align-items: center; }
-    input[type="number"], input[type="date"] {
-      min-height: 44px;
-      max-width: 100%;
-      padding: 7px 11px;
-      border: 1px solid var(--rule);
-      border-radius: 10px;
-      color: var(--ink);
-      background: var(--control);
-      caret-color: var(--sage);
-    }
-    input[type="number"] { width: 86px; font-variant-numeric: tabular-nums; }
-    input[type="date"] { display: block; width: 100%; margin-top: 8px; }
-    input[type="range"] {
-      display: block;
-      width: 100%;
-      height: 44px;
-      margin: 2px 0 0;
-      accent-color: var(--sage);
-      cursor: pointer;
-    }
-    .range-limits { display: flex; justify-content: space-between; color: var(--muted); font-size: .875rem; }
-    .service {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-height: 53px;
-      padding: 10px 14px;
-      border-radius: 12px;
-      background: var(--lilac);
-      cursor: pointer;
-    }
-    .service input { width: 20px; height: 20px; margin: 0; flex: none; accent-color: var(--sage); }
-    .optional { color: var(--muted); font-size: .875rem; font-weight: 400; }
-    .summary {
-      position: relative;
-      isolation: isolate;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      padding: clamp(22px, 4vw, 42px);
-      border-radius: 16px 100px 16px 16px;
-      color: var(--paper);
-      background: var(--sage);
-    }
-    .summary::before {
-      content: "";
-      position: absolute;
-      z-index: -1;
-      inset: 8px 8px 8px 8px;
-      border: 1px solid rgb(249 242 238 / .22);
-      border-radius: 11px 93px 11px 11px;
-      pointer-events: none;
-    }
-    .summary h2, .application h2 { font-size: clamp(1.25rem, 2.2vw, 1.65rem); font-weight: 650; }
-    .estimate {
-      display: block;
-      margin-top: 5px;
-      font-size: clamp(2.1rem, 4.1vw, 3.8rem);
-      font-weight: 600;
-      line-height: 1.05;
-      letter-spacing: -.04em;
-      font-variant-numeric: tabular-nums;
-      white-space: nowrap;
-    }
-    .pricing-note { margin-top: 6px; color: #efe2de; font-size: .875rem; }
-    .receipt { display: grid; }
-    .receipt div {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 12px;
-      padding: 9px 0;
-      border-top: 1px solid rgb(249 242 238 / .29);
-    }
-    .receipt dd { margin: 0; text-align: right; font-weight: 550; font-variant-numeric: tabular-nums; }
-    .receipt dt { color: #efe2de; }
-    .cta {
-      align-self: flex-start;
-      min-height: 48px;
-      padding: 9px 18px;
-      border: 0;
-      border-radius: 999px;
-      color: var(--ink);
-      background: var(--rose);
-      font-weight: 650;
-      cursor: pointer;
-      transition: background-color .18s ease, transform .18s ease;
-    }
-    .cta:hover { background: #f0d8da; }
-    .cta:active { transform: translateY(1px); }
-    .summary .cta:focus-visible { outline-color: var(--paper); }
-    .application {
-      margin-top: clamp(30px, 5vw, 54px);
-      padding: clamp(20px, 4vw, 36px);
-      border-radius: 16px;
-      background: #f0e6e5;
-      scroll-margin-top: 16px;
-    }
-    .application > p { margin-block: 7px 18px; color: var(--muted); }
-    .application .receipt { max-width: 640px; }
-    .application .receipt dt { color: var(--muted); }
-    .application .receipt div { border-color: var(--rule); }
-    .application .receipt dd { overflow-wrap: anywhere; }
-    .back {
-      display: inline-block;
-      margin-top: 16px;
-      min-height: 44px;
-      padding: 0 12px;
-      border: 1px solid var(--sage);
-      border-radius: 999px;
-      color: var(--sage-deep);
-      background: transparent;
-      cursor: pointer;
-    }
-    .back:hover { background: var(--paper); }
-    @media (max-width: 720px) {
-      .calculator { grid-template-columns: minmax(0, 1fr); }
-      .summary { border-top-right-radius: 72px; }
-      .summary::before { border-top-right-radius: 65px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { transition: none !important; }
-    }
-  </style>
+
+  <link rel="stylesheet" href="../prototype/site-effects.css">
+  <link rel="stylesheet" href="../prototype/site.css?v=2">
+  <link rel="stylesheet" href="../prototype/calculator.css">
+  <script src="../prototype/site.js?v=2" defer></script>
+  <script src="../prototype/calculator.js" defer></script>
 </head>
 <body>
   <div class="site-grain" aria-hidden="true"></div>
-  <a class="skip" href="#main">К калькулятору</a>
-  <header class="masthead wrap">
-    <a href="../" aria-label="Случайности, главная">
-      <img class="wordmark" src="wordmark.svg" width="1376" height="222" alt="">
-    </a>
-    <p class="demo-note">Демонстрация для заказчика</p>
-  </header>
-  <main id="main" class="wrap">
-    <h1>Калькулятор мероприятия</h1>
-    <p class="lede">Выберите формат и количество гостей, чтобы посмотреть расчёт и пример заявки для менеджера.</p>
+  <svg class="glass-definition" width="0" height="0" aria-hidden="true" focusable="false">
+    <filter id="de-liquid" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+      <feImage id="liquid-map" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" result="map"/>
+      <feDisplacementMap in="SourceGraphic" in2="map" scale="32" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
 
-    <div class="calculator">
+  </svg>
+
+  <a class="skip" href="#main">К содержанию</a>
+  <header class="site-header" data-light>
+    <div class="nav-pill">
+      <div class="nav-glass glass glass-nav" aria-hidden="true"></div>
+      <a class="nav-logo" href="../" aria-label="Случайности, главная">
+        <img src="../prototype/wordmark-light.svg" width="1376" height="222" alt="">
+      </a>
+      <nav class="nav-links" aria-label="Основное меню">
+        <a class="nav-item" style="--i:0" href="../weddings/">Свадьбы</a>
+<a class="nav-item" style="--i:1" href="../corporate/">Корпоративы</a>
+<a class="nav-item" style="--i:2" href="../spaces/">Пространства</a>
+<a class="nav-item" style="--i:3" href="../contacts/">Контакты</a>
+      </nav>
+      <a class="nav-item nav-cta primary" style="--i:4" href="../contacts/#request">Выбрать дату</a>
+      <button class="nav-burger" type="button" aria-label="Открыть меню" aria-haspopup="dialog" aria-controls="mobile-menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </header>
+  <dialog class="nav-dialog" id="mobile-menu" aria-label="Меню">
+    <div class="dialog-header">
+      <a href="../" aria-label="Случайности, главная"><img src="../prototype/wordmark-light.svg" width="1376" height="222" alt=""></a>
+      <button class="icon-button" type="button" data-close aria-label="Закрыть меню"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+    </div>
+    <nav aria-label="Все страницы"><a href="../weddings/" class="dialog-link" style="--i:0">Свадьбы</a>
+<a href="../corporate/" class="dialog-link" style="--i:1">Корпоративы</a>
+<a href="../spaces/" class="dialog-link" style="--i:2">Пространства</a>
+<a href="../menu/" class="dialog-link" style="--i:3">Кухня и меню</a>
+<a href="../gallery/" class="dialog-link" style="--i:4">Фото и видео</a>
+<a href="../stay/" class="dialog-link" style="--i:5">Проживание</a>
+<a href="../prices/" class="dialog-link" style="--i:6" aria-current="page">Цены и услуги</a>
+<a href="../contacts/" class="dialog-link" style="--i:7">Контакты</a></nav>
+    <a class="primary" href="../contacts/#request">Выбрать дату</a>
+  </dialog>
+  <main id="main"><section class="event-calculator event-calculator-page" id="event-calculator" aria-labelledby="calculator-title">
+    <div class="frame section">
+      <h1 id="calculator-title">Калькулятор мероприятия</h1>
+      <p class="calc-lede">Выберите формат и количество гостей, чтобы посмотреть расчёт и пример заявки для менеджера.</p>
+          <div class="calculator">
       <form class="inputs" id="calculator" autocomplete="off">
         <fieldset>
           <legend>Формат мероприятия</legend>
@@ -281,110 +103,41 @@
           <div><dt>На гостя</dt><dd id="summary-rate"></dd></div>
           <div id="service-line" hidden><dt>Под ключ</dt><dd id="summary-service"></dd></div>
         </dl>
-        <button class="cta" type="submit" form="calculator" aria-controls="application" aria-expanded="false" id="show-application">Посмотреть заявку</button>
+        <button class="primary" type="submit" form="calculator" aria-controls="application" aria-expanded="false" id="show-application" disabled>Посмотреть заявку</button>
       </section>
     </div>
 
     <section class="application" id="application" aria-labelledby="application-title" tabindex="-1" hidden>
       <h2 id="application-title">Пример заявки для менеджера</h2>
-      <p>Имя и телефон приведены для примера. Данные остаются в этом окне.</p>
+      <p>Проверьте параметры и перенесите их в форму заявки.</p>
       <dl class="receipt">
         <div><dt>Формат</dt><dd id="application-format"></dd></div>
         <div><dt>Гости</dt><dd id="application-guests"></dd></div>
         <div><dt>Дата</dt><dd id="application-date"></dd></div>
         <div><dt>Организация под ключ</dt><dd id="application-service"></dd></div>
         <div><dt>Условная сумма</dt><dd id="application-estimate"></dd></div>
-        <div><dt>Имя</dt><dd>Анна</dd></div>
-        <div><dt>Телефон</dt><dd>+7 000 000-00-00</dd></div>
       </dl>
-      <button type="button" class="back" id="edit-calculation">Вернуться к расчёту</button>
+      <div class="actions">
+        <a class="primary sage" id="transfer-application" href="../#request">Перенести в заявку</a>
+        <button type="button" class="back" id="edit-calculation">Вернуться к расчёту</button>
+      </div>
     </section>
     <noscript><p>Для работы калькулятора включите JavaScript в браузере.</p></noscript>
-  </main>
-  <script>
-    const demoRates = {
-      wedding: { label: 'Свадьба', perGuest: 4200 },
-      corporate: { label: 'Корпоратив', perGuest: 3800 },
-      birthday: { label: 'День рождения', perGuest: 3400 },
-    };
-    const fullServiceRate = 45000;
-    const money = new Intl.NumberFormat('ru-RU', {
-      style: 'currency', currency: 'RUB', maximumFractionDigits: 0,
-    });
-    const dateFormat = new Intl.DateTimeFormat('ru-RU', { dateStyle: 'long' });
-    const venueDate = new Intl.DateTimeFormat('sv-SE', {
-      timeZone: 'Asia/Yekaterinburg', year: 'numeric', month: '2-digit', day: '2-digit',
-    });
-    const form = document.getElementById('calculator');
-    const { event: eventType, guests, guestRange, fullService, eventDate } = form.elements;
-    const estimate = document.getElementById('estimate');
-    const showApplication = document.getElementById('show-application');
-    const application = document.getElementById('application');
-    const serviceLine = document.getElementById('service-line');
-    const summary = {
-      format: document.getElementById('summary-format'),
-      guests: document.getElementById('summary-guests'),
-      rate: document.getElementById('summary-rate'),
-      service: document.getElementById('summary-service'),
-    };
-    const request = {
-      format: document.getElementById('application-format'),
-      guests: document.getElementById('application-guests'),
-      date: document.getElementById('application-date'),
-      service: document.getElementById('application-service'),
-      estimate: document.getElementById('application-estimate'),
-    };
-    eventDate.min = venueDate.format(new Date());
-    const requestedEvent = new URLSearchParams(window.location.search).get('event');
-    if (Object.hasOwn(demoRates, requestedEvent)) eventType.value = requestedEvent;
 
-    function render() {
-      const rate = demoRates[eventType.value];
-      const guestCount = guestRange.valueAsNumber;
-      const serviceCost = fullService.checked ? fullServiceRate : 0;
-      const total = money.format(rate.perGuest * guestCount + serviceCost);
-
-      if (estimate.value !== total) estimate.value = total;
-      summary.format.textContent = rate.label;
-      summary.guests.textContent = guestCount;
-      summary.rate.textContent = money.format(rate.perGuest);
-      summary.service.textContent = money.format(serviceCost);
-      serviceLine.hidden = !fullService.checked;
-
-      request.format.textContent = rate.label;
-      request.guests.textContent = guestCount;
-      request.date.textContent = eventDate.validity.valid && eventDate.value
-        ? dateFormat.format(new Date(eventDate.value + 'T12:00:00')) : 'Уточняется';
-      request.service.textContent = fullService.checked ? 'Да' : 'Нет';
-      request.estimate.textContent = total;
-    }
-
-    guests.addEventListener('input', () => {
-      if (guests.validity.valid) guestRange.value = guests.value;
-    });
-    guests.addEventListener('change', () => {
-      const count = guests.valueAsNumber;
-      guests.value = Number.isFinite(count)
-        ? Math.max(Number(guests.min), Math.min(Number(guests.max), Math.round(count)))
-        : guestRange.value;
-      guestRange.value = guests.value;
-      render();
-    });
-    guestRange.addEventListener('input', () => { guests.value = guestRange.value; });
-    form.addEventListener('input', render);
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-      render();
-      application.hidden = false;
-      showApplication.setAttribute('aria-expanded', 'true');
-      application.focus();
-    });
-    document.getElementById('edit-calculation').addEventListener('click', () => {
-      application.hidden = true;
-      showApplication.setAttribute('aria-expanded', 'false');
-      showApplication.focus();
-    });
-    render();
-  </script>
+    </div>
+  </section></main>
+  <footer class="site-footer">
+    <div class="frame footer-inner">
+      <div><a href="../" aria-label="Случайности, главная"><img src="../prototype/wordmark-light.svg" width="1376" height="222" alt=""></a><address>Пермь, ул. Космонавта Леонова, 61/1</address></div>
+      <nav aria-label="Разделы сайта"><a href="../weddings/" class="footer-link" style="--i:0">Свадьбы</a>
+<a href="../corporate/" class="footer-link" style="--i:1">Корпоративы</a>
+<a href="../spaces/" class="footer-link" style="--i:2">Пространства</a>
+<a href="../menu/" class="footer-link" style="--i:3">Кухня и меню</a>
+<a href="../gallery/" class="footer-link" style="--i:4">Фото и видео</a>
+<a href="../stay/" class="footer-link" style="--i:5">Проживание</a>
+<a href="../prices/" class="footer-link" style="--i:6" aria-current="page">Цены и услуги</a>
+<a href="../contacts/" class="footer-link" style="--i:7">Контакты</a></nav>
+    </div>
+  </footer>
 </body>
 </html>

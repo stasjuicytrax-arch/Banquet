@@ -105,11 +105,11 @@ const reveal = new IntersectionObserver((entries) => {
 }, { threshold: .16 });
 document.querySelectorAll('[data-reveal]').forEach((element) => reveal.observe(element));
 
-document.querySelectorAll('[data-spaces]').forEach((strip) => {
-  const controls = [...strip.querySelectorAll('[data-space]')];
-  const details = [...strip.nextElementSibling.querySelectorAll('[data-space-info]')];
+document.querySelectorAll('[data-spaces]').forEach((gallery) => {
+  const controls = [...gallery.querySelectorAll('[data-space]')];
+  const details = [...gallery.querySelectorAll('[data-space-info]')];
   function select(index) {
-    strip.dataset.active = String(index);
+    gallery.dataset.active = String(index);
     controls.forEach((button, position) => {
       button.setAttribute('aria-pressed', String(position === index));
       details[position].hidden = position !== index;
@@ -183,13 +183,19 @@ document.querySelectorAll('[data-request]').forEach((form) => {
   const result = form.querySelector('[data-request-result]');
   const status = result.querySelector('[data-request-status]');
   const download = result.querySelector('[data-request-download]');
-  const requestedEvent = new URLSearchParams(location.search).get('event');
+  const params = new URLSearchParams(location.search);
+  const requestedEvent = params.get('event');
   let draftUrl;
 
   fields.date.min = venueDate.format(new Date());
   if ([...fields.event.options].some((option) => option.value === requestedEvent)) {
     fields.event.value = requestedEvent;
   }
+  fields.guests.value = params.get('guests') ?? '';
+  if (!fields.guests.validity.valid) fields.guests.value = '';
+  fields.date.value = params.get('date') ?? '';
+  if (!fields.date.validity.valid) fields.date.value = '';
+  fields.fullService.checked = params.get('fullService') === '1';
 
   function clearDraft() {
     if (draftUrl) URL.revokeObjectURL(draftUrl);

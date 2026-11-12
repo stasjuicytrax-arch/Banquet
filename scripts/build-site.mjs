@@ -1,8 +1,9 @@
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
+const calculatorFields = await readFile(new URL('./calculator.html', import.meta.url), 'utf8');
 const address = 'Пермь, ул. Космонавта Леонова, 61/1';
 const mapUrl = 'https://yandex.ru/maps/?text=' + encodeURIComponent(address);
 const routes = [
@@ -58,7 +59,6 @@ function header(base, current) {
       <div class="nav-glass glass glass-nav" aria-hidden="true"></div>
       <a class="nav-logo" href="${base}" aria-label="Случайности, главная">
         <img src="${base}prototype/wordmark-light.svg" width="1376" height="222" alt="">
-        <img class="nav-logo-dark" src="${base}prototype/wordmark.svg" width="1376" height="222" alt="">
       </a>
       <nav class="nav-links" aria-label="Основное меню">
         ${primaryRoutes.map(([id, name], index) =>
@@ -88,7 +88,7 @@ function footer(base, current) {
   </footer>`;
 }
 
-function layout({ title, description, base = './', current = '', body, home = false }) {
+function layout({ title, description, base = './', current = '', body, home = false, calculator = home }) {
   return `<!doctype html>
 <html lang="ru">
 <head>
@@ -100,8 +100,10 @@ function layout({ title, description, base = './', current = '', body, home = fa
   <title>${title}</title>
   ${home ? '<link rel="preload" href="prototype/hero-background.webp" as="image">' : ''}
   <link rel="stylesheet" href="${base}prototype/site-effects.css">
-  <link rel="stylesheet" href="${base}prototype/site.css">
-  <script src="${base}prototype/site.js" defer></script>
+  <link rel="stylesheet" href="${base}prototype/site.css?v=2">
+  ${calculator ? `<link rel="stylesheet" href="${base}prototype/calculator.css">` : ''}
+  <script src="${base}prototype/site.js?v=2" defer></script>
+  ${calculator ? `<script src="${base}prototype/calculator.js" defer></script>` : ''}
 </head>
 <body${home ? ' class="home-page"' : ''}>
   <div class="site-grain" aria-hidden="true"></div>
@@ -110,6 +112,9 @@ function layout({ title, description, base = './', current = '', body, home = fa
       <feImage id="liquid-map" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" result="map"/>
       <feDisplacementMap in="SourceGraphic" in2="map" scale="32" xChannelSelector="R" yChannelSelector="G"/>
     </filter>
+    ${home ? `<filter id="cirrus-density" x="0" y="0" width="100%" height="100%">
+      <feComponentTransfer><feFuncA type="gamma" amplitude="1" exponent=".62" offset="0"/></feComponentTransfer>
+    </filter>` : ''}
   </svg>
   ${header(base, current)}
   <main id="main">${body}</main>
@@ -122,7 +127,8 @@ function layout({ title, description, base = './', current = '', body, home = fa
 function spaceGallery(base) {
   return `<section class="frame section spaces" id="spaces" aria-labelledby="spaces-title">
     <h2 id="spaces-title">Выберите своё пространство</h2>
-    <div class="space-strip" data-spaces data-active="0">
+    <div class="space-gallery" data-spaces data-active="0">
+    <div class="space-strip">
       ${spaces.map((item, index) => `<div class="space-tile">
         <button type="button" class="space-pick" aria-pressed="${index === 0}" aria-controls="space-details" data-space="${index}">
           ${photo(base, item.file, '')}
@@ -133,8 +139,9 @@ function spaceGallery(base) {
     <div id="space-details" class="space-details">
       ${spaces.map((item, index) => `<div class="space-info" data-space-info="${index}"${index ? ' hidden' : ''}>
         <div><h3>${item.note}</h3><p>${item.text}</p></div>
-        ${link(base + 'spaces/#' + item.id, 'Подробнее', 'primary sage')}
+        ${link(base + 'spaces/#' + item.id, 'Подробнее')}
       </div>`).join('\n')}
+    </div>
     </div>
   </section>`;
 }
@@ -184,7 +191,7 @@ function requestForm(base) {
     <div class="frame section request-layout">
       <div><h2 id="request-title">Давайте устроим вашу случайность</h2>
         <p>Подготовьте параметры праздника, чтобы обсудить их с командой площадки.</p>
-        ${link(base + 'prototype/calculator.html', 'Открыть пример расчёта')}
+        ${base === '../' ? link('../#event-calculator', 'Калькулятор мероприятия') : ''}
       </div>
       <form class="request-form" data-request>
         <fieldset disabled>
@@ -205,6 +212,19 @@ function requestForm(base) {
           <a class="text-link" data-request-download download="sluchaynosti-request.txt">Скачать черновик</a>
         </div>
       </form>
+    </div>
+  </section>`;
+}
+
+function calculator(standalone = false) {
+  const heading = standalone ? 'h1' : 'h2';
+  const fields = (standalone ? calculatorFields : calculatorFields.replaceAll('<h2 ', '<h3 ').replaceAll('</h2>', '</h3>'))
+    .replace('{{requestHref}}', standalone ? '../#request' : '#request');
+  return `<section class="event-calculator${standalone ? ' event-calculator-page' : ''}" id="event-calculator" aria-labelledby="calculator-title">
+    <div class="frame section">
+      <${heading} id="calculator-title">Калькулятор мероприятия</${heading}>
+      <p class="calc-lede">Выберите формат и количество гостей, чтобы посмотреть расчёт и пример заявки для менеджера.</p>
+      ${fields}
     </div>
   </section>`;
 }
@@ -252,8 +272,9 @@ function home() {
     ${feature({ id: 'kitchen', title: 'Своя кухня', text: 'Готовим горячие блюда прямо на площадке. Составляем меню под формат праздника и подаём блюда к столу.', file: 'kitchen.webp', alt: 'Повар готовит блюда на кухне', href: 'menu/', action: 'Посмотреть меню' })}
     ${feature({ id: 'production', title: 'Здесь праздник звучит по-настоящему', text: 'Свет, звук, экраны и уличная дискотека. Диджеи и техническая команда помогают собрать программу под ваш формат.', file: 'dance.webp', alt: 'Танцы перед сценой на открытом воздухе', href: 'corporate/#production', action: 'Технические возможности', variant: 'feature-dark reversed' })}
     ${feature({ id: 'team', title: 'От идеи до последнего танца', text: 'Персональный менеджер, ведущие, артисты, декор и сценарий. Можно доверить команде весь праздник или выбрать отдельные услуги.', file: 'team.webp', alt: 'Координатор готовит банкетный зал', href: 'prices/', action: 'Обсудить мероприятие' })}
-    ${feature({ id: 'stay', title: 'Праздник закончился. Отдых продолжается.', text: 'На площадке семь номеров. Гости могут остаться после вечеринки, а молодожёнов ждёт отдельный номер.', file: 'room.webp', alt: 'Светлый гостевой номер', href: 'stay/', action: 'Посмотреть проживание', variant: 'feature-soft reversed' })}
+    ${feature({ id: 'stay', title: '<span>Праздник закончился.</span> <span>Отдых продолжается.</span>', text: 'На площадке семь номеров. Гости могут остаться после вечеринки, а молодожёнов ждёт отдельный номер.', file: 'room.webp', alt: 'Светлый гостевой номер', href: 'stay/', action: 'Посмотреть проживание', variant: 'feature-soft reversed feature-stay' })}
     <section class="section frame" id="gallery"><div class="section-intro" data-reveal><h2>Здесь уже случилось счастье</h2>${link('gallery/', 'Открыть галерею')}</div>${gallery('./')}</section>
+    ${calculator()}
     ${requestForm('./')}`,
   });
 }
@@ -299,13 +320,26 @@ const pages = {
     <div><dt>Площадка</dt><dd>Пространство, дата и вариант рассадки.</dd></div>
     <div><dt>Кухня</dt><dd>Банкет или фуршет, состав меню, число гостей.</dd></div>
     <div><dt>Организация</dt><dd>Сценарий, декор, техническое сопровождение и команда.</dd></div></dl>
-    <div class="actions">${link('../prototype/calculator.html', 'Открыть пример калькулятора', 'primary sage')}${link('../contacts/#request', 'Подготовить заявку')}</div></section>`),
+    <div class="actions">${link('../#event-calculator', 'Калькулятор мероприятия', 'primary sage')}${link('../contacts/#request', 'Подготовить заявку')}</div></section>`),
   contacts: page('contacts', 'Контакты', 'Адрес банкетной площадки Случайности и параметры заявки.',
     pageIntro('Контакты', address) +
     `<section class="frame contact-map" aria-label="Адрес на карте">${mapLink()}</section>` + requestForm('../')),
 };
 
-for (const [file, html] of [['index.html', home()], ...Object.entries(pages).map(([id, html]) => [id + '/index.html', html])]) {
+const calculatorPage = layout({
+  title: 'Калькулятор мероприятия · Случайности',
+  description: 'Пример расчёта стоимости мероприятия по формату и количеству гостей.',
+  base: '../',
+  current: 'prices',
+  calculator: true,
+  body: calculator(true),
+});
+
+for (const [file, html] of [
+  ['index.html', home()],
+  ['prototype/calculator.html', calculatorPage],
+  ...Object.entries(pages).map(([id, html]) => [id + '/index.html', html]),
+]) {
   const destination = resolve(root, file);
   await mkdir(dirname(destination), { recursive: true });
   await writeFile(destination, html.replace(/[ \t]+$/gm, ''), 'utf8');

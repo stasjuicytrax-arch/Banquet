@@ -1,0 +1,63 @@
+    <div class="calculator">
+      <form class="inputs" id="calculator" autocomplete="off">
+        <fieldset>
+          <legend>Формат мероприятия</legend>
+          <div class="formats">
+            <label class="format"><input type="radio" name="event" value="wedding" checked><span>Свадьба</span></label>
+            <label class="format"><input type="radio" name="event" value="corporate"><span>Корпоратив</span></label>
+            <label class="format"><input type="radio" name="event" value="birthday"><span>День рождения</span></label>
+          </div>
+        </fieldset>
+
+        <div>
+          <div class="guest-heading">
+            <label class="field-label" for="guests">Количество гостей</label>
+            <input id="guests" name="guests" type="number" inputmode="numeric" min="20" max="150" step="1" value="100" required>
+          </div>
+          <input id="guest-range" name="guestRange" type="range" min="20" max="150" value="100" aria-label="Количество гостей, ползунок">
+          <div class="range-limits"><span>20 гостей</span><span>150 гостей</span></div>
+        </div>
+
+        <label class="service">
+          <input type="checkbox" name="fullService">
+          <span>Организация под ключ</span>
+        </label>
+
+        <div>
+          <label class="field-label" for="event-date">Желаемая дата <span class="optional">по желанию</span></label>
+          <input id="event-date" name="eventDate" type="date">
+        </div>
+      </form>
+
+      <section class="summary" aria-labelledby="estimate-title">
+        <div>
+          <h2 id="estimate-title">Пример расчёта</h2>
+          <output id="estimate" class="estimate" form="calculator" for="guests guest-range" aria-describedby="pricing-note"></output>
+          <p class="pricing-note" id="pricing-note">Условная стоимость для демонстрации</p>
+        </div>
+        <dl class="receipt">
+          <div><dt>Формат</dt><dd id="summary-format"></dd></div>
+          <div><dt>Гости</dt><dd id="summary-guests"></dd></div>
+          <div><dt>На гостя</dt><dd id="summary-rate"></dd></div>
+          <div id="service-line" hidden><dt>Под ключ</dt><dd id="summary-service"></dd></div>
+        </dl>
+        <button class="primary" type="submit" form="calculator" aria-controls="application" aria-expanded="false" id="show-application" disabled>Посмотреть заявку</button>
+      </section>
+    </div>
+
+    <section class="application" id="application" aria-labelledby="application-title" tabindex="-1" hidden>
+      <h2 id="application-title">Пример заявки для менеджера</h2>
+      <p>Проверьте параметры и перенесите их в форму заявки.</p>
+      <dl class="receipt">
+        <div><dt>Формат</dt><dd id="application-format"></dd></div>
+        <div><dt>Гости</dt><dd id="application-guests"></dd></div>
+        <div><dt>Дата</dt><dd id="application-date"></dd></div>
+        <div><dt>Организация под ключ</dt><dd id="application-service"></dd></div>
+        <div><dt>Условная сумма</dt><dd id="application-estimate"></dd></div>
+      </dl>
+      <div class="actions">
+        <a class="primary sage" id="transfer-application" href="{{requestHref}}">Перенести в заявку</a>
+        <button type="button" class="back" id="edit-calculation">Вернуться к расчёту</button>
+      </div>
+    </section>
+    <noscript><p>Для работы калькулятора включите JavaScript в браузере.</p></noscript>
