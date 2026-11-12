@@ -69,9 +69,8 @@ button, a { touch-action: manipulation; }
   opacity: .12;
 }
 @media (prefers-reduced-motion: no-preference) {
-  .film-grain::before { animation: film-grain 1.05s step-end infinite; }
+  .film-grain::before { animation: film-grain 1.05s step-end 4; }
 }
-body[data-paused="true"] .film-grain::before { animation-play-state: paused; }
 @keyframes film-grain {
   0%, 100% { transform: translate(0, 0); }
   14% { transform: translate(-7px, 3px); }
@@ -124,7 +123,7 @@ body[data-paused="true"] .film-grain::before { animation-play-state: paused; }
   font-size: clamp(.875rem, 1.3vw, 1.1rem);
 }
 .hero-nav a { position: relative; border-radius: 999px; }
-.hero-nav a:hover, .contact:hover, .secondary:hover, .motion-button:hover { background-color: rgb(48 40 45 / .77); }
+.hero-nav a:hover, .contact:hover, .secondary:hover { background-color: rgb(48 40 45 / .77); }
 .contact { justify-self: end; }
 .hero-content {
   position: relative;
@@ -157,23 +156,6 @@ body[data-paused="true"] .film-grain::before { animation-play-state: paused; }
 }
 .primary { color: var(--ink); background: var(--rose); }
 .primary:hover { background: #f3d9db; }
-.motion-button {
-  position: absolute;
-  z-index: 2;
-  right: clamp(18px, 4.7vw, 80px);
-  bottom: clamp(47px, 9vw, 140px);
-  display: grid;
-  place-items: center;
-  width: 48px;
-  height: 48px;
-  padding: 0;
-  border-radius: 50%;
-  color: var(--paper);
-  cursor: pointer;
-}
-.motion-button svg { width: 22px; height: 22px; }
-.motion-button .play-icon, .motion-button[aria-pressed="true"] .pause-icon { display: none; }
-.motion-button[aria-pressed="true"] .play-icon { display: block; }
 .cloud-seam {
   position: absolute;
   z-index: 0;
@@ -206,7 +188,6 @@ body[data-paused="true"] .film-grain::before { animation-play-state: paused; }
   pointer-events: none;
 }
 body[data-ambient="true"] .ambient-clouds { opacity: .22; animation: cloud-flow 26s ease-in-out infinite alternate; }
-body[data-paused="true"] .ambient-clouds { animation-play-state: paused; }
 @keyframes cloud-flow {
   from { transform: translateX(-12vw) translateY(10%); }
   to { transform: translateX(12vw) translateY(-6%); }
@@ -274,7 +255,6 @@ body[data-paused="true"] .ambient-clouds { animation-play-state: paused; }
   .hero-content h1 { font-size: clamp(1.82rem, 7.2vw, 2.75rem); }
   .hero-actions { gap: 8px; }
   .primary, .secondary { min-height: 46px; font-size: .875rem; }
-  .motion-button { bottom: 49px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; }
