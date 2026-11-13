@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#30282d">
+  <meta name="theme-color" content="#303030">
   <meta name="robots" content="noindex">
   <meta name="description" content="Банкетная площадка «Случайности» в Перми. Ресторан, летняя площадка и проект купольного шатра.">
   <title>Случайности · Банкетная площадка в Перми</title>
-  <link rel="preload" href="prototype/hero-detail.webp" as="image">
-  <link rel="stylesheet" href="./prototype/site-effects.css">
+  <link rel="preload" href="prototype/hero-detail.png" as="image">
+  <link rel="stylesheet" href="./prototype/site-effects.css?v=2">
   <link rel="preload" href="./prototype/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="./prototype/fonts/fonts.css?v=2">
-  <link rel="stylesheet" href="./prototype/site.css?v=15">
-  <link rel="stylesheet" href="./prototype/calculator.css?v=4">
+  <link rel="stylesheet" href="./prototype/site.css?v=16">
+  <link rel="stylesheet" href="./prototype/calculator.css?v=5">
   <script src="./prototype/site.js?v=8" defer></script>
   <script src="./prototype/vendor/gsap.min.js" defer></script>
   <script src="./prototype/vendor/ScrollTrigger.min.js" defer></script>
-  <script type="module" src="./prototype/venue-3d.js?v=2"></script>
+  <script type="module" src="./prototype/venue-3d.js?v=3"></script>
   <script src="./prototype/home-motion.js?v=3" defer></script>
   <script src="./prototype/calculator.js" defer></script>
 </head>
@@ -34,7 +34,7 @@
     <div class="nav-pill">
       <div class="nav-glass glass glass-nav" aria-hidden="true"></div>
       <a class="nav-logo" href="./" aria-label="Случайности, главная">
-        <img src="./prototype/wordmark-light.svg" width="1376" height="222" alt="">
+        <img src="./prototype/wordmark-light.svg?v=2" width="1376" height="222" alt="">
       </a>
       <nav class="nav-links" aria-label="Основное меню">
         <a class="nav-item" style="--i:0" href="./weddings/">Свадьбы</a>
@@ -47,7 +47,7 @@
   </header>
   <dialog class="nav-dialog" id="mobile-menu" aria-label="Меню">
     <div class="dialog-header">
-      <a href="./" aria-label="Случайности, главная"><img src="./prototype/wordmark-light.svg" width="1376" height="222" alt=""></a>
+      <a href="./" aria-label="Случайности, главная"><img src="./prototype/wordmark-light.svg?v=2" width="1376" height="222" alt=""></a>
       <button class="icon-button" type="button" data-close autofocus aria-label="Закрыть меню"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
     </div>
     <nav aria-label="Все страницы">
@@ -67,7 +67,7 @@
   </dialog>
   <main id="main">
     <section class="hero" aria-labelledby="hero-title">
-      <img class="hero-photo" src="prototype/hero-detail.webp" width="1585" height="992" fetchpriority="high" alt="">
+      <img class="hero-photo" src="prototype/hero-detail.png" width="1585" height="992" fetchpriority="high" alt="">
       <div class="hero-shade" aria-hidden="true"></div>
       <svg class="paper-edge paper-edge--bottom paper-edge--white" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 46Q15 50 25 52L34 50Q50 44 65 47L77 46Q89 37 107 35L119 36L132 32Q151 34 161 29Q169 26 179 35L190 39Q203 40 216 48L228 46Q246 48 260 54Q277 58 292 50L310 46Q322 41 335 43L349 45Q358 40 369 40Q381 39 391 48L403 49Q411 47 427 53Q442 57 456 52L471 54L483 51Q496 50 507 42Q514 36 527 42L539 47Q548 47 560 53L574 51Q587 54 603 58Q615 61 631 56L646 55Q660 49 677 52L691 48L706 48Q723 47 739 38Q749 34 758 38L771 35Q784 34 796 40L810 38Q819 31 828 32Q837 33 846 42L860 46Q871 46 885 52L900 52Q912 56 925 51L938 50L949 53Q962 52 978 44L991 45Q1007 43 1026 33Q1037 29 1044 35L1057 37Q1067 36 1080 47L1094 47Q1105 48 1118 55Q1131 60 1145 54L1158 50Q1173 52 1185 47L1201 47Q1214 44 1222 39Q1231 34 1244 40L1256 38Q1275 33 1286 40L1301 44L1317 43Q1327 39 1340 44L1354 46Q1369 46 1382 52L1397 50L1412 55Q1426 51 1440 50V80H0Z"/></svg>
       <div class="frame hero-content">
@@ -84,11 +84,9 @@
         <a class="hero-glass hero-locator" href="#location" aria-label="Адрес площадки в Перми"><span class="glass glass-nav" aria-hidden="true"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 10c0 5-7 10.5-7 10.5S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.4"/></svg><span>Пермь</span></a>
         <div class="hero-capacities" role="group" aria-label="Вместимость площадок">
     <a class="hero-glass hero-capacity" href="spaces/#restaurant">
-      <span class="glass glass-nav" aria-hidden="true"></span>
       <span class="hero-capacity-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 16h16M6 16a6 6 0 0 1 12 0M12 10V8M3 19h18"/></svg>Ресторан</span>
       <span class="hero-capacity-number">до <strong>50</strong> гостей</span>
     </a><a class="hero-glass hero-capacity" href="spaces/#summer">
-      <span class="glass glass-nav" aria-hidden="true"></span>
       <span class="hero-capacity-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m3 10 9-6 9 6M5 10h14v10H5zM9 20v-6h6v6"/></svg>Летняя площадка</span>
       <span class="hero-capacity-number">до <strong>60</strong> гостей</span>
     </a>
@@ -103,11 +101,11 @@
       </div>
       <div class="location-view">
         <figure class="location-picture">
-          <img class="" src="./prototype/location-woodland.webp" width="1862" height="845" alt="Тропинка среди деревьев ведёт к летней террасе" loading="lazy" decoding="async">
+          <img class="" src="./prototype/location-woodland.png" width="1862" height="845" alt="Тропинка среди деревьев ведёт к летней террасе" loading="lazy" decoding="async">
           <canvas class="woodland-canvas" data-woodland aria-hidden="true" hidden></canvas>
         </figure>
         <div class="location-press" aria-hidden="true">
-          <svg class="pressed-leaf" viewBox="0 0 132 159" fill="none" aria-hidden="true" focusable="false"><path d="M24 146c12-24 20-36 35-54M49 108C21 87 32 43 116 10c-4 54-23 102-67 98Z" fill="#d6dfc1" stroke="#4a694b" stroke-width="1.15" stroke-linejoin="round"/><path d="M31 134c18-31 44-58 72-108M55 101c5-15 1-29-3-41m13 28c4-15 1-30-2-39m13 23c2-13 1-24-1-32m11 16 1-21M51 107c14-8 25-10 38-13m-25-5c10-4 22-7 33-12m-22-3c7-4 18-8 27-14m-16-3 20-12" stroke="#4a694b" stroke-width=".9" stroke-linecap="round"/></svg>
+          <svg class="pressed-leaf" viewBox="0 0 132 159" fill="none" aria-hidden="true" focusable="false"><path d="M24 146c12-24 20-36 35-54M49 108C21 87 32 43 116 10c-4 54-23 102-67 98Z" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="1.15" stroke-linejoin="round"/><path d="M31 134c18-31 44-58 72-108M55 101c5-15 1-29-3-41m13 28c4-15 1-30-2-39m13 23c2-13 1-24-1-32m11 16 1-21M51 107c14-8 25-10 38-13m-25-5c10-4 22-7 33-12m-22-3c7-4 18-8 27-14m-16-3 20-12" stroke="var(--ink)" stroke-width=".9" stroke-linecap="round"/></svg>
         </div>
       </div>
       <div class="location-address">
@@ -146,43 +144,43 @@
       <div class="space-scenes">
         <article class="space-scene" id="space-panel-restaurant" role="tabpanel" tabindex="0" aria-labelledby="space-tab-restaurant" aria-hidden="false">
           <figure class="space-scene-media">
-            <img src="./prototype/restaurant-reference.webp" width="1536" height="1024" alt="Длинный банкетный стол в зале ресторана" loading="lazy" decoding="async">
+            <img src="./prototype/restaurant-reference.png" width="1536" height="1024" alt="Длинный банкетный стол в зале ресторана" loading="lazy" decoding="async">
             <figcaption>Иллюстрация интерьера</figcaption>
           </figure>
           <div class="space-scene-copy">
             <p>Для семейного праздника, небольшого банкета или ужина с командой. Меню готовит кухня площадки.</p>
-            <a class="primary sage plain-button" href="./spaces/#restaurant">Подробнее</a>
+            <a class="primary tonal plain-button" href="./spaces/#restaurant">Подробнее</a>
           </div>
         </article>
 <article class="space-scene" id="space-panel-summer" role="tabpanel" tabindex="0" aria-labelledby="space-tab-summer" aria-hidden="true" inert>
           <figure class="space-scene-media">
-            <img src="./prototype/veranda.webp" width="1536" height="1024" alt="Гости за столом на крытой площадке среди деревьев" loading="lazy" decoding="async">
+            <img src="./prototype/veranda.png" width="1536" height="1024" alt="Гости за столом на крытой площадке среди деревьев" loading="lazy" decoding="async">
             <figcaption>Иллюстрация летней площадки</figcaption>
           </figure>
           <div class="space-scene-copy">
             <p>Летний банкет среди зелени, встреча гостей или вечерняя программа на воздухе.</p>
-            <a class="primary sage plain-button" href="./spaces/#summer">Подробнее</a>
+            <a class="primary tonal plain-button" href="./spaces/#summer">Подробнее</a>
           </div>
         </article>
 <article class="space-scene" id="space-panel-dome" role="tabpanel" tabindex="0" aria-labelledby="space-tab-dome" aria-hidden="true" inert>
           <figure class="space-scene-media">
-            <img src="./prototype/dome-concept.webp" width="1536" height="1024" alt="Геодезический купол с прозрачным фасадом на поляне" loading="lazy" decoding="async">
+            <img src="./prototype/dome-concept.png" width="1536" height="1024" alt="Геодезический купол с прозрачным фасадом на поляне" loading="lazy" decoding="async">
             <figcaption>Визуализация проекта</figcaption>
           </figure>
           <div class="space-scene-copy">
             <p>На большой поляне планируется купольный шатёр для свадеб, корпоративов и больших банкетов.</p>
-            <a class="primary sage plain-button" href="./spaces/#dome">Подробнее</a>
+            <a class="primary tonal plain-button" href="./spaces/#dome">Подробнее</a>
           </div>
         </article>
       </div>
     </div>
-    <noscript><a class="primary sage plain-button" href="./spaces/">Посмотреть все пространства</a></noscript>
+    <noscript><a class="primary tonal plain-button" href="./spaces/">Посмотреть все пространства</a></noscript>
   </section>
     <section class="gifts-section" id="gifts">
       <div class="frame section gifts-home">
         <div class="gifts-heading">
           <h2>Свадебные подарки от «Случайностей»</h2>
-          <svg class="gift-ribbon" viewBox="0 0 240 134" fill="none" aria-hidden="true" focusable="false"><path d="M122 52C104 14 54 3 44 26 33 52 83 61 119 57c-15 5-43 18-58 46l-17 5 10 5-2 16c17-19 30-38 70-58 24 8 33 24 44 37 13 16 29 21 48 22l-8-13 19-11c-44 2-48-36-94-48 23 0 76-8 69-32-9-24-56-14-74 18Z" fill="#c48896" stroke="#9c5267" stroke-width="1.2" stroke-linejoin="round"/><path d="M120 55C99 33 64 23 56 33c-9 13 32 20 64 22Zm9 0c24-22 59-32 64-22 6 13-30 20-64 22Z" fill="#e5b2bd" stroke="#a35e73" stroke-width="1"/><path d="M58 114c26-29 37-32 63-45m10-4c38 15 37 53 75 58M54 27c15-11 46 2 62 20m15 0c24-22 53-31 63-20" stroke="#f3cdd3" stroke-width="1.5" stroke-linecap="round"/><path d="m118 45 14-1c6 4 5 16 0 23l-13 1c-6-4-7-16-1-23Z" fill="#dca1ae" stroke="#9c5267" stroke-width="1.2"/></svg>
+          <svg class="gift-ribbon" viewBox="0 0 240 134" fill="none" aria-hidden="true" focusable="false"><path d="M122 52C104 14 54 3 44 26 33 52 83 61 119 57c-15 5-43 18-58 46l-17 5 10 5-2 16c17-19 30-38 70-58 24 8 33 24 44 37 13 16 29 21 48 22l-8-13 19-11c-44 2-48-36-94-48 23 0 76-8 69-32-9-24-56-14-74 18Z" fill="var(--accent)" stroke="var(--accent-strong)" stroke-width="1.2" stroke-linejoin="round"/><path d="M120 55C99 33 64 23 56 33c-9 13 32 20 64 22Zm9 0c24-22 59-32 64-22 6 13-30 20-64 22Z" fill="var(--accent-soft)" stroke="var(--accent-strong)" stroke-width="1"/><path d="M58 114c26-29 37-32 63-45m10-4c38 15 37 53 75 58M54 27c15-11 46 2 62 20m15 0c24-22 53-31 63-20" stroke="var(--paper)" stroke-width="1.5" stroke-linecap="round"/><path d="m118 45 14-1c6 4 5 16 0 23l-13 1c-6-4-7-16-1-23Z" fill="var(--accent)" stroke="var(--accent-strong)" stroke-width="1.2"/></svg>
         </div>
         <div class="gift-gallery"><article class="gift">
     <img class="" src="./prototype/tesla.webp" width="1200" height="800" alt="" loading="lazy" decoding="async"><h3>Tesla с водителем</h3><p>Автомобиль с личным водителем на весь день свадьбы.</p>
@@ -193,14 +191,14 @@
 <article class="gift">
     <img class="" src="./prototype/spa.webp" width="800" height="800" alt="" loading="lazy" decoding="async"><h3>Хамам и бассейн</h3><p>Три часа отдыха на следующий день после свадьбы.</p>
   </article></div>
-        <a class="primary sage plain-button" href="weddings/#gifts">Все свадебные подарки</a>
+        <a class="primary tonal plain-button" href="weddings/#gifts">Все свадебные подарки</a>
       </div>
     </section>
     <section id="production" class="feature-section feature-dark feature-film feature-torn">
     <svg class="paper-edge paper-edge--top" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 0H1440V42Q1428 36 1414 42L1397 46L1383 44Q1369 47 1356 53Q1348 56 1338 52L1324 50Q1308 46 1297 49L1284 46L1266 47Q1247 45 1235 39L1221 39Q1206 32 1194 38L1178 35Q1165 31 1153 40L1139 42Q1124 51 1108 48L1095 49Q1082 53 1071 50L1058 44Q1047 45 1036 39Q1029 36 1020 43L1005 48L987 48Q971 51 959 46L944 47Q929 48 916 54L904 53Q890 51 878 44L864 43Q851 36 839 41L824 44Q805 43 791 38L777 42Q759 45 748 51L733 51Q719 55 705 49L693 49Q680 56 665 51L652 47L638 48Q625 41 612 38L597 38Q585 39 568 33Q560 29 553 36L540 38Q529 46 515 46L502 48Q483 48 468 44L452 48L436 45Q422 41 412 47L396 50Q381 55 367 52L352 50Q341 55 326 50L312 46Q299 46 287 40L273 41L258 46Q244 42 231 42L216 44Q203 43 187 39L173 42Q160 41 145 36Q134 31 124 37L109 39Q96 44 82 46L68 45Q54 49 40 51L25 48Q12 51 0 49Z"/></svg>
     <canvas class="stage-lights" data-stage-lights aria-hidden="true" hidden></canvas>
     <div class="frame section feature">
-      <img class="feature-image" src="./prototype/dance-panorama.webp" width="1919" height="820" alt="Гости танцуют перед освещённой сценой среди деревьев" loading="lazy" decoding="async">
+      <img class="feature-image" src="./prototype/dance-panorama.png" width="1919" height="820" alt="Гости танцуют перед освещённой сценой среди деревьев" loading="lazy" decoding="async">
       <div class="feature-copy">
       <svg class="stage-wave" viewBox="0 0 160 42" fill="none" aria-hidden="true" focusable="false"><path d="M1 21h23l6-8 9 17 11-25 11 32 10-22 8 12 8-6h72" pathLength="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="158" cy="21" r="2" fill="currentColor"/></svg>
       <h2>Танцы под открытым небом</h2><p>Свет, звук, экраны и уличная дискотека. Диджеи и техническая команда помогают собрать программу под ваш формат.</p>
@@ -214,13 +212,13 @@
       <span class="hospitality-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path class="cloche-lid" d="M9 31a15 15 0 0 1 30 0M24 16v-2m-2 0a2 2 0 1 1 4 0M15 27a10 10 0 0 1 5-6"/><path d="M6 34h36l-3 4H9l-3-4Z"/><path class="cloche-rays" d="m33 9 2-3m4 8 4-1"/></svg></span>
       <h3>Своя кухня</h3>
       <p>Горячие блюда готовим на площадке к подаче. Меню составляем под формат праздника.</p>
-      <a class="primary sage plain-button" href="menu/">Посмотреть меню</a>
+      <a class="primary tonal plain-button" href="menu/">Посмотреть меню</a>
     </article>
     <article class="hospitality-row" id="team">
       <span class="hospitality-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M23 8c.9 8.7 4.3 12.1 13 13-8.7.9-12.1 4.3-13 13-.9-8.7-4.3-12.1-13-13 8.7-.9 12.1-4.3 13-13Z"/><path d="M37 7v8m-4-4h8"/><path d="M10 29v10m-5-5h10"/><path d="m34 32 2 4 4 2-4 2-2 4-2-4-4-2 4-2 2-4Z"/></svg></span>
       <h3>Организация праздника</h3>
       <p>Менеджер, ведущие, артисты, декор и сценарий. Можно собрать праздник с нашей командой или выбрать отдельные услуги.</p>
-      <a class="primary sage plain-button" href="prices/">Цены и услуги</a>
+      <a class="primary tonal plain-button" href="prices/">Цены и услуги</a>
     </article>
   </section>
   <section class="stay-story" id="stay" aria-labelledby="stay-title">
@@ -229,15 +227,15 @@
       <figure class="stay-picture"><img class="" src="./prototype/room.webp" alt="Светлый гостевой номер" loading="lazy" decoding="async"></figure>
       <div class="stay-details">
         <p class="stay-count">
-          <svg class="stay-cord" viewBox="0 0 88 68" fill="none" aria-hidden="true" focusable="false"><path d="M44 62c-1-13-20-12-26-28C12 17 28 7 42 13c17 7 23 32 8 39-11 6-17-6-10-12 7-6 19 0 26-9 6-8-1-20-8-26" stroke="#645145" stroke-width="2.8" stroke-linecap="round"/><path d="M44 62c-1-13-20-12-26-28C12 17 28 7 42 13c17 7 23 32 8 39-11 6-17-6-10-12 7-6 19 0 26-9 6-8-1-20-8-26" stroke="#e8ccaa" stroke-width="1.5" stroke-dasharray="2 3" stroke-linecap="round"/></svg>
+          <svg class="stay-cord" viewBox="0 0 88 68" fill="none" aria-hidden="true" focusable="false"><path d="M44 62c-1-13-20-12-26-28C12 17 28 7 42 13c17 7 23 32 8 39-11 6-17-6-10-12 7-6 19 0 26-9 6-8-1-20-8-26" stroke="var(--ink)" stroke-width="2.8" stroke-linecap="round"/><path d="M44 62c-1-13-20-12-26-28C12 17 28 7 42 13c17 7 23 32 8 39-11 6-17-6-10-12 7-6 19 0 26-9 6-8-1-20-8-26" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="2 3" stroke-linecap="round"/></svg>
           <strong>7</strong> номеров
         </p>
         <p>Гости могут остаться после вечеринки, а молодожёнов ждёт отдельный номер.</p>
-        <a class="primary sage plain-button" href="stay/">Посмотреть проживание</a>
+        <a class="primary tonal plain-button" href="stay/">Посмотреть проживание</a>
       </div>
     </div>
   </section>
-    <section class="section frame home-gallery" id="gallery"><div class="section-intro"><h2>Как может выглядеть праздник</h2><a class="primary sage plain-button" href="gallery/">Открыть галерею</a></div><div class="gallery" data-gallery>
+    <section class="section frame home-gallery" id="gallery"><div class="section-intro"><h2>Как может выглядеть праздник</h2><a class="primary tonal plain-button" href="gallery/">Открыть галерею</a></div><div class="gallery" data-gallery>
     <div class="photo-grid"><figure data-photo-group="weddings">
       <button type="button" data-photo data-src="./prototype/dome.webp" data-caption="Пример сервировки в купольном шатре" aria-label="Увеличить фото: Пример сервировки в купольном шатре"><img class="" src="./prototype/dome.webp" alt="Пример сервировки в купольном шатре" loading="lazy" decoding="async"></button>
       <figcaption>Пример сервировки в купольном шатре</figcaption>
@@ -318,7 +316,7 @@
         <div><dt>Условная сумма</dt><dd id="application-estimate"></dd></div>
       </dl>
       <div class="actions">
-        <a class="primary sage plain-button" id="transfer-application" href="#request">Перенести в заявку</a>
+        <a class="primary tonal plain-button" id="transfer-application" href="#request">Перенести в заявку</a>
         <button type="button" class="back" id="edit-calculation">Вернуться к расчёту</button>
       </div>
     </section>
@@ -327,14 +325,14 @@
     </div>
   </section>
     <section class="request-section request-finale" id="request" aria-labelledby="request-title">
-    <img class="request-backdrop" src="./prototype/request-garden.webp" width="1536" height="1024" alt="" loading="lazy" decoding="async">
+    <img class="request-backdrop" src="./prototype/request-garden.png" width="1536" height="1024" alt="" loading="lazy" decoding="async">
     <div class="frame section request-layout">
       <div><h2 id="request-title">Давайте устроим вашу случайность</h2>
         <p>Подготовьте параметры праздника, чтобы обсудить их с командой площадки.</p>
 
       </div>
       <form class="request-form" data-request>
-        <svg class="request-seal" viewBox="0 0 72 72" fill="none" aria-hidden="true" focusable="false"><path d="M36 2c8 0 11 4 16 6 8 4 11 8 14 15 4 8 4 18 1 24-3 9-7 13-15 17-8 4-13 6-21 5-9-1-17-5-22-12-4-5-7-12-7-20 0-9 4-16 8-22C17 6 26 2 36 2Z" fill="#e2b5bc" stroke="#bd818d"/><circle cx="36" cy="36" r="26" stroke="#be8a94"/><g transform="translate(18 29) scale(.32)" color="#8f5864"><path fill="currentColor" d="M0 24C16 8 36 0 57 0c22 0 42 8 57 24l-14 17c-12-12-27-18-43-18-17 0-31 6-43 18Z"/></g></svg>
+        <svg class="request-seal" viewBox="0 0 72 72" fill="none" aria-hidden="true" focusable="false"><path d="M36 2c8 0 11 4 16 6 8 4 11 8 14 15 4 8 4 18 1 24-3 9-7 13-15 17-8 4-13 6-21 5-9-1-17-5-22-12-4-5-7-12-7-20 0-9 4-16 8-22C17 6 26 2 36 2Z" fill="var(--accent)" stroke="var(--accent-strong)"/><circle cx="36" cy="36" r="26" stroke="var(--accent-strong)"/><g transform="translate(18 29) scale(.32)" color="var(--ink)"><path fill="currentColor" d="M0 24C16 8 36 0 57 0c22 0 42 8 57 24l-14 17c-12-12-27-18-43-18-17 0-31 6-43 18Z"/></g></svg>
         <fieldset disabled>
         <div class="request-fields">
           <div><label for="request-event">Формат</label><select id="request-event" name="event"><option value="wedding">Свадьба</option><option value="corporate">Корпоратив</option><option value="birthday">День рождения</option><option value="other">Другое событие</option></select></div>
@@ -360,7 +358,6 @@
       <div class="footer-intro">
         <p>Банкетная площадка в Перми</p>
         <p>Свадьбы, корпоративы и частные праздники.</p>
-        <svg class="footer-imprint" viewBox="0 0 146 86" fill="none" aria-hidden="true" focusable="false"><path d="M12 46V23l11-11h100l11 11v40l-11 11H23L12 63V46ZM1 46h7m130 0h7M73 1v7m0 70v7" stroke="currentColor" stroke-width="1.3"/><g transform="translate(36 32) scale(.65)"><path fill="currentColor" d="M0 24C16 8 36 0 57 0c22 0 42 8 57 24l-14 17c-12-12-27-18-43-18-17 0-31 6-43 18Z"/></g></svg>
       </div>
       <nav class="footer-columns" aria-label="Разделы сайта и адрес площадки">
           <div class="footer-group">
@@ -381,9 +378,9 @@
           <a class="footer-link footer-map" href="https://yandex.ru/maps/?text=%D0%9F%D0%B5%D1%80%D0%BC%D1%8C%2C%20%D1%83%D0%BB.%20%D0%9A%D0%BE%D1%81%D0%BC%D0%BE%D0%BD%D0%B0%D0%B2%D1%82%D0%B0%20%D0%9B%D0%B5%D0%BE%D0%BD%D0%BE%D0%B2%D0%B0%2C%2061%2F1" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 10c0 5-7 10.5-7 10.5S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.4"/></svg> Открыть на карте</a>
         </div>
       </nav>
-      <img class="footer-watermark" src="./prototype/wordmark.svg" width="1376" height="222" alt="" loading="lazy" decoding="async">
+      <img class="footer-watermark" src="./prototype/wordmark.svg?v=2" width="1376" height="222" alt="" loading="lazy" decoding="async">
       <div class="footer-bottom">
-        <a class="footer-brand" href="./"><img src="./prototype/wordmark.svg" width="1376" height="222" alt="Случайности, главная"></a>
+        <a class="footer-brand" href="./"><img src="./prototype/wordmark.svg?v=2" width="1376" height="222" alt="Случайности, главная"></a>
         <a class="footer-link" href="./#event-calculator">Калькулятор</a>
         <a class="footer-link footer-top" href="#top">Наверх <span aria-hidden="true">↑</span></a>
       </div>

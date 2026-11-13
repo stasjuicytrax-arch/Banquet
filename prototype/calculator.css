@@ -1,4 +1,4 @@
-.event-calculator { background: #f4e9e6; }
+.event-calculator { background: var(--surface); }
 .event-calculator-page .section { padding-top: clamp(125px, 13vw, 175px); }
 .event-calculator h1 {
   font-size: clamp(2rem, 4.25vw, 4.65rem);
@@ -30,9 +30,9 @@
   border-radius: 999px;
   background: var(--paper);
 }
-.event-calculator .format:hover span { border-color: var(--sage); }
-.event-calculator .format input:checked + span { color: var(--paper); background: var(--sage); border-color: var(--sage); }
-.event-calculator .format input:focus-visible + span { outline: 3px solid #795068; outline-offset: 4px; }
+.event-calculator .format:hover span { border-color: var(--graphite); }
+.event-calculator .format input:checked + span { color: var(--ink); background: var(--accent); border-color: var(--accent-strong); }
+.event-calculator .format input:focus-visible + span { outline: 3px solid var(--focus); outline-offset: 4px; }
 .event-calculator .guest-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 .event-calculator input[type="number"], .event-calculator input[type="date"] {
   min-height: 44px;
@@ -44,7 +44,7 @@
 }
 .event-calculator input[type="number"] { width: 86px; font-variant-numeric: tabular-nums; }
 .event-calculator input[type="date"] { display: block; width: 100%; margin-top: 7px; }
-.event-calculator input[type="range"] { display: block; width: 100%; height: 40px; margin: 2px 0 0; accent-color: var(--sage); cursor: pointer; }
+.event-calculator input[type="range"] { display: block; width: 100%; height: 40px; margin: 2px 0 0; accent-color: var(--graphite); cursor: pointer; }
 .event-calculator .range-limits { display: flex; justify-content: space-between; }
 .event-calculator .range-limits, .event-calculator .optional { color: var(--muted); font-size: .875rem; font-weight: 400; }
 .event-calculator .service {
@@ -54,10 +54,10 @@
   min-height: 48px;
   padding: 8px 12px;
   border-radius: 10px;
-  background: var(--lilac);
+  background: var(--paper);
   cursor: pointer;
 }
-.event-calculator .service input { width: 18px; height: 18px; margin: 0; flex: none; accent-color: var(--sage); }
+.event-calculator .service input { width: 18px; height: 18px; margin: 0; flex: none; accent-color: var(--graphite); }
 .event-calculator .summary {
   display: grid;
   justify-items: start;
@@ -65,7 +65,7 @@
   padding: clamp(20px, 3.5vw, 40px);
   border-radius: 14px clamp(55px, 7.5vw, 110px) 14px 14px;
   color: var(--paper);
-  background: var(--sage);
+  background: var(--graphite);
 }
 .home-page .event-calculator .summary {
   position: relative;
@@ -77,7 +77,7 @@
   position: absolute;
   inset: auto 0 -7px;
   height: 8px;
-  background: radial-gradient(circle at 8px 8px, transparent 4px, var(--sage) 4.6px) repeat-x;
+  background: radial-gradient(circle at 8px 8px, transparent 4px, var(--graphite) 4.6px) repeat-x;
   background-size: 16px 8px;
   pointer-events: none;
 }
@@ -93,11 +93,11 @@
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
-.event-calculator .pricing-note { margin-top: 5px; color: #f2e6e2; font-size: .875rem; }
+.event-calculator .pricing-note { margin-top: 5px; color: var(--surface); font-size: .875rem; }
 .event-calculator .receipt { width: 100%; }
 .event-calculator .receipt div { display: flex; justify-content: space-between; gap: 8px; padding-block: 8px; border-top: 1px solid var(--line); }
 .event-calculator .receipt dd { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
-.event-calculator .summary .receipt div { border-color: rgb(249 242 238 / .35); }
+.event-calculator .summary .receipt div { border-color: rgb(246 246 246 / .35); }
 .event-calculator .summary :focus-visible { outline-color: var(--paper); }
 .event-calculator .summary .primary:disabled { opacity: .65; cursor: default; }
 .event-calculator .application {
@@ -109,6 +109,6 @@
 }
 .event-calculator .application > p { margin-block: 6px 15px; color: var(--muted); }
 .event-calculator .application .actions { margin-top: 14px; }
-.event-calculator .back { min-height: 44px; padding-inline: 12px; border: 1px solid var(--sage); border-radius: 999px; background: transparent; cursor: pointer; }
-.event-calculator .back:hover { background: var(--lilac); }
+.event-calculator .back { min-height: 44px; padding-inline: 12px; border: 1px solid var(--graphite); border-radius: 999px; background: transparent; cursor: pointer; }
+.event-calculator .back:hover { background: var(--surface); }
 @media (max-width: 720px) { .event-calculator .calculator { grid-template-columns: minmax(0, 1fr); } }

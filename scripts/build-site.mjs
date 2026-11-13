@@ -18,20 +18,20 @@ const routes = [
 ];
 const spaces = [
   {
-    id: 'restaurant', title: 'Ресторан', file: 'restaurant-reference.webp', guests: 50,
+    id: 'restaurant', title: 'Ресторан', file: 'restaurant-reference.png', guests: 50,
     image: [1536, 1024], imageNote: 'Иллюстрация интерьера',
     imageAlt: 'Длинный банкетный стол в зале ресторана',
     text: 'Для семейного праздника, небольшого банкета или ужина с командой. Меню готовит кухня площадки.',
   },
   {
-    id: 'summer', title: 'Летняя площадка', file: 'veranda.webp', guests: 60,
+    id: 'summer', title: 'Летняя площадка', file: 'veranda.png', guests: 60,
     image: [1536, 1024], imageNote: 'Иллюстрация летней площадки',
     imageAlt: 'Гости за столом на крытой площадке среди деревьев',
     text: 'Летний банкет среди зелени, встреча гостей или вечерняя программа на воздухе.',
     aliases: ['verandas', 'outdoors'],
   },
   {
-    id: 'dome', title: 'Купольный шатёр', file: 'dome-concept.webp', guests: 150,
+    id: 'dome', title: 'Купольный шатёр', file: 'dome-concept.png', guests: 150,
     image: [1536, 1024], imageNote: 'Визуализация проекта', planned: true,
     imageAlt: 'Геодезический купол с прозрачным фасадом на поляне',
     text: 'На большой поляне планируется купольный шатёр для свадеб, корпоративов и больших банкетов.',
@@ -47,7 +47,7 @@ const pictures = [
   ['dancing-guests.webp', 'Вечерний ужин под гирляндами', 'weddings'],
   ['dance.webp', 'Танцы под открытым небом', 'parties'],
   ['grounds.webp', 'Столы среди деревьев', 'venue'],
-  ['veranda.webp', 'Вечер на веранде', 'venue'],
+  ['veranda.png', 'Вечер на веранде', 'venue'],
   ['room.webp', 'Гостевой номер', 'venue'],
 ];
 
@@ -90,7 +90,7 @@ function link(href, label, css = 'text-link sweep-action') {
 }
 
 function plainButton(href, label) {
-  return `<a class="primary sage plain-button" href="${href}">${label}</a>`;
+  return `<a class="primary tonal plain-button" href="${href}">${label}</a>`;
 }
 
 function header(base, current) {
@@ -101,7 +101,7 @@ function header(base, current) {
     <div class="nav-pill">
       <div class="nav-glass glass glass-nav" aria-hidden="true"></div>
       <a class="nav-logo" href="${base}" aria-label="Случайности, главная">
-        <img src="${base}prototype/wordmark-light.svg" width="1376" height="222" alt="">
+        <img src="${base}prototype/wordmark-light.svg?v=2" width="1376" height="222" alt="">
       </a>
       <nav class="nav-links" aria-label="Основное меню">
         ${primaryRoutes.map(([id, name], index) =>
@@ -113,7 +113,7 @@ function header(base, current) {
   </header>
   <dialog class="nav-dialog" id="mobile-menu" aria-label="Меню">
     <div class="dialog-header">
-      <a href="${base}" aria-label="Случайности, главная"><img src="${base}prototype/wordmark-light.svg" width="1376" height="222" alt=""></a>
+      <a href="${base}" aria-label="Случайности, главная"><img src="${base}prototype/wordmark-light.svg?v=2" width="1376" height="222" alt=""></a>
       <button class="icon-button" type="button" data-close autofocus aria-label="Закрыть меню"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
     </div>
     <nav aria-label="Все страницы">
@@ -137,7 +137,6 @@ function footer(base, current) {
       <div class="footer-intro">
         <p>Банкетная площадка в Перми</p>
         <p>Свадьбы, корпоративы и частные праздники.</p>
-        ${ornament('footer-imprint', '0 0 146 86', `<path d="M12 46V23l11-11h100l11 11v40l-11 11H23L12 63V46ZM1 46h7m130 0h7M73 1v7m0 70v7" stroke="currentColor" stroke-width="1.3"/><g transform="translate(36 32) scale(.65)">${brandArc}</g>`)}
       </div>
       <nav class="footer-columns" aria-label="Разделы сайта и адрес площадки">
           ${groups.map(([heading, ids]) => `<div class="footer-group">
@@ -153,9 +152,9 @@ function footer(base, current) {
           <a class="footer-link footer-map" href="${mapUrl}" target="_blank" rel="noopener">${pinIcon()} Открыть на карте</a>
         </div>
       </nav>
-      <img class="footer-watermark" src="${base}prototype/wordmark.svg" width="1376" height="222" alt="" loading="lazy" decoding="async">
+      <img class="footer-watermark" src="${base}prototype/wordmark.svg?v=2" width="1376" height="222" alt="" loading="lazy" decoding="async">
       <div class="footer-bottom">
-        <a class="footer-brand" href="${base}"><img src="${base}prototype/wordmark.svg" width="1376" height="222" alt="Случайности, главная"></a>
+        <a class="footer-brand" href="${base}"><img src="${base}prototype/wordmark.svg?v=2" width="1376" height="222" alt="Случайности, главная"></a>
         <a class="footer-link" href="${base}#event-calculator">Калькулятор</a>
         <a class="footer-link footer-top" href="#top">Наверх <span aria-hidden="true">↑</span></a>
       </div>
@@ -169,20 +168,20 @@ function layout({ title, description, base = './', current = '', body, home = fa
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#30282d">
+  <meta name="theme-color" content="#303030">
   <meta name="robots" content="noindex">
   <meta name="description" content="${description}">
   <title>${title}</title>
-  ${home ? '<link rel="preload" href="prototype/hero-detail.webp" as="image">' : ''}
-  <link rel="stylesheet" href="${base}prototype/site-effects.css">
+  ${home ? '<link rel="preload" href="prototype/hero-detail.png" as="image">' : ''}
+  <link rel="stylesheet" href="${base}prototype/site-effects.css?v=2">
   <link rel="preload" href="${base}prototype/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="${base}prototype/fonts/fonts.css?v=2">
-  <link rel="stylesheet" href="${base}prototype/site.css?v=15">
-  ${calculator ? `<link rel="stylesheet" href="${base}prototype/calculator.css?v=4">` : ''}
+  <link rel="stylesheet" href="${base}prototype/site.css?v=16">
+  ${calculator ? `<link rel="stylesheet" href="${base}prototype/calculator.css?v=5">` : ''}
   <script src="${base}prototype/site.js?v=8" defer></script>
   ${home ? `<script src="${base}prototype/vendor/gsap.min.js" defer></script>
   <script src="${base}prototype/vendor/ScrollTrigger.min.js" defer></script>
-  <script type="module" src="${base}prototype/venue-3d.js?v=2"></script>
+  <script type="module" src="${base}prototype/venue-3d.js?v=3"></script>
   <script src="${base}prototype/home-motion.js?v=3" defer></script>` : ''}
   ${calculator ? `<script src="${base}prototype/calculator.js" defer></script>` : ''}
 </head>
@@ -265,7 +264,6 @@ function capacityCards() {
   };
   return `<div class="hero-capacities" role="group" aria-label="Вместимость площадок">
     ${spaces.slice(0, 2).map(({ id, guests, title }) => `<a class="hero-glass hero-capacity" href="spaces/#${id}">
-      <span class="glass glass-nav" aria-hidden="true"></span>
       <span class="hero-capacity-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${icons[id]}</svg>${title}</span>
       <span class="hero-capacity-number">до <strong>${guests}</strong> гостей</span>
     </a>`).join('')}
@@ -288,11 +286,11 @@ function location() {
       </div>
       <div class="location-view">
         <figure class="location-picture">
-          ${photo('./', 'location-woodland.webp', 'Тропинка среди деревьев ведёт к летней террасе', '', [1862, 845])}
+          ${photo('./', 'location-woodland.png', 'Тропинка среди деревьев ведёт к летней террасе', '', [1862, 845])}
           <canvas class="woodland-canvas" data-woodland aria-hidden="true" hidden></canvas>
         </figure>
         <div class="location-press" aria-hidden="true">
-          ${ornament('pressed-leaf', '0 0 132 159', `<path d="M24 146c12-24 20-36 35-54M49 108C21 87 32 43 116 10c-4 54-23 102-67 98Z" fill="#d6dfc1" stroke="#4a694b" stroke-width="1.15" stroke-linejoin="round"/><path d="M31 134c18-31 44-58 72-108M55 101c5-15 1-29-3-41m13 28c4-15 1-30-2-39m13 23c2-13 1-24-1-32m11 16 1-21M51 107c14-8 25-10 38-13m-25-5c10-4 22-7 33-12m-22-3c7-4 18-8 27-14m-16-3 20-12" stroke="#4a694b" stroke-width=".9" stroke-linecap="round"/>`)}
+          ${ornament('pressed-leaf', '0 0 132 159', `<path d="M24 146c12-24 20-36 35-54M49 108C21 87 32 43 116 10c-4 54-23 102-67 98Z" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="1.15" stroke-linejoin="round"/><path d="M31 134c18-31 44-58 72-108M55 101c5-15 1-29-3-41m13 28c4-15 1-30-2-39m13 23c2-13 1-24-1-32m11 16 1-21M51 107c14-8 25-10 38-13m-25-5c10-4 22-7 33-12m-22-3c7-4 18-8 27-14m-16-3 20-12" stroke="var(--ink)" stroke-width=".9" stroke-linecap="round"/>`)}
         </div>
       </div>
       <div class="location-address">
@@ -326,7 +324,7 @@ function hospitality() {
       <figure class="stay-picture">${photo('./', 'room.webp', 'Светлый гостевой номер')}</figure>
       <div class="stay-details">
         <p class="stay-count">
-          ${ornament('stay-cord', '0 0 88 68', '<path d="M44 62c-1-13-20-12-26-28C12 17 28 7 42 13c17 7 23 32 8 39-11 6-17-6-10-12 7-6 19 0 26-9 6-8-1-20-8-26" stroke="#645145" stroke-width="2.8" stroke-linecap="round"/><path d="M44 62c-1-13-20-12-26-28C12 17 28 7 42 13c17 7 23 32 8 39-11 6-17-6-10-12 7-6 19 0 26-9 6-8-1-20-8-26" stroke="#e8ccaa" stroke-width="1.5" stroke-dasharray="2 3" stroke-linecap="round"/>')}
+          ${ornament('stay-cord', '0 0 88 68', '<path d="M44 62c-1-13-20-12-26-28C12 17 28 7 42 13c17 7 23 32 8 39-11 6-17-6-10-12 7-6 19 0 26-9 6-8-1-20-8-26" stroke="var(--ink)" stroke-width="2.8" stroke-linecap="round"/><path d="M44 62c-1-13-20-12-26-28C12 17 28 7 42 13c17 7 23 32 8 39-11 6-17-6-10-12 7-6 19 0 26-9 6-8-1-20-8-26" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="2 3" stroke-linecap="round"/>')}
           <strong>7</strong> номеров
         </p>
         <p>Гости могут остаться после вечеринки, а молодожёнов ждёт отдельный номер.</p>
@@ -339,14 +337,14 @@ function hospitality() {
 function requestForm(base) {
   const home = base === './';
   return `<section class="request-section${home ? ' request-finale' : ''}" id="request" aria-labelledby="request-title">
-    ${home ? photo(base, 'request-garden.webp', '', 'request-backdrop', [1536, 1024]) : ''}
+    ${home ? photo(base, 'request-garden.png', '', 'request-backdrop', [1536, 1024]) : ''}
     <div class="frame section request-layout">
       <div><h2 id="request-title">Давайте устроим вашу случайность</h2>
         <p>Подготовьте параметры праздника, чтобы обсудить их с командой площадки.</p>
         ${base === '../' ? link('../#event-calculator', 'Калькулятор мероприятия') : ''}
       </div>
       <form class="request-form" data-request>
-        ${home ? ornament('request-seal', '0 0 72 72', `<path d="M36 2c8 0 11 4 16 6 8 4 11 8 14 15 4 8 4 18 1 24-3 9-7 13-15 17-8 4-13 6-21 5-9-1-17-5-22-12-4-5-7-12-7-20 0-9 4-16 8-22C17 6 26 2 36 2Z" fill="#e2b5bc" stroke="#bd818d"/><circle cx="36" cy="36" r="26" stroke="#be8a94"/><g transform="translate(18 29) scale(.32)" color="#8f5864">${brandArc}</g>`) : ''}
+        ${home ? ornament('request-seal', '0 0 72 72', `<path d="M36 2c8 0 11 4 16 6 8 4 11 8 14 15 4 8 4 18 1 24-3 9-7 13-15 17-8 4-13 6-21 5-9-1-17-5-22-12-4-5-7-12-7-20 0-9 4-16 8-22C17 6 26 2 36 2Z" fill="var(--accent)" stroke="var(--accent-strong)"/><circle cx="36" cy="36" r="26" stroke="var(--accent-strong)"/><g transform="translate(18 29) scale(.32)" color="var(--ink)">${brandArc}</g>`) : ''}
         <fieldset disabled>
         <div class="request-fields">
           <div><label for="request-event">Формат</label><select id="request-event" name="event"><option value="wedding">Свадьба</option><option value="corporate">Корпоратив</option><option value="birthday">День рождения</option><option value="other">Другое событие</option></select></div>
@@ -407,7 +405,7 @@ function home() {
     home: true,
     body: `
     <section class="hero" aria-labelledby="hero-title">
-      <img class="hero-photo" src="prototype/hero-detail.webp" width="1585" height="992" fetchpriority="high" alt="">
+      <img class="hero-photo" src="prototype/hero-detail.png" width="1585" height="992" fetchpriority="high" alt="">
       <div class="hero-shade" aria-hidden="true"></div>
       ${paperEdge(paperEdges.arrival, 'bottom', 'white')}
       <div class="frame hero-content">
@@ -431,13 +429,13 @@ function home() {
       <div class="frame section gifts-home">
         <div class="gifts-heading">
           <h2>Свадебные подарки от «Случайностей»</h2>
-          ${ornament('gift-ribbon', '0 0 240 134', `<path d="M122 52C104 14 54 3 44 26 33 52 83 61 119 57c-15 5-43 18-58 46l-17 5 10 5-2 16c17-19 30-38 70-58 24 8 33 24 44 37 13 16 29 21 48 22l-8-13 19-11c-44 2-48-36-94-48 23 0 76-8 69-32-9-24-56-14-74 18Z" fill="#c48896" stroke="#9c5267" stroke-width="1.2" stroke-linejoin="round"/><path d="M120 55C99 33 64 23 56 33c-9 13 32 20 64 22Zm9 0c24-22 59-32 64-22 6 13-30 20-64 22Z" fill="#e5b2bd" stroke="#a35e73" stroke-width="1"/><path d="M58 114c26-29 37-32 63-45m10-4c38 15 37 53 75 58M54 27c15-11 46 2 62 20m15 0c24-22 53-31 63-20" stroke="#f3cdd3" stroke-width="1.5" stroke-linecap="round"/><path d="m118 45 14-1c6 4 5 16 0 23l-13 1c-6-4-7-16-1-23Z" fill="#dca1ae" stroke="#9c5267" stroke-width="1.2"/>`)}
+          ${ornament('gift-ribbon', '0 0 240 134', `<path d="M122 52C104 14 54 3 44 26 33 52 83 61 119 57c-15 5-43 18-58 46l-17 5 10 5-2 16c17-19 30-38 70-58 24 8 33 24 44 37 13 16 29 21 48 22l-8-13 19-11c-44 2-48-36-94-48 23 0 76-8 69-32-9-24-56-14-74 18Z" fill="var(--accent)" stroke="var(--accent-strong)" stroke-width="1.2" stroke-linejoin="round"/><path d="M120 55C99 33 64 23 56 33c-9 13 32 20 64 22Zm9 0c24-22 59-32 64-22 6 13-30 20-64 22Z" fill="var(--accent-soft)" stroke="var(--accent-strong)" stroke-width="1"/><path d="M58 114c26-29 37-32 63-45m10-4c38 15 37 53 75 58M54 27c15-11 46 2 62 20m15 0c24-22 53-31 63-20" stroke="var(--paper)" stroke-width="1.5" stroke-linecap="round"/><path d="m118 45 14-1c6 4 5 16 0 23l-13 1c-6-4-7-16-1-23Z" fill="var(--accent)" stroke="var(--accent-strong)" stroke-width="1.2"/>`)}
         </div>
         ${giftGallery('./')}
         ${plainButton('weddings/#gifts', 'Все свадебные подарки')}
       </div>
     </section>
-    ${feature({ id: 'production', title: 'Танцы под открытым небом', text: 'Свет, звук, экраны и уличная дискотека. Диджеи и техническая команда помогают собрать программу под ваш формат.', file: 'dance-panorama.webp', dimensions: [1919, 820], alt: 'Гости танцуют перед освещённой сценой среди деревьев', href: 'corporate/#production', action: 'Технические возможности', variant: 'feature-dark feature-film', torn: true })}
+    ${feature({ id: 'production', title: 'Танцы под открытым небом', text: 'Свет, звук, экраны и уличная дискотека. Диджеи и техническая команда помогают собрать программу под ваш формат.', file: 'dance-panorama.png', dimensions: [1919, 820], alt: 'Гости танцуют перед освещённой сценой среди деревьев', href: 'corporate/#production', action: 'Технические возможности', variant: 'feature-dark feature-film', torn: true })}
     ${hospitality()}
     <section class="section frame home-gallery" id="gallery"><div class="section-intro"><h2>Как может выглядеть праздник</h2>${plainButton('gallery/', 'Открыть галерею')}</div>${gallery('./')}</section>
     ${calculator()}
@@ -459,7 +457,7 @@ const pages = {
     `<section class="gifts-section" id="gifts"><div class="frame section"><h2>Три подарка к вашей свадьбе</h2>${giftGallery('../')}<p class="fine-print">Доступность подарков и условия уточняются при обсуждении даты.</p></div></section>
     <section class="frame section prose"><h2>Как проходит свадьба</h2><details><summary>Где провести церемонию?</summary><p>На зелёной территории можно устроить выездную регистрацию и фотозону.</p></details>
     <details><summary>На сколько гостей рассчитан проект купола?</summary><p>Купольный шатёр планируется на 150 гостей. Сроки и рассадку можно уточнить при обсуждении даты.</p></details>
-    <details><summary>Можно остаться после свадьбы?</summary><p>На площадке семь гостевых номеров, в том числе отдельный номер для молодожёнов.</p></details>${link('../contacts/?event=wedding#request', 'Обсудить свадьбу', 'primary sage')}</section>`),
+    <details><summary>Можно остаться после свадьбы?</summary><p>На площадке семь гостевых номеров, в том числе отдельный номер для молодожёнов.</p></details>${link('../contacts/?event=wedding#request', 'Обсудить свадьбу', 'primary tonal')}</section>`),
   corporate: page('corporate', 'Корпоративы и праздники', 'Площадки и техническая команда для корпоративных мероприятий в Перми.',
     pageIntro('Корпоративы и праздники', 'Деловая встреча, ужин для команды или вечеринка на воздухе. На площадке есть пространства для разных частей одного события.', 'dance.webp') +
     feature({ base: '../', id: 'production', title: 'Свет, звук и программа', text: 'Подбираем оборудование под формат мероприятия. Можно запланировать выступления, экран для презентаций, диджей-сет и танцы под открытым небом.', file: 'dancing-guests.webp', alt: 'Вечернее событие на открытом воздухе', href: '../contacts/?event=corporate#request', action: 'Подготовить запрос', variant: 'feature-dark' }) +
@@ -488,7 +486,7 @@ const pages = {
     <div><dt>Банкет</dt><dd>Обсудим подачу, состав меню и порядок смены блюд.</dd></div>
     <div><dt>Фуршет</dt><dd>Подберём формат подачи для встречи гостей или перерыва между выступлениями.</dd></div>
     <div><dt>Пожелания гостей</dt><dd>Особые требования к блюдам можно указать при обсуждении меню.</dd></div></dl>
-    ${link('../contacts/#request', 'Обсудить меню', 'primary sage')}</section>`),
+    ${link('../contacts/#request', 'Обсудить меню', 'primary tonal')}</section>`),
   gallery: page('gallery', 'Фото и видео', 'Фотографии свадебных и вечерних форматов и пространств площадки.',
     pageIntro('Фото и видео', 'Кадры для знакомства с форматами банкетов, летних праздников и размещения гостей.') +
     `<section class="frame section gallery-page" aria-label="Галерея">${gallery('../', true)}<p class="fine-print">В подборке используются иллюстративные кадры.</p></section>`),
@@ -501,7 +499,7 @@ const pages = {
     <div><dt>Площадка</dt><dd>Пространство, дата и вариант рассадки.</dd></div>
     <div><dt>Кухня</dt><dd>Банкет или фуршет, состав меню, число гостей.</dd></div>
     <div><dt>Организация</dt><dd>Сценарий, декор, техническое сопровождение и команда.</dd></div></dl>
-    <div class="actions">${link('../#event-calculator', 'Калькулятор мероприятия', 'primary sage')}${link('../contacts/#request', 'Подготовить заявку')}</div></section>`),
+    <div class="actions">${link('../#event-calculator', 'Калькулятор мероприятия', 'primary tonal')}${link('../contacts/#request', 'Подготовить заявку')}</div></section>`),
   contacts: page('contacts', 'Контакты', 'Адрес банкетной площадки Случайности и параметры заявки.',
     pageIntro('Контакты', address) +
     `<section class="frame contact-map" aria-label="Адрес на карте">${mapLink()}</section>` + requestForm('../')),

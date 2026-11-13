@@ -101,7 +101,6 @@ export async function createWoodland(canvas, figure) {
   const image = figure.querySelector('img');
   await image.decode();
   const renderer = new THREE.WebGLRenderer({ canvas, powerPreference: 'low-power' });
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 1.25));
   const scene = new THREE.Scene();
   const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, .1, 5);
   camera.position.z = 1;
@@ -154,6 +153,7 @@ export async function createWoodland(canvas, figure) {
     if (!width || !height) return;
     const ratio = (width / height) / (image.naturalWidth / image.naturalHeight);
     uniforms.crop.value.set(Math.min(1, ratio), Math.min(1, 1 / ratio));
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2, Math.sqrt(3000000 / (width * height))));
     renderer.setSize(width, height, false);
     render();
     canvas.hidden = false;

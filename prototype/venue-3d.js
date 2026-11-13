@@ -18,7 +18,7 @@ function observeScene(canvas, create) {
 
     loading = true;
     try {
-      const scenes = await import('./venue-scenes.js?v=2');
+      const scenes = await import('./venue-scenes.js?v=3');
       if (!visible || motion.matches) return;
       effect = await create(scenes, canvas, container);
       effect.setVisible(visible);

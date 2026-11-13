@@ -11,11 +11,11 @@
   position: absolute;
   inset: -10px;
   background: url(film-grain.png) repeat;
-  opacity: .14;
+  opacity: .08;
 }
 
 @media (max-width: 680px) {
-  .site-grain::before { background-size: 112px; opacity: .12; }
+  .site-grain::before { background-size: 112px; opacity: .075; }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -35,7 +35,7 @@
 /* The DIGITAL EVENTS navigation glass uses an independent backdrop layer. */
 :root {
   --de-void: #0a0a0b;
-  --de-white: #f5f5f2;
+  --de-white: #f6f6f6;
   --de-line: rgba(255, 255, 255, .08);
 }
 
@@ -62,4 +62,8 @@
 .glass.glass-nav,
 .glass-svg .glass.glass-nav {
   background: color-mix(in srgb, var(--de-void) 40%, transparent);
+}
+
+.site-header[data-light] .glass.glass-nav {
+  background: color-mix(in srgb, var(--de-void) 68%, transparent);
 }
