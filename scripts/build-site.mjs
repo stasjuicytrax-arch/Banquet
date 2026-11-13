@@ -171,18 +171,18 @@ function layout({ title, description, base = './', current = '', body, home = fa
   <meta name="robots" content="noindex">
   <meta name="description" content="${description}">
   <title>${title}</title>
-  ${home ? '<link rel="preload" href="prototype/hero-bloom.png" as="image">' : ''}
+  ${home ? '<link rel="preload" href="prototype/hero-bloom-wide.png" as="image">' : ''}
   <link rel="stylesheet" href="${base}prototype/site-effects.css?v=2">
   <link rel="preload" href="${base}prototype/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="${base}prototype/fonts/fonts.css?v=2">
-  <link rel="stylesheet" href="${base}prototype/site.css?v=17">
-  ${home ? '<link rel="stylesheet" href="prototype/hero-bloom.css?v=1">' : ''}
+  <link rel="stylesheet" href="${base}prototype/site.css?v=18">
+  ${home ? '<link rel="stylesheet" href="prototype/hero-bloom.css?v=2">' : ''}
   ${calculator ? `<link rel="stylesheet" href="${base}prototype/calculator.css?v=6">` : ''}
   <script src="${base}prototype/site.js?v=9" defer></script>
   ${home ? `<script src="${base}prototype/vendor/gsap.min.js" defer></script>
   <script src="${base}prototype/vendor/ScrollTrigger.min.js" defer></script>
   <script type="module" src="${base}prototype/venue-3d.js?v=3"></script>
-  <script src="${base}prototype/home-motion.js?v=4" defer></script>` : ''}
+  <script src="${base}prototype/home-motion.js?v=5" defer></script>` : ''}
   ${calculator ? `<script src="${base}prototype/calculator.js" defer></script>` : ''}
 </head>
 <body id="top"${home ? ' class="home-page"' : ''}>
@@ -210,7 +210,7 @@ function spaceGallery(base) {
     <div class="space-gallery" data-spaces>
       <div class="space-tabs" role="tablist" aria-label="Пространства площадки">
         ${spaces.map((item, index) => `<button class="space-tab" type="button" role="tab" id="space-tab-${item.id}" aria-selected="${index === 0}" tabindex="${index ? '-1' : '0'}" aria-controls="space-panel-${item.id}">
-          ${ornament('space-tab-icon', '0 0 40 34', `<g stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round">${spaceIcons[item.id]}</g>`)}
+          <span class="space-tab-icon detail-icon" aria-hidden="true">${ornament('space-symbol', '0 0 40 34', `<g stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round">${spaceIcons[item.id]}</g>`)}</span>
           <span class="space-tab-title">${item.title}</span>
           <span class="space-tab-meta">До ${item.guests} гостей${item.planned ? ' <span>· В проекте</span>' : ''}</span>
         </button>`).join('\n')}
@@ -232,9 +232,9 @@ function spaceGallery(base) {
   </section>`;
 }
 
-function giftGallery(base, ribbon = '') {
+function giftGallery(base, featuredIcon = '') {
   return `<div class="gift-gallery">${gifts.map(([file, title, description, dimensions], index) => `<article class="gift">
-    ${photo(base, file, '', '', dimensions)}${index === 0 ? ribbon : ''}<h3>${title}</h3><p>${description}</p>
+    ${photo(base, file, '', '', dimensions)}${index === 0 ? featuredIcon : ''}<h3>${title}</h3><p>${description}</p>
   </article>`).join('\n')}</div>`;
 }
 
@@ -245,7 +245,7 @@ function feature({ base = './', id = '', title, text, file, alt, dimensions, hre
     <div class="frame section feature">
       ${photo(base, file, alt, 'feature-image', dimensions)}
       <div class="feature-copy"${torn ? '' : ' data-reveal'}>
-      ${torn ? ornament('stage-wave', '0 0 160 42', '<path d="M1 21h23l6-8 9 17 11-25 11 32 10-22 8 12 8-6h72" pathLength="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="158" cy="21" r="2" fill="currentColor"/>') : ''}
+      ${torn ? `<span class="stage-icon detail-icon" aria-hidden="true">${ornament('stage-disco', '0 0 32 32', '<g stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="15" cy="17" r="9"/><ellipse cx="15" cy="17" rx="4.5" ry="9"/><path d="M6 17h18M8 12.5q7 4 14 0M8 21.5q7-4 14 0M15 8V4m12 1v6m-3-3h6M4 4v5M1.5 6.5h5"/></g>')}</span>` : ''}
       <h2>${title}</h2><p>${text}</p>
       ${href ? link(href, action) : ''}</div>
     </div>
@@ -263,7 +263,7 @@ function capacityCards() {
     summer: '<path d="m3 10 9-6 9 6M5 10h14v10H5zM9 20v-6h6v6"/>',
   };
   return `<div class="hero-capacities" role="group" aria-label="Вместимость площадок">
-    ${spaces.slice(0, 2).map(({ id, guests, title }) => `<a class="hero-capacity" href="spaces/#${id}">
+    ${spaces.slice(0, 2).map(({ id, guests, title }) => `<a class="hero-capacity glass" href="spaces/#${id}">
       <span class="hero-capacity-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${icons[id]}</svg>${title}</span>
       <span class="hero-capacity-number">до <strong>${guests}</strong> гостей</span>
     </a>`).join('')}
@@ -408,10 +408,10 @@ function home() {
     body: `
     <section class="bloom-hero" aria-labelledby="hero-title">
       <div class="bloom-art" aria-hidden="true">
-        <img src="prototype/hero-bloom.png" width="1536" height="1024" fetchpriority="high" alt="">
+        <img src="prototype/hero-bloom-wide.png" width="1774" height="887" fetchpriority="high" alt="">
       </div>
       <div class="frame bloom-content">
-        <h1 id="hero-title">Случайности,<br>которые становятся<br>воспоминаниями</h1>
+        <h1 id="hero-title">Случайности,<br>которые <span class="bloom-word">становятся</span><br>воспоминаниями</h1>
         <div class="bloom-intro">
           <p>Банкетная площадка среди зелени в Перми. Для свадеб, корпоративов и частных праздников.</p>
           ${link('contacts/#request', 'Выбрать дату', 'primary')}
@@ -431,7 +431,7 @@ function home() {
     <section class="gifts-section" id="gifts">
       <div class="frame section gifts-home">
         <h2>Свадебные подарки от «Случайностей»</h2>
-        ${giftGallery('./', ornament('gift-ribbon', '0 0 240 134', `<path d="M122 52C104 14 54 3 44 26 33 52 83 61 119 57c-15 5-43 18-58 46l-17 5 10 5-2 16c17-19 30-38 70-58 24 8 33 24 44 37 13 16 29 21 48 22l-8-13 19-11c-44 2-48-36-94-48 23 0 76-8 69-32-9-24-56-14-74 18Z" fill="var(--accent)" stroke="var(--accent-strong)" stroke-width="1.2" stroke-linejoin="round"/><path d="M120 55C99 33 64 23 56 33c-9 13 32 20 64 22Zm9 0c24-22 59-32 64-22 6 13-30 20-64 22Z" fill="var(--accent-soft)" stroke="var(--accent-strong)" stroke-width="1"/><path d="M58 114c26-29 37-32 63-45m10-4c38 15 37 53 75 58M54 27c15-11 46 2 62 20m15 0c24-22 53-31 63-20" stroke="var(--paper)" stroke-width="1.5" stroke-linecap="round"/><path d="m118 45 14-1c6 4 5 16 0 23l-13 1c-6-4-7-16-1-23Z" fill="var(--accent)" stroke="var(--accent-strong)" stroke-width="1.2"/>`))}
+        ${giftGallery('./', `<span class="gift-icon detail-icon" aria-hidden="true">${ornament('gift-car', '0 0 32 32', '<path d="M5 16l2.6-6h13.8l3.6 6m-20 0h20l2 2v6H3v-6l2-2Zm2 8v2m16-2v2M7 20h2m12 0h2M26 6v6m-3-3h6" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/>')}</span>`)}
         ${plainButton('weddings/#gifts', 'Все свадебные подарки')}
       </div>
     </section>

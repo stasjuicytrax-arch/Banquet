@@ -25,13 +25,6 @@ if (gsap && ScrollTrigger) {
       scrollTrigger: { trigger: '.location-view', start: 'top bottom', end: 'center 48%', scrub: true },
     });
 
-    gsap.fromTo('.stage-wave path', { strokeDasharray: '1 1', strokeDashoffset: 1 }, {
-      strokeDashoffset: 0,
-      duration: 1.15,
-      ease: 'power2.out',
-      scrollTrigger: { trigger: '.stage-wave', start: 'top 88%', once: true },
-    });
-
     gsap.fromTo('.stay-count', { rotation: -13 }, {
       rotation: 0,
       duration: .95,
@@ -90,29 +83,4 @@ if (gsap && ScrollTrigger) {
     }
     return () => listeners.abort();
   });
-}
-
-const bloom = document.querySelector('.bloom-hero');
-if (bloom) {
-  const art = bloom.querySelector('.bloom-art');
-  const preciseMotion = matchMedia('(pointer: fine) and (prefers-reduced-motion: no-preference)');
-  let frame;
-
-  function resetBloom() {
-    cancelAnimationFrame(frame);
-    art.style.removeProperty('--art-x');
-    art.style.removeProperty('--art-y');
-  }
-
-  bloom.addEventListener('pointermove', (event) => {
-    if (!preciseMotion.matches || event.pointerType !== 'mouse') return;
-    cancelAnimationFrame(frame);
-    frame = requestAnimationFrame(() => {
-      const bounds = bloom.getBoundingClientRect();
-      art.style.setProperty('--art-x', `${((event.clientX - bounds.left) / bounds.width - .5) * 16}px`);
-      art.style.setProperty('--art-y', `${((event.clientY - bounds.top) / bounds.height - .5) * 9}px`);
-    });
-  });
-  bloom.addEventListener('pointerleave', resetBloom);
-  preciseMotion.addEventListener('change', resetBloom);
 }
