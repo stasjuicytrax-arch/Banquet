@@ -133,8 +133,8 @@ function layout({ title, description, base = './', current = '', body, home = fa
   ${home ? '<link rel="preload" href="prototype/hero-detail.webp" as="image">' : ''}
   <link rel="stylesheet" href="${base}prototype/site-effects.css">
   <link rel="preload" href="${base}prototype/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="${base}prototype/fonts/fonts.css">
-  <link rel="stylesheet" href="${base}prototype/site.css?v=9">
+  <link rel="stylesheet" href="${base}prototype/fonts/fonts.css?v=2">
+  <link rel="stylesheet" href="${base}prototype/site.css?v=10">
   ${calculator ? `<link rel="stylesheet" href="${base}prototype/calculator.css?v=2">` : ''}
   <script src="${base}prototype/site.js?v=6" defer></script>
   ${home ? `<script src="${base}prototype/vendor/gsap.min.js" defer></script>

@@ -151,13 +151,13 @@ section[id], article[id], input[id] { scroll-margin-top: 84px; }
 .hero-capacities strong { font: 700 clamp(2.3rem, 3.4vw, 3.8rem)/.95 var(--display-face); }
 .hero-capacities a span { font-size: clamp(.9rem, 1.15vw, 1.05rem); line-height: 1.2; }
 .hero-capacity-number { display: inline-flex; align-items: baseline; gap: 4px; }
-h1, h2 { font-family: var(--display-face); font-weight: 600; }
+h1, h2, h3 { font-family: var(--display-face); font-weight: 600; }
 .hero h1, .page-intro h1 {
   font-size: clamp(2.35rem, 5.05vw, 5.75rem);
   line-height: 1.06;
   letter-spacing: -.035em;
 }
-.hero h1 { font-weight: 750; }
+.hero h1 { font-weight: 700; }
 .hero h1 span { display: block; }
 .hero-content p { margin-top: clamp(10px, 1.6vw, 22px); font-size: clamp(.98rem, 1.5vw, 1.35rem); line-height: 1.4; }
 .page-intro p { margin-top: clamp(14px, 2.5vw, 30px); font-size: clamp(1.05rem, 1.7vw, 1.5rem); line-height: 1.4; }
@@ -173,6 +173,7 @@ h1, h2 { font-family: var(--display-face); font-weight: 600; }
   border-radius: 999px;
   text-decoration: none;
   text-align: center;
+  font-family: var(--display-face);
   font-weight: 600;
   transition: background-color .2s ease;
 }
@@ -415,7 +416,7 @@ address { font-style: normal; }
   .hero h1 { font-size: clamp(1.5rem, 7.1vw, 3.3rem); }
   .hero .actions { flex-direction: column; align-items: flex-start; gap: 2px; }
   .hero .actions .hero-date-button { display: none; }
-  .hero-date-link { display: inline-flex; align-items: center; min-height: 44px; font-size: .9375rem; font-weight: 600; text-decoration-color: var(--rose); }
+  .hero-date-link { display: inline-flex; align-items: center; min-height: 44px; font-family: var(--display-face); font-size: .9375rem; font-weight: 600; text-decoration-color: var(--rose); }
   .hero-date-link:hover { color: var(--rose); }
   .hero .primary, .hero .secondary { padding-inline: 12px; font-size: .86rem; }
   .spaces-intro, .space-gallery, .feature, .reversed .feature, .page-intro, .request-layout { grid-template-columns: minmax(0, 1fr); }

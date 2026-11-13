@@ -3,7 +3,15 @@
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: local('Gilroy SemiBold'), local('Gilroy-SemiBold');
+  src: url('https://static.tildacdn.com/tila3337-6166-4165-a266-646364616537/Gilroy-Semibold.woff') format('woff');
+}
+
+@font-face {
+  font-family: Gilroy;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('https://static.tildacdn.com/tila6263-3236-4330-a133-653061633762/Gilroy-Bold.woff') format('woff');
 }
 
 @font-face {
