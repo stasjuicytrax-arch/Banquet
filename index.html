@@ -11,9 +11,9 @@
   <link rel="stylesheet" href="./prototype/site-effects.css">
   <link rel="preload" href="./prototype/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="./prototype/fonts/fonts.css">
-  <link rel="stylesheet" href="./prototype/site.css?v=7">
+  <link rel="stylesheet" href="./prototype/site.css?v=8">
   <link rel="stylesheet" href="./prototype/calculator.css?v=2">
-  <script src="./prototype/site.js?v=5" defer></script>
+  <script src="./prototype/site.js?v=6" defer></script>
   <script src="./prototype/vendor/gsap.min.js" defer></script>
   <script src="./prototype/vendor/ScrollTrigger.min.js" defer></script>
   <script src="./prototype/home-motion.js?v=2" defer></script>
@@ -41,7 +41,6 @@
 <a class="nav-item" style="--i:2" href="./spaces/">Пространства</a>
 <a class="nav-item" style="--i:3" href="./contacts/">Контакты</a>
       </nav>
-      <a class="nav-item nav-cta primary sweep-control" style="--i:4" href="./contacts/#request"><span class="sweep-label">Выбрать дату</span><span class="sweep-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 13 13 3M5 3h8v8"/></svg></span></a>
       <button class="nav-burger" type="button" aria-label="Открыть меню" aria-haspopup="dialog" aria-controls="mobile-menu" aria-expanded="false"><span></span><span></span></button>
     </div>
   </header>
@@ -58,7 +57,6 @@
 <a href="./stay/" class="dialog-link" style="--i:5">Проживание</a>
 <a href="./prices/" class="dialog-link" style="--i:6">Цены и услуги</a>
 <a href="./contacts/" class="dialog-link" style="--i:7">Контакты</a></nav>
-    <a class="primary sweep-control" href="./contacts/#request"><span class="sweep-label">Выбрать дату</span><span class="sweep-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 13 13 3M5 3h8v8"/></svg></span></a>
   </dialog>
   <main id="main">
     <section class="hero" aria-labelledby="hero-title">
@@ -127,7 +125,7 @@
           </figure>
           <div class="space-scene-copy">
             <p>Для семейного праздника, небольшого банкета или ужина с командой. Меню готовит кухня площадки.</p>
-            <a class="text-link sweep-action sweep-control" href="./spaces/#restaurant"><span class="sweep-label">Подробнее</span><span class="sweep-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 13 13 3M5 3h8v8"/></svg></span></a>
+            <a class="primary sage plain-button" href="./spaces/#restaurant">Подробнее</a>
           </div>
         </article>
 <article class="space-scene" id="space-panel-summer" role="tabpanel" tabindex="0" aria-labelledby="space-tab-summer" aria-hidden="true" inert>
@@ -137,7 +135,7 @@
           </figure>
           <div class="space-scene-copy">
             <p>Летний банкет среди зелени, встреча гостей или вечерняя программа на воздухе.</p>
-            <a class="text-link sweep-action sweep-control" href="./spaces/#summer"><span class="sweep-label">Подробнее</span><span class="sweep-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 13 13 3M5 3h8v8"/></svg></span></a>
+            <a class="primary sage plain-button" href="./spaces/#summer">Подробнее</a>
           </div>
         </article>
 <article class="space-scene" id="space-panel-dome" role="tabpanel" tabindex="0" aria-labelledby="space-tab-dome" aria-hidden="true" inert>
@@ -147,16 +145,16 @@
           </figure>
           <div class="space-scene-copy">
             <p>На большой поляне планируется купольный шатёр для свадеб, корпоративов и больших банкетов.</p>
-            <a class="text-link sweep-action sweep-control" href="./spaces/#dome"><span class="sweep-label">Подробнее</span><span class="sweep-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 13 13 3M5 3h8v8"/></svg></span></a>
+            <a class="primary sage plain-button" href="./spaces/#dome">Подробнее</a>
           </div>
         </article>
       </div>
     </div>
-    <noscript><a class="text-link sweep-action sweep-control" href="./spaces/"><span class="sweep-label">Посмотреть все пространства</span><span class="sweep-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 13 13 3M5 3h8v8"/></svg></span></a></noscript>
+    <noscript><a class="primary sage plain-button" href="./spaces/">Посмотреть все пространства</a></noscript>
   </section>
     <section class="gifts-section" id="gifts">
       <div class="frame section"><div class="section-intro" data-reveal><h2>Свадебные подарки от «Случайностей»</h2>
-      <a class="text-link sweep-action sweep-control" href="weddings/#gifts"><span class="sweep-label">Все свадебные подарки</span><span class="sweep-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 13 13 3M5 3h8v8"/></svg></span></a></div><div class="gift-gallery"><article class="gift">
+      <a class="primary sage plain-button" href="weddings/#gifts">Все свадебные подарки</a></div><div class="gift-gallery"><article class="gift">
     <img class="" src="./prototype/tesla.webp" alt="" loading="lazy" decoding="async"><h3>Tesla с водителем</h3><p>Автомобиль с личным водителем на весь день свадьбы.</p>
   </article>
 <article class="gift">
@@ -181,13 +179,13 @@
       <span class="hospitality-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path class="cloche-lid" d="M9 31a15 15 0 0 1 30 0M24 16v-2m-2 0a2 2 0 1 1 4 0M15 27a10 10 0 0 1 5-6"/><path d="M6 34h36l-3 4H9l-3-4Z"/><path class="cloche-rays" d="m33 9 2-3m4 8 4-1"/></svg></span>
       <h3>Своя кухня</h3>
       <p>Горячие блюда готовим на площадке к подаче. Меню составляем под формат праздника.</p>
-      <a class="text-link sweep-action sweep-control" href="menu/"><span class="sweep-label">Посмотреть меню</span><span class="sweep-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 13 13 3M5 3h8v8"/></svg></span></a>
+      <a class="primary sage plain-button" href="menu/">Посмотреть меню</a>
     </article>
     <article class="hospitality-row" id="team">
       <span class="hospitality-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M23 8c.9 8.7 4.3 12.1 13 13-8.7.9-12.1 4.3-13 13-.9-8.7-4.3-12.1-13-13 8.7-.9 12.1-4.3 13-13Z"/><path d="M37 7v8m-4-4h8"/><path d="M10 29v10m-5-5h10"/><path d="m34 32 2 4 4 2-4 2-2 4-2-4-4-2 4-2 2-4Z"/></svg></span>
       <h3>Организация праздника</h3>
       <p>Менеджер, ведущие, артисты, декор и сценарий. Можно собрать праздник с нашей командой или выбрать отдельные услуги.</p>
-      <a class="text-link sweep-action sweep-control" href="prices/"><span class="sweep-label">Цены и услуги</span><span class="sweep-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 13 13 3M5 3h8v8"/></svg></span></a>
+      <a class="primary sage plain-button" href="prices/">Цены и услуги</a>
     </article>
   </section>
   <section class="stay-story" id="stay" aria-labelledby="stay-title">
@@ -197,11 +195,11 @@
       <div class="stay-details">
         <p class="stay-count"><strong>7</strong> номеров</p>
         <p>Гости могут остаться после вечеринки, а молодожёнов ждёт отдельный номер.</p>
-        <a class="text-link sweep-action sweep-control" href="stay/"><span class="sweep-label">Посмотреть проживание</span><span class="sweep-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 13 13 3M5 3h8v8"/></svg></span></a>
+        <a class="primary sage plain-button" href="stay/">Посмотреть проживание</a>
       </div>
     </div>
   </section>
-    <section class="section frame home-gallery" id="gallery"><div class="section-intro"><h2>Как может выглядеть праздник</h2><a class="text-link sweep-action sweep-control" href="gallery/"><span class="sweep-label">Открыть галерею</span><span class="sweep-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 13 13 3M5 3h8v8"/></svg></span></a></div><div class="gallery" data-gallery>
+    <section class="section frame home-gallery" id="gallery"><div class="section-intro"><h2>Как может выглядеть праздник</h2><a class="primary sage plain-button" href="gallery/">Открыть галерею</a></div><div class="gallery" data-gallery>
     <div class="photo-grid"><figure data-photo-group="weddings">
       <button type="button" data-photo data-src="./prototype/dome.webp" data-caption="Пример сервировки в купольном шатре" aria-label="Увеличить фото: Пример сервировки в купольном шатре"><img class="" src="./prototype/dome.webp" alt="Пример сервировки в купольном шатре" loading="lazy" decoding="async"></button>
       <figcaption>Пример сервировки в купольном шатре</figcaption>
@@ -267,7 +265,7 @@
           <div><dt>На гостя</dt><dd id="summary-rate"></dd></div>
           <div id="service-line" hidden><dt>Под ключ</dt><dd id="summary-service"></dd></div>
         </dl>
-        <button class="primary sweep-control" type="submit" form="calculator" aria-controls="application" aria-expanded="false" id="show-application" disabled><span class="sweep-label">Посмотреть заявку</span><span class="sweep-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 13 13 3M5 3h8v8"/></svg></span></button>
+        <button class="primary plain-button" type="submit" form="calculator" aria-controls="application" aria-expanded="false" id="show-application" disabled>Посмотреть заявку</button>
       </section>
     </div>
 
@@ -282,7 +280,7 @@
         <div><dt>Условная сумма</dt><dd id="application-estimate"></dd></div>
       </dl>
       <div class="actions">
-        <a class="primary sage sweep-control" id="transfer-application" href="#request"><span class="sweep-label">Перенести в заявку</span><span class="sweep-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 13 13 3M5 3h8v8"/></svg></span></a>
+        <a class="primary sage plain-button" id="transfer-application" href="#request">Перенести в заявку</a>
         <button type="button" class="back" id="edit-calculation">Вернуться к расчёту</button>
       </div>
     </section>
@@ -307,12 +305,12 @@
           <label class="request-check"><input type="checkbox" name="fullService">Организация под ключ</label>
         </div>
         <p class="form-note">Черновик можно скачать. Данные остаются в браузере до скачивания.</p>
-        <button class="primary sage sweep-control" type="submit"><span class="sweep-label">Подготовить заявку</span><span class="sweep-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 13 13 3M5 3h8v8"/></svg></span></button>
+        <button class="primary plain-button" type="submit">Подготовить заявку</button>
         </fieldset>
         <noscript><p class="form-note">Для подготовки черновика включите JavaScript.</p></noscript>
         <div class="request-result" data-request-result hidden>
           <p role="status" data-request-status></p>
-          <a class="text-link sweep-action sweep-control" data-request-download download="sluchaynosti-request.txt"><span class="sweep-label">Скачать черновик</span><span class="sweep-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 13 13 3M5 3h8v8"/></svg></span></a>
+          <a class="text-link" data-request-download download="sluchaynosti-request.txt">Скачать черновик</a>
         </div>
       </form>
     </div>

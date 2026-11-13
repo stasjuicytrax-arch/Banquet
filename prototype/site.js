@@ -22,7 +22,6 @@ const pill = document.querySelector('.nav-pill');
 const header = pill.closest('header');
 const logo = pill.querySelector('.nav-logo');
 const nav = pill.querySelector('.nav-links');
-const navAction = pill.querySelector('.nav-cta');
 const burger = pill.querySelector('.nav-burger');
 const menu = document.getElementById('mobile-menu');
 const wide = matchMedia('(min-width: 1024px)');
@@ -42,7 +41,6 @@ function renderNav() {
   const collapsed = wide.matches && (compact || menu.open);
   pill.toggleAttribute('data-compact', collapsed);
   nav.inert = !wide.matches || collapsed;
-  navAction.inert = nav.inert;
   burger.tabIndex = !wide.matches || collapsed ? 0 : -1;
 }
 

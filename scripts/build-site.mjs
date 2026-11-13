@@ -74,6 +74,10 @@ function link(href, label, css = 'text-link sweep-action') {
   return `<a class="${css} sweep-control" href="${href}">${actionLabel(label)}</a>`;
 }
 
+function plainButton(href, label) {
+  return `<a class="primary sage plain-button" href="${href}">${label}</a>`;
+}
+
 function navLinks(base, current, css) {
   return routes.map(([id, name], index) =>
     `<a href="${base}${id}/" class="${css}" style="--i:${index}"${id === current ? ' aria-current="page"' : ''}>${name}</a>`
@@ -95,7 +99,6 @@ function header(base, current) {
           `<a class="nav-item" style="--i:${index}" href="${base}${id}/"${id === current ? ' aria-current="page"' : ''}>${name}</a>`
         ).join('\n')}
       </nav>
-      <a class="nav-item nav-cta primary sweep-control" style="--i:4" href="${base}contacts/#request">${actionLabel('Выбрать дату')}</a>
       <button class="nav-burger" type="button" aria-label="Открыть меню" aria-haspopup="dialog" aria-controls="mobile-menu" aria-expanded="false"><span></span><span></span></button>
     </div>
   </header>
@@ -105,7 +108,6 @@ function header(base, current) {
       <button class="icon-button" type="button" data-close aria-label="Закрыть меню"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
     </div>
     <nav aria-label="Все страницы">${navLinks(base, current, 'dialog-link')}</nav>
-    ${link(base + 'contacts/#request', 'Выбрать дату', 'primary')}
   </dialog>`;
 }
 
@@ -132,9 +134,9 @@ function layout({ title, description, base = './', current = '', body, home = fa
   <link rel="stylesheet" href="${base}prototype/site-effects.css">
   <link rel="preload" href="${base}prototype/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="${base}prototype/fonts/fonts.css">
-  <link rel="stylesheet" href="${base}prototype/site.css?v=7">
+  <link rel="stylesheet" href="${base}prototype/site.css?v=8">
   ${calculator ? `<link rel="stylesheet" href="${base}prototype/calculator.css?v=2">` : ''}
-  <script src="${base}prototype/site.js?v=5" defer></script>
+  <script src="${base}prototype/site.js?v=6" defer></script>
   ${home ? `<script src="${base}prototype/vendor/gsap.min.js" defer></script>
   <script src="${base}prototype/vendor/ScrollTrigger.min.js" defer></script>
   <script src="${base}prototype/home-motion.js?v=2" defer></script>` : ''}
@@ -177,12 +179,12 @@ function spaceGallery(base) {
           </figure>
           <div class="space-scene-copy">
             <p>${item.text}</p>
-            ${link(base + 'spaces/#' + item.id, 'Подробнее')}
+            ${plainButton(base + 'spaces/#' + item.id, 'Подробнее')}
           </div>
         </article>`).join('\n')}
       </div>
     </div>
-    <noscript>${link(base + 'spaces/', 'Посмотреть все пространства')}</noscript>
+    <noscript>${plainButton(base + 'spaces/', 'Посмотреть все пространства')}</noscript>
   </section>`;
 }
 
@@ -243,13 +245,13 @@ function hospitality() {
       <span class="hospitality-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path class="cloche-lid" d="M9 31a15 15 0 0 1 30 0M24 16v-2m-2 0a2 2 0 1 1 4 0M15 27a10 10 0 0 1 5-6"/><path d="M6 34h36l-3 4H9l-3-4Z"/><path class="cloche-rays" d="m33 9 2-3m4 8 4-1"/></svg></span>
       <h3>Своя кухня</h3>
       <p>Горячие блюда готовим на площадке к подаче. Меню составляем под формат праздника.</p>
-      ${link('menu/', 'Посмотреть меню')}
+      ${plainButton('menu/', 'Посмотреть меню')}
     </article>
     <article class="hospitality-row" id="team">
       <span class="hospitality-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M23 8c.9 8.7 4.3 12.1 13 13-8.7.9-12.1 4.3-13 13-.9-8.7-4.3-12.1-13-13 8.7-.9 12.1-4.3 13-13Z"/><path d="M37 7v8m-4-4h8"/><path d="M10 29v10m-5-5h10"/><path d="m34 32 2 4 4 2-4 2-2 4-2-4-4-2 4-2 2-4Z"/></svg></span>
       <h3>Организация праздника</h3>
       <p>Менеджер, ведущие, артисты, декор и сценарий. Можно собрать праздник с нашей командой или выбрать отдельные услуги.</p>
-      ${link('prices/', 'Цены и услуги')}
+      ${plainButton('prices/', 'Цены и услуги')}
     </article>
   </section>
   <section class="stay-story" id="stay" aria-labelledby="stay-title">
@@ -259,7 +261,7 @@ function hospitality() {
       <div class="stay-details">
         <p class="stay-count"><strong>7</strong> номеров</p>
         <p>Гости могут остаться после вечеринки, а молодожёнов ждёт отдельный номер.</p>
-        ${link('stay/', 'Посмотреть проживание')}
+        ${plainButton('stay/', 'Посмотреть проживание')}
       </div>
     </div>
   </section>`;
@@ -283,12 +285,12 @@ function requestForm(base) {
           <label class="request-check"><input type="checkbox" name="fullService">Организация под ключ</label>
         </div>
         <p class="form-note">Черновик можно скачать. Данные остаются в браузере до скачивания.</p>
-        <button class="primary sage sweep-control" type="submit">${actionLabel('Подготовить заявку')}</button>
+        <button class="primary plain-button" type="submit">Подготовить заявку</button>
         </fieldset>
         <noscript><p class="form-note">Для подготовки черновика включите JavaScript.</p></noscript>
         <div class="request-result" data-request-result hidden>
           <p role="status" data-request-status></p>
-          <a class="text-link sweep-action sweep-control" data-request-download download="sluchaynosti-request.txt">${actionLabel('Скачать черновик')}</a>
+          <a class="text-link" data-request-download download="sluchaynosti-request.txt">Скачать черновик</a>
         </div>
       </form>
     </div>
@@ -298,9 +300,7 @@ function requestForm(base) {
 function calculator(standalone = false) {
   const heading = standalone ? 'h1' : 'h2';
   const fields = (standalone ? calculatorFields : calculatorFields.replaceAll('<h2 ', '<h3 ').replaceAll('</h2>', '</h3>'))
-    .replace('{{requestHref}}', standalone ? '../#request' : '#request')
-    .replace('{{viewApplicationLabel}}', actionLabel('Посмотреть заявку'))
-    .replace('{{transferApplicationLabel}}', actionLabel('Перенести в заявку'));
+    .replace('{{requestHref}}', standalone ? '../#request' : '#request');
   return `<section class="event-calculator${standalone ? ' event-calculator-page' : ''}" id="event-calculator" aria-labelledby="calculator-title">
     <div class="frame section">
       <${heading} id="calculator-title">Калькулятор мероприятия</${heading}>
@@ -355,11 +355,11 @@ function home() {
     ${spaceGallery('./')}
     <section class="gifts-section" id="gifts">
       <div class="frame section"><div class="section-intro" data-reveal><h2>Свадебные подарки от «Случайностей»</h2>
-      ${link('weddings/#gifts', 'Все свадебные подарки')}</div>${giftGallery('./')}</div>
+      ${plainButton('weddings/#gifts', 'Все свадебные подарки')}</div>${giftGallery('./')}</div>
     </section>
     ${feature({ id: 'production', title: 'Танцы под открытым небом', text: 'Свет, звук, экраны и уличная дискотека. Диджеи и техническая команда помогают собрать программу под ваш формат.', file: 'dance-panorama.webp', dimensions: [1919, 820], alt: 'Гости танцуют перед освещённой сценой среди деревьев', href: 'corporate/#production', action: 'Технические возможности', variant: 'feature-dark feature-film', torn: true })}
     ${hospitality()}
-    <section class="section frame home-gallery" id="gallery"><div class="section-intro"><h2>Как может выглядеть праздник</h2>${link('gallery/', 'Открыть галерею')}</div>${gallery('./')}</section>
+    <section class="section frame home-gallery" id="gallery"><div class="section-intro"><h2>Как может выглядеть праздник</h2>${plainButton('gallery/', 'Открыть галерею')}</div>${gallery('./')}</section>
     ${calculator()}
     ${requestForm('./')}`,
   });
