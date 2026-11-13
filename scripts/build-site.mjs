@@ -134,11 +134,12 @@ function layout({ title, description, base = './', current = '', body, home = fa
   <link rel="stylesheet" href="${base}prototype/site-effects.css">
   <link rel="preload" href="${base}prototype/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="${base}prototype/fonts/fonts.css?v=2">
-  <link rel="stylesheet" href="${base}prototype/site.css?v=10">
+  <link rel="stylesheet" href="${base}prototype/site.css?v=11">
   ${calculator ? `<link rel="stylesheet" href="${base}prototype/calculator.css?v=2">` : ''}
   <script src="${base}prototype/site.js?v=6" defer></script>
   ${home ? `<script src="${base}prototype/vendor/gsap.min.js" defer></script>
   <script src="${base}prototype/vendor/ScrollTrigger.min.js" defer></script>
+  <script type="module" src="${base}prototype/venue-3d.js"></script>
   <script src="${base}prototype/home-motion.js?v=2" defer></script>` : ''}
   ${calculator ? `<script src="${base}prototype/calculator.js" defer></script>` : ''}
 </head>
@@ -175,6 +176,7 @@ function spaceGallery(base) {
         ${spaces.map((item, index) => `<article class="space-scene" id="space-panel-${item.id}" role="tabpanel" tabindex="0" aria-labelledby="space-tab-${item.id}" aria-hidden="${Boolean(index)}"${index ? ' inert' : ''}>
           <figure class="space-scene-media">
             <img src="${base}prototype/${item.file}" width="${item.image[0]}" height="${item.image[1]}" alt="${item.imageAlt}" loading="lazy" decoding="async">
+            ${item.id === 'dome' ? '<button type="button" class="dome-launch" data-dome-launch aria-haspopup="dialog" aria-controls="dome-preview" hidden>Посмотреть в 3D</button>' : ''}
             <figcaption>${item.imageNote}</figcaption>
           </figure>
           <div class="space-scene-copy">
@@ -185,6 +187,24 @@ function spaceGallery(base) {
       </div>
     </div>
     <noscript>${plainButton(base + 'spaces/', 'Посмотреть все пространства')}</noscript>
+    <dialog class="dome-dialog" id="dome-preview" aria-labelledby="dome-preview-title">
+      <div class="dome-dialog-header">
+        <h2 id="dome-preview-title">Купольный шатёр в 3D</h2>
+        <form method="dialog"><button class="icon-button" type="submit" autofocus aria-label="Закрыть 3D-модель"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></form>
+      </div>
+      <div class="dome-stage">
+        <img class="dome-fallback" src="${base}prototype/dome-concept.webp" width="1536" height="1024" alt="Визуализация купольного шатра" loading="lazy">
+        <canvas data-dome-canvas aria-hidden="true" hidden></canvas>
+      </div>
+      <p class="dome-status" role="status">Загружаем 3D-модель…</p>
+      <div class="dome-controls" hidden>
+        <p>Концепция шатра. Потяните модель или используйте кнопки поворота.</p>
+        <div class="dome-turns">
+          <button type="button" class="icon-button" data-turn="-1" aria-label="Повернуть влево"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 6-6 6 6 6M6 12h12"/></svg></button>
+          <button type="button" class="icon-button" data-turn="1" aria-label="Повернуть вправо"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 6 6 6-6 6m-6-6h12"/></svg></button>
+        </div>
+      </div>
+    </dialog>
   </section>`;
 }
 
@@ -197,6 +217,7 @@ function giftGallery(base) {
 function feature({ base = './', id = '', title, text, file, alt, dimensions, href, action, variant = '', torn = false }) {
   return `<section${id ? ` id="${id}"` : ''} class="feature-section ${variant}${torn ? ' feature-torn' : ''}">
     ${torn ? paperEdge(paperEdges.eveningStart, 'top') : ''}
+    ${torn ? '<canvas class="stage-lights" data-stage-lights aria-hidden="true" hidden></canvas>' : ''}
     <div class="frame section feature">
       ${photo(base, file, alt, 'feature-image', dimensions)}
       <div class="feature-copy"${torn ? '' : ' data-reveal'}><h2>${title}</h2><p>${text}</p>
