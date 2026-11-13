@@ -73,14 +73,20 @@ updateScroll();
 burger.addEventListener('click', () => {
   menu.showModal();
   burger.setAttribute('aria-expanded', 'true');
-  menu.querySelector('nav a').focus();
   renderNav();
 });
 menu.querySelector('[data-close]').addEventListener('click', () => menu.close());
+menu.addEventListener('click', (event) => {
+  if (event.target !== menu) return;
+  const { left, right, top, bottom } = menu.getBoundingClientRect();
+  if (event.clientX < left || event.clientX > right || event.clientY < top || event.clientY > bottom) {
+    menu.close();
+  }
+});
 menu.addEventListener('close', () => {
   burger.setAttribute('aria-expanded', 'false');
   renderNav();
-  (burger.tabIndex === 0 ? burger : logo).focus();
+  (burger.tabIndex === 0 ? burger : logo).focus({ preventScroll: true });
 });
 
 const reveal = new IntersectionObserver((entries) => {

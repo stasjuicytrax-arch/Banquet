@@ -66,8 +66,12 @@ function photo(base, file, alt, css = '', dimensions) {
   return `<img class="${css}" src="${base}prototype/${file}"${size} alt="${alt}" loading="lazy" decoding="async">`;
 }
 
+function arrowIcon() {
+  return `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 13 13 3M5 3h8v8"/></svg>`;
+}
+
 function actionLabel(label) {
-  return `<span class="sweep-label">${label}</span><span class="sweep-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 13 13 3M5 3h8v8"/></svg></span>`;
+  return `<span class="sweep-label">${label}</span><span class="sweep-arrow" aria-hidden="true">${arrowIcon()}</span>`;
 }
 
 function link(href, label, css = 'text-link sweep-action') {
@@ -76,12 +80,6 @@ function link(href, label, css = 'text-link sweep-action') {
 
 function plainButton(href, label) {
   return `<a class="primary sage plain-button" href="${href}">${label}</a>`;
-}
-
-function navLinks(base, current, css) {
-  return routes.map(([id, name], index) =>
-    `<a href="${base}${id}/" class="${css}" style="--i:${index}"${id === current ? ' aria-current="page"' : ''}>${name}</a>`
-  ).join('\n');
 }
 
 function header(base, current) {
@@ -105,9 +103,15 @@ function header(base, current) {
   <dialog class="nav-dialog" id="mobile-menu" aria-label="Меню">
     <div class="dialog-header">
       <a href="${base}" aria-label="Случайности, главная"><img src="${base}prototype/wordmark-light.svg" width="1376" height="222" alt=""></a>
-      <button class="icon-button" type="button" data-close aria-label="Закрыть меню"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+      <button class="icon-button" type="button" data-close autofocus aria-label="Закрыть меню"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
     </div>
-    <nav aria-label="Все страницы">${navLinks(base, current, 'dialog-link')}</nav>
+    <nav aria-label="Все страницы">
+      ${routes.map(([id, name], index) => `<a href="${base}${id}/" class="dialog-link" style="--i:${index}"${id === current ? ' aria-current="page"' : ''}><span class="dialog-index" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span><span>${name}</span>${arrowIcon()}</a>`).join('\n')}
+    </nav>
+    <div class="dialog-bottom">
+      <address>${address}</address>
+      <a class="primary plain-button" href="${mapUrl}" target="_blank" rel="noopener">${pinIcon()} Открыть на карте</a>
+    </div>
   </dialog>`;
 }
 
@@ -161,9 +165,9 @@ function layout({ title, description, base = './', current = '', body, home = fa
   <link rel="stylesheet" href="${base}prototype/site-effects.css">
   <link rel="preload" href="${base}prototype/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="${base}prototype/fonts/fonts.css?v=2">
-  <link rel="stylesheet" href="${base}prototype/site.css?v=12">
+  <link rel="stylesheet" href="${base}prototype/site.css?v=13">
   ${calculator ? `<link rel="stylesheet" href="${base}prototype/calculator.css?v=3">` : ''}
-  <script src="${base}prototype/site.js?v=7" defer></script>
+  <script src="${base}prototype/site.js?v=8" defer></script>
   ${home ? `<script src="${base}prototype/vendor/gsap.min.js" defer></script>
   <script src="${base}prototype/vendor/ScrollTrigger.min.js" defer></script>
   <script type="module" src="${base}prototype/venue-3d.js?v=2"></script>
@@ -312,7 +316,9 @@ function hospitality() {
 }
 
 function requestForm(base) {
-  return `<section class="request-section${base === './' ? ' request-finale' : ''}" id="request" aria-labelledby="request-title">
+  const home = base === './';
+  return `<section class="request-section${home ? ' request-finale' : ''}" id="request" aria-labelledby="request-title">
+    ${home ? photo(base, 'grounds.webp', '', 'request-backdrop', [980, 551]) : ''}
     <div class="frame section request-layout">
       <div><h2 id="request-title">Давайте устроим вашу случайность</h2>
         <p>Подготовьте параметры праздника, чтобы обсудить их с командой площадки.</p>
