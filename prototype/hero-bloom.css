@@ -30,18 +30,19 @@
   inset: 22% 0 0;
   pointer-events: none;
   mask-image: linear-gradient(transparent, black 16% 80%, transparent);
-  mix-blend-mode: multiply;
+  mix-blend-mode: darken;
 }
 
 .bloom-art img {
   position: absolute;
   left: 50%;
   bottom: 0;
-  width: min(100%, calc((max(720px, 100svh) - 140px) * 1.7), 1536px);
+  width: min(112%, calc((max(720px, 100svh) - 140px) * 1.88), 1680px);
   max-width: none;
   height: auto;
   translate: -50% 0;
-  mask-image: linear-gradient(90deg, transparent, black 5% 95%, transparent), linear-gradient(transparent, black 13%);
+  mask-image: linear-gradient(90deg, transparent, black 6% 94%, transparent),
+    linear-gradient(transparent, black 22%);
   mask-composite: intersect;
 }
 
@@ -117,10 +118,10 @@
   .bloom-intro p { max-width: 35ch; margin-bottom: 12px; }
   .bloom-hero::before { inset: 33% 0 0; }
   .bloom-art {
-    inset: auto 0 clamp(112px, 20svh, 190px);
+    inset: auto 0 clamp(124px, 22svh, 208px);
     mask-image: linear-gradient(transparent, black 17% 66%, transparent);
   }
-  .bloom-art img { position: static; width: 100%; translate: none; }
+  .bloom-art img { position: relative; display: block; width: 112%; }
   .bloom-bottom { grid-template-columns: minmax(90px, 1fr) auto; column-gap: 8px; row-gap: 16px; margin-top: clamp(104px, 26vw, 182px); }
   .bloom-preview { width: min(100%, 168px); }
   .bloom-preview span { font-size: .79rem; }

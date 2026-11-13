@@ -8,16 +8,16 @@
   <meta name="description" content="Банкетная площадка «Случайности» в Перми. Ресторан, летняя площадка и проект купольного шатра.">
   <title>Случайности · Банкетная площадка в Перми</title>
   <link rel="preload" href="prototype/hero-bloom-powder.png" as="image">
-  <link rel="stylesheet" href="./prototype/site-effects.css?v=3">
+  <link rel="stylesheet" href="./prototype/site-effects.css?v=4">
   <link rel="preload" href="./prototype/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="./prototype/fonts/fonts.css?v=2">
-  <link rel="stylesheet" href="./prototype/site.css?v=19">
-  <link rel="stylesheet" href="prototype/hero-bloom.css?v=4">
+  <link rel="stylesheet" href="./prototype/site.css?v=20">
+  <link rel="stylesheet" href="prototype/hero-bloom.css?v=5">
   <link rel="stylesheet" href="./prototype/calculator.css?v=7">
   <script src="./prototype/site.js?v=9" defer></script>
   <script src="./prototype/vendor/gsap.min.js" defer></script>
   <script src="./prototype/vendor/ScrollTrigger.min.js" defer></script>
-  <script type="module" src="./prototype/venue-3d.js?v=3"></script>
+  <script type="module" src="./prototype/venue-3d.js?v=4"></script>
   <script src="./prototype/home-motion.js?v=5" defer></script>
   <script src="./prototype/calculator.js" defer></script>
 </head>
@@ -196,6 +196,23 @@
     <section id="production" class="feature-section feature-dark feature-film feature-torn">
     <svg class="paper-edge paper-edge--top" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 0H1440V42Q1428 36 1414 42L1397 46L1383 44Q1369 47 1356 53Q1348 56 1338 52L1324 50Q1308 46 1297 49L1284 46L1266 47Q1247 45 1235 39L1221 39Q1206 32 1194 38L1178 35Q1165 31 1153 40L1139 42Q1124 51 1108 48L1095 49Q1082 53 1071 50L1058 44Q1047 45 1036 39Q1029 36 1020 43L1005 48L987 48Q971 51 959 46L944 47Q929 48 916 54L904 53Q890 51 878 44L864 43Q851 36 839 41L824 44Q805 43 791 38L777 42Q759 45 748 51L733 51Q719 55 705 49L693 49Q680 56 665 51L652 47L638 48Q625 41 612 38L597 38Q585 39 568 33Q560 29 553 36L540 38Q529 46 515 46L502 48Q483 48 468 44L452 48L436 45Q422 41 412 47L396 50Q381 55 367 52L352 50Q341 55 326 50L312 46Q299 46 287 40L273 41L258 46Q244 42 231 42L216 44Q203 43 187 39L173 42Q160 41 145 36Q134 31 124 37L109 39Q96 44 82 46L68 45Q54 49 40 51L25 48Q12 51 0 49Z"/></svg>
     <canvas class="stage-lights" data-stage-lights aria-hidden="true" hidden></canvas>
+    <svg class="stage-lights-mobile" viewBox="0 0 1919 820" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="stage-beam" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop stop-color="#fff3d6" stop-opacity=".94"/>
+          <stop offset=".35" stop-color="#ffcf9a" stop-opacity=".58"/>
+          <stop offset="1" stop-color="#ffbf93" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="stage-beam-violet" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop stop-color="#f9eaff" stop-opacity=".88"/>
+          <stop offset=".35" stop-color="#d9b1ff" stop-opacity=".5"/>
+          <stop offset="1" stop-color="#d9b1ff" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <g transform="translate(1284 380)"><path class="stage-beam stage-beam-left" d="M-4 0H4L78 312H-78Z" fill="url(#stage-beam)"/></g>
+      <g transform="translate(1401 380)"><path class="stage-beam stage-beam-center" d="M-4 0H4L66 285H-66Z" fill="url(#stage-beam-violet)"/></g>
+      <g transform="translate(1508 384)"><path class="stage-beam stage-beam-right" d="M-4 0H4L82 316H-82Z" fill="url(#stage-beam)"/></g>
+    </svg>
     <div class="frame section feature">
       <img class="feature-image" src="./prototype/dance-panorama.png" width="1919" height="820" alt="Гости танцуют перед освещённой сценой среди деревьев" loading="lazy" decoding="async">
       <div class="feature-copy">

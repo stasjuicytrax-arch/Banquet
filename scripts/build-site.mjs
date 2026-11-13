@@ -172,16 +172,16 @@ function layout({ title, description, base = './', current = '', body, home = fa
   <meta name="description" content="${description}">
   <title>${title}</title>
   ${home ? '<link rel="preload" href="prototype/hero-bloom-powder.png" as="image">' : ''}
-  <link rel="stylesheet" href="${base}prototype/site-effects.css?v=3">
+  <link rel="stylesheet" href="${base}prototype/site-effects.css?v=4">
   <link rel="preload" href="${base}prototype/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="${base}prototype/fonts/fonts.css?v=2">
-  <link rel="stylesheet" href="${base}prototype/site.css?v=19">
-  ${home ? '<link rel="stylesheet" href="prototype/hero-bloom.css?v=4">' : ''}
+  <link rel="stylesheet" href="${base}prototype/site.css?v=20">
+  ${home ? '<link rel="stylesheet" href="prototype/hero-bloom.css?v=5">' : ''}
   ${calculator ? `<link rel="stylesheet" href="${base}prototype/calculator.css?v=7">` : ''}
   <script src="${base}prototype/site.js?v=9" defer></script>
   ${home ? `<script src="${base}prototype/vendor/gsap.min.js" defer></script>
   <script src="${base}prototype/vendor/ScrollTrigger.min.js" defer></script>
-  <script type="module" src="${base}prototype/venue-3d.js?v=3"></script>
+  <script type="module" src="${base}prototype/venue-3d.js?v=4"></script>
   <script src="${base}prototype/home-motion.js?v=5" defer></script>` : ''}
   ${calculator ? `<script src="${base}prototype/calculator.js" defer></script>` : ''}
 </head>
@@ -238,10 +238,31 @@ function giftGallery(base, featuredIcon = '') {
   </article>`).join('\n')}</div>`;
 }
 
+function stageLights() {
+  return `<canvas class="stage-lights" data-stage-lights aria-hidden="true" hidden></canvas>
+    <svg class="stage-lights-mobile" viewBox="0 0 1919 820" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="stage-beam" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop stop-color="#fff3d6" stop-opacity=".94"/>
+          <stop offset=".35" stop-color="#ffcf9a" stop-opacity=".58"/>
+          <stop offset="1" stop-color="#ffbf93" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="stage-beam-violet" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop stop-color="#f9eaff" stop-opacity=".88"/>
+          <stop offset=".35" stop-color="#d9b1ff" stop-opacity=".5"/>
+          <stop offset="1" stop-color="#d9b1ff" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <g transform="translate(1284 380)"><path class="stage-beam stage-beam-left" d="M-4 0H4L78 312H-78Z" fill="url(#stage-beam)"/></g>
+      <g transform="translate(1401 380)"><path class="stage-beam stage-beam-center" d="M-4 0H4L66 285H-66Z" fill="url(#stage-beam-violet)"/></g>
+      <g transform="translate(1508 384)"><path class="stage-beam stage-beam-right" d="M-4 0H4L82 316H-82Z" fill="url(#stage-beam)"/></g>
+    </svg>`;
+}
+
 function feature({ base = './', id = '', title, text, file, alt, dimensions, href, action, variant = '', torn = false }) {
   return `<section${id ? ` id="${id}"` : ''} class="feature-section ${variant}${torn ? ' feature-torn' : ''}">
     ${torn ? paperEdge(paperEdges.eveningStart, 'top') : ''}
-    ${torn ? '<canvas class="stage-lights" data-stage-lights aria-hidden="true" hidden></canvas>' : ''}
+    ${torn ? stageLights() : ''}
     <div class="frame section feature">
       ${photo(base, file, alt, 'feature-image', dimensions)}
       <div class="feature-copy"${torn ? '' : ' data-reveal'}>

@@ -61,9 +61,9 @@
 
 .glass.glass-nav,
 .glass-svg .glass.glass-nav {
-  background: color-mix(in srgb, var(--de-void) 40%, transparent);
+  background: color-mix(in srgb, var(--de-void) 36%, transparent);
 }
 
 .site-header[data-light] .glass.glass-nav {
-  background: color-mix(in srgb, var(--de-void) 68%, transparent);
+  background: color-mix(in srgb, var(--de-void) 63%, transparent);
 }
