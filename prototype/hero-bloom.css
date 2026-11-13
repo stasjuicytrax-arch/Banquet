@@ -17,9 +17,10 @@
   z-index: -2;
   inset: 16% 0 0;
   background:
-    radial-gradient(ellipse at 29% 60%, rgb(203 232 106 / .36), transparent 55%),
-    radial-gradient(ellipse at 76% 53%, rgb(158 158 158 / .32), transparent 55%);
-  mask-image: linear-gradient(transparent, black 26% 76%, transparent);
+    radial-gradient(ellipse at 30% 63%, rgb(234 203 205 / .62), transparent 57%),
+    radial-gradient(ellipse at 73% 58%, rgb(222 213 236 / .67), transparent 60%),
+    radial-gradient(ellipse at 53% 52%, rgb(255 250 241 / .84), transparent 47%);
+  mask-image: linear-gradient(transparent, black 26% 74%, transparent);
   pointer-events: none;
 }
 
@@ -57,9 +58,7 @@
   letter-spacing: -.045em;
 }
 .bloom-word {
-  color: var(--accent);
-  -webkit-text-stroke: 1.5px var(--focus);
-  paint-order: stroke fill;
+  color: var(--accent-strong);
 }
 
 .bloom-intro p { max-width: 29ch; margin-bottom: 16px; color: var(--muted); font-size: clamp(.98rem, 1.35vw, 1.2rem); }
@@ -99,7 +98,7 @@
   border: 1px solid var(--line);
   border-radius: 999px;
   color: var(--ink);
-  background: rgb(246 246 246 / .89);
+  background: rgb(249 242 238 / .89);
   backdrop-filter: blur(8px);
   font: 600 .94rem / 1 var(--display-face);
   text-decoration: none;
@@ -115,9 +114,8 @@
   }
   .bloom-content { grid-template-columns: minmax(0, 1fr); gap: 16px; }
   .bloom-content h1 { font-size: clamp(1.8rem, 7.8vw, 3.75rem); }
-  .bloom-word { -webkit-text-stroke-width: 1.25px; }
   .bloom-intro p { max-width: 35ch; margin-bottom: 12px; }
-  .bloom-hero::before { inset: 38% 0 0; }
+  .bloom-hero::before { inset: 33% 0 0; }
   .bloom-art {
     inset: auto 0 clamp(112px, 20svh, 190px);
     mask-image: linear-gradient(transparent, black 17% 66%, transparent);

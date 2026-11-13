@@ -35,7 +35,7 @@
 /* The DIGITAL EVENTS navigation glass uses an independent backdrop layer. */
 :root {
   --de-void: #0a0a0b;
-  --de-white: #f6f6f6;
+  --de-white: #f9f2ee;
   --de-line: rgba(255, 255, 255, .08);
 }
 

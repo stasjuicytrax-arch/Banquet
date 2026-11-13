@@ -100,7 +100,7 @@ function header(base, current) {
     <div class="nav-pill">
       <div class="nav-glass glass glass-nav" aria-hidden="true"></div>
       <a class="nav-logo" href="${base}" aria-label="Случайности, главная">
-        <img src="${base}prototype/wordmark-light.svg?v=2" width="1376" height="222" alt="">
+        <img src="${base}prototype/wordmark-light.svg?v=3" width="1376" height="222" alt="">
       </a>
       <nav class="nav-links" aria-label="Основное меню">
         ${primaryRoutes.map(([id, name], index) =>
@@ -112,7 +112,7 @@ function header(base, current) {
   </header>
   <dialog class="nav-dialog" id="mobile-menu" aria-label="Меню">
     <div class="dialog-header">
-      <a href="${base}" aria-label="Случайности, главная"><img src="${base}prototype/wordmark-light.svg?v=2" width="1376" height="222" alt=""></a>
+      <a href="${base}" aria-label="Случайности, главная"><img src="${base}prototype/wordmark-light.svg?v=3" width="1376" height="222" alt=""></a>
       <button class="icon-button" type="button" data-close autofocus aria-label="Закрыть меню"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
     </div>
     <nav aria-label="Все страницы">
@@ -151,9 +151,9 @@ function footer(base, current) {
           <a class="footer-link footer-map" href="${mapUrl}" target="_blank" rel="noopener">${pinIcon()} Открыть на карте</a>
         </div>
       </nav>
-      <img class="footer-watermark" src="${base}prototype/wordmark.svg?v=2" width="1376" height="222" alt="" loading="lazy" decoding="async">
+      <img class="footer-watermark" src="${base}prototype/wordmark.svg?v=3" width="1376" height="222" alt="" loading="lazy" decoding="async">
       <div class="footer-bottom">
-        <a class="footer-brand" href="${base}"><img src="${base}prototype/wordmark.svg?v=2" width="1376" height="222" alt="Случайности, главная"></a>
+        <a class="footer-brand" href="${base}"><img src="${base}prototype/wordmark.svg?v=3" width="1376" height="222" alt="Случайности, главная"></a>
         <a class="footer-link" href="${base}#event-calculator">Калькулятор</a>
         <a class="footer-link footer-top" href="#top">Наверх <span aria-hidden="true">↑</span></a>
       </div>
@@ -167,17 +167,17 @@ function layout({ title, description, base = './', current = '', body, home = fa
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#303030">
+  <meta name="theme-color" content="#f9f2ee">
   <meta name="robots" content="noindex">
   <meta name="description" content="${description}">
   <title>${title}</title>
-  ${home ? '<link rel="preload" href="prototype/hero-bloom-wide.png" as="image">' : ''}
-  <link rel="stylesheet" href="${base}prototype/site-effects.css?v=2">
+  ${home ? '<link rel="preload" href="prototype/hero-bloom-powder.png" as="image">' : ''}
+  <link rel="stylesheet" href="${base}prototype/site-effects.css?v=3">
   <link rel="preload" href="${base}prototype/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="${base}prototype/fonts/fonts.css?v=2">
-  <link rel="stylesheet" href="${base}prototype/site.css?v=18">
-  ${home ? '<link rel="stylesheet" href="prototype/hero-bloom.css?v=3">' : ''}
-  ${calculator ? `<link rel="stylesheet" href="${base}prototype/calculator.css?v=6">` : ''}
+  <link rel="stylesheet" href="${base}prototype/site.css?v=19">
+  ${home ? '<link rel="stylesheet" href="prototype/hero-bloom.css?v=4">' : ''}
+  ${calculator ? `<link rel="stylesheet" href="${base}prototype/calculator.css?v=7">` : ''}
   <script src="${base}prototype/site.js?v=9" defer></script>
   ${home ? `<script src="${base}prototype/vendor/gsap.min.js" defer></script>
   <script src="${base}prototype/vendor/ScrollTrigger.min.js" defer></script>
@@ -290,7 +290,7 @@ function location() {
           <canvas class="woodland-canvas" data-woodland aria-hidden="true" hidden></canvas>
         </figure>
         <div class="location-press" aria-hidden="true">
-          ${ornament('pressed-leaf', '0 0 132 159', `<path d="M24 146c12-24 20-36 35-54M49 108C21 87 32 43 116 10c-4 54-23 102-67 98Z" fill="var(--accent-soft)" stroke="var(--ink)" stroke-width="1.15" stroke-linejoin="round"/><path d="M31 134c18-31 44-58 72-108M55 101c5-15 1-29-3-41m13 28c4-15 1-30-2-39m13 23c2-13 1-24-1-32m11 16 1-21M51 107c14-8 25-10 38-13m-25-5c10-4 22-7 33-12m-22-3c7-4 18-8 27-14m-16-3 20-12" stroke="var(--ink)" stroke-width=".9" stroke-linecap="round"/>`)}
+          ${ornament('pressed-leaf', '0 0 132 159', `<path d="M24 146c12-24 20-36 35-54M49 108C21 87 32 43 116 10c-4 54-23 102-67 98Z" fill="#d6dfc1" stroke="#4a694b" stroke-width="1.15" stroke-linejoin="round"/><path d="M31 134c18-31 44-58 72-108M55 101c5-15 1-29-3-41m13 28c4-15 1-30-2-39m13 23c2-13 1-24-1-32m11 16 1-21M51 107c14-8 25-10 38-13m-25-5c10-4 22-7 33-12m-22-3c7-4 18-8 27-14m-16-3 20-12" stroke="var(--ink)" stroke-width=".9" stroke-linecap="round"/>`)}
         </div>
       </div>
       <div class="location-address">
@@ -408,7 +408,7 @@ function home() {
     body: `
     <section class="bloom-hero" aria-labelledby="hero-title">
       <div class="bloom-art" aria-hidden="true">
-        <img src="prototype/hero-bloom-wide.png" width="1774" height="887" fetchpriority="high" alt="">
+        <img src="prototype/hero-bloom-powder.png" width="1774" height="887" fetchpriority="high" alt="">
       </div>
       <div class="frame bloom-content">
         <h1 id="hero-title">Случайности,<br>которые <span class="bloom-word">становятся</span><br>воспоминаниями</h1>

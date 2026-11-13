@@ -1,4 +1,4 @@
-.event-calculator { background: var(--surface); }
+.event-calculator { background: #f4e9e6; }
 .event-calculator-page .section { padding-top: clamp(125px, 13vw, 175px); }
 .event-calculator h1 {
   font-size: clamp(2rem, 4.25vw, 4.65rem);
@@ -31,7 +31,7 @@
   background: var(--paper);
 }
 .event-calculator .format:hover span { border-color: var(--graphite); }
-.event-calculator .format input:checked + span { color: var(--ink); background: var(--accent); border-color: var(--accent-strong); }
+.event-calculator .format input:checked + span { color: var(--paper); background: var(--graphite); border-color: var(--graphite); }
 .event-calculator .format input:focus-visible + span { outline: 3px solid var(--focus); outline-offset: 4px; }
 .event-calculator .guest-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 .event-calculator input[type="number"], .event-calculator input[type="date"] {
@@ -100,7 +100,7 @@
 .event-calculator .receipt { width: 100%; }
 .event-calculator .receipt div { display: flex; justify-content: space-between; gap: 8px; padding-block: 8px; border-top: 1px solid var(--line); }
 .event-calculator .receipt dd { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
-.event-calculator .summary .receipt div { border-color: rgb(246 246 246 / .35); }
+.event-calculator .summary .receipt div { border-color: rgb(249 242 238 / .35); }
 .event-calculator .summary :focus-visible { outline-color: var(--paper); }
 .event-calculator .summary .primary:disabled { opacity: .65; cursor: default; }
 .event-calculator .application {
