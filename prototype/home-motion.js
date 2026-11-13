@@ -12,14 +12,11 @@ if (gsap && ScrollTrigger) {
 
     const desktop = conditions.desktop;
     const location = document.querySelector('#location');
-    const layers = gsap.timeline({
-      defaults: { ease: 'none' },
-      scrollTrigger: { trigger: location, start: 'top bottom', end: 'center 38%', scrub: true },
+    gsap.fromTo(location.querySelector('.location-picture img'), { scale: 1.12 }, {
+      scale: 1,
+      ease: 'none',
+      scrollTrigger: { trigger: '.location-picture', start: 'top bottom', end: 'center 48%', scrub: true },
     });
-    layers.from(location.querySelector('.location-leaves'), {
-      x: desktop ? 42 : 21, y: desktop ? -45 : -18, rotation: 5,
-    }, 0);
-    layers.from(location.querySelector('.location-picture'), { y: desktop ? 36 : 14 }, 0);
 
     gsap.from('.gift', {
       y: desktop ? 34 : 15,
@@ -39,13 +36,27 @@ if (gsap && ScrollTrigger) {
       },
     );
 
-    gsap.from('.hospitality-icon svg', {
-      rotation: -13,
-      scale: .82,
-      stagger: .12,
-      duration: .66,
-      ease: 'power3.out',
-      scrollTrigger: { trigger: '.hospitality-row', start: 'top 87%', once: true },
+    const kitchen = document.querySelector('#kitchen');
+    const cloche = gsap.timeline({ paused: true });
+    cloche.to(kitchen.querySelector('.cloche-lid'), { y: -4, rotation: -11, transformOrigin: '5% 100%', duration: .25, ease: 'power2.out' })
+      .to(kitchen.querySelector('.cloche-rays'), { opacity: .25, duration: .22 }, 0)
+      .to(kitchen.querySelector('.cloche-lid'), { y: 0, rotation: 0, duration: .46, ease: 'back.out(1.5)' })
+      .to(kitchen.querySelector('.cloche-rays'), { opacity: 1, duration: .3 }, '<');
+
+    const team = document.querySelector('#team');
+    const sparkles = gsap.timeline({ paused: true });
+    sparkles.to(team.querySelectorAll('.hospitality-icon path'), {
+      keyframes: [{ scale: .5, opacity: .42, duration: .15 }, { scale: 1, opacity: 1, duration: .5, ease: 'back.out(1.8)' }],
+      stagger: .065, transformOrigin: '50% 50%',
     });
+
+    const listeners = new AbortController();
+    for (const [row, animation] of [[kitchen, cloche], [team, sparkles]]) {
+      const play = () => { if (!animation.isActive()) animation.restart(); };
+      ScrollTrigger.create({ trigger: row, start: 'top 86%', once: true, onEnter: play });
+      row.addEventListener('pointerenter', (event) => { if (event.pointerType === 'mouse') play(); }, { signal: listeners.signal });
+      row.addEventListener('focusin', play, { signal: listeners.signal });
+    }
+    return () => listeners.abort();
   });
 }

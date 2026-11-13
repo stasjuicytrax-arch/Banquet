@@ -41,7 +41,7 @@
           <div><dt>На гостя</dt><dd id="summary-rate"></dd></div>
           <div id="service-line" hidden><dt>Под ключ</dt><dd id="summary-service"></dd></div>
         </dl>
-        <button class="primary" type="submit" form="calculator" aria-controls="application" aria-expanded="false" id="show-application" disabled>Посмотреть заявку</button>
+        <button class="primary sweep-control" type="submit" form="calculator" aria-controls="application" aria-expanded="false" id="show-application" disabled>{{viewApplicationLabel}}</button>
       </section>
     </div>
 
@@ -56,7 +56,7 @@
         <div><dt>Условная сумма</dt><dd id="application-estimate"></dd></div>
       </dl>
       <div class="actions">
-        <a class="primary sage" id="transfer-application" href="{{requestHref}}">Перенести в заявку</a>
+        <a class="primary sage sweep-control" id="transfer-application" href="{{requestHref}}">{{transferApplicationLabel}}</a>
         <button type="button" class="back" id="edit-calculation">Вернуться к расчёту</button>
       </div>
     </section>

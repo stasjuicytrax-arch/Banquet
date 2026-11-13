@@ -66,8 +66,12 @@ function photo(base, file, alt, css = '', dimensions) {
   return `<img class="${css}" src="${base}prototype/${file}"${size} alt="${alt}" loading="lazy" decoding="async">`;
 }
 
-function link(href, label, css = 'text-link') {
-  return `<a class="${css}" href="${href}">${label}</a>`;
+function actionLabel(label) {
+  return `<span class="sweep-label">${label}</span><span class="sweep-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 13 13 3M5 3h8v8"/></svg></span>`;
+}
+
+function link(href, label, css = 'text-link sweep-action') {
+  return `<a class="${css} sweep-control" href="${href}">${actionLabel(label)}</a>`;
 }
 
 function navLinks(base, current, css) {
@@ -91,7 +95,7 @@ function header(base, current) {
           `<a class="nav-item" style="--i:${index}" href="${base}${id}/"${id === current ? ' aria-current="page"' : ''}>${name}</a>`
         ).join('\n')}
       </nav>
-      <a class="nav-item nav-cta primary" style="--i:4" href="${base}contacts/#request">Выбрать дату</a>
+      <a class="nav-item nav-cta primary sweep-control" style="--i:4" href="${base}contacts/#request">${actionLabel('Выбрать дату')}</a>
       <button class="nav-burger" type="button" aria-label="Открыть меню" aria-haspopup="dialog" aria-controls="mobile-menu" aria-expanded="false"><span></span><span></span></button>
     </div>
   </header>
@@ -124,14 +128,16 @@ function layout({ title, description, base = './', current = '', body, home = fa
   <meta name="robots" content="noindex">
   <meta name="description" content="${description}">
   <title>${title}</title>
-  ${home ? '<link rel="preload" href="prototype/hero-background.webp" as="image">' : ''}
+  ${home ? '<link rel="preload" href="prototype/hero-detail.webp" as="image">' : ''}
   <link rel="stylesheet" href="${base}prototype/site-effects.css">
-  <link rel="stylesheet" href="${base}prototype/site.css?v=6">
-  ${calculator ? `<link rel="stylesheet" href="${base}prototype/calculator.css">` : ''}
+  <link rel="preload" href="${base}prototype/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="${base}prototype/fonts/fonts.css">
+  <link rel="stylesheet" href="${base}prototype/site.css?v=7">
+  ${calculator ? `<link rel="stylesheet" href="${base}prototype/calculator.css?v=2">` : ''}
   <script src="${base}prototype/site.js?v=5" defer></script>
   ${home ? `<script src="${base}prototype/vendor/gsap.min.js" defer></script>
   <script src="${base}prototype/vendor/ScrollTrigger.min.js" defer></script>
-  <script src="${base}prototype/home-motion.js" defer></script>` : ''}
+  <script src="${base}prototype/home-motion.js?v=2" defer></script>` : ''}
   ${calculator ? `<script src="${base}prototype/calculator.js" defer></script>` : ''}
 </head>
 <body${home ? ' class="home-page"' : ''}>
@@ -186,7 +192,7 @@ function giftGallery(base) {
   </article>`).join('\n')}</div>`;
 }
 
-function feature({ base = './', id = '', title, text, file, alt, dimensions, note, href, action, variant = '', torn = false }) {
+function feature({ base = './', id = '', title, text, file, alt, dimensions, href, action, variant = '', torn = false }) {
   return `<section${id ? ` id="${id}"` : ''} class="feature-section ${variant}${torn ? ' feature-torn' : ''}">
     ${torn ? paperEdge(paperEdges.eveningStart, 'top') : ''}
     <div class="frame section feature">
@@ -194,54 +200,38 @@ function feature({ base = './', id = '', title, text, file, alt, dimensions, not
       <div class="feature-copy"${torn ? '' : ' data-reveal'}><h2>${title}</h2><p>${text}</p>
       ${href ? link(href, action) : ''}</div>
     </div>
-    ${note ? `<p class="feature-media-note">${note}</p>` : ''}
     ${torn ? paperEdge(paperEdges.eveningEnd, 'bottom') : ''}
   </section>`;
 }
 
+function pinIcon() {
+  return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 10c0 5-7 10.5-7 10.5S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.4"/></svg>';
+}
+
 function mapLink() {
-  return `<a class="map-link" href="${mapUrl}" target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 10c0 5-7 10.5-7 10.5S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.4"/></svg>
-    <span>Открыть на карте</span>
+  return `<a class="map-link sweep-control" href="${mapUrl}" target="_blank" rel="noopener">
+    ${pinIcon()}
+    ${actionLabel('Открыть на карте')}
   </a>`;
 }
 
 function location() {
   return `<section class="location" id="location" aria-labelledby="location-title">
     <div class="location-inner frame section">
-      ${photo('./', 'location-leaves.webp', '', 'location-leaves', [860, 574])}
-      <div class="location-copy">
-        <h2 id="location-title">В Перми, среди зелени</h2>
-        <p>Ресторан и летняя площадка работают среди деревьев. На соседней поляне планируется купольный шатёр.</p>
+      <div class="location-heading">
+        <h2 id="location-title"><span>В Перми,</span> <span>среди зелени</span></h2>
+        <p>Ресторан и летняя площадка среди деревьев. На соседней поляне планируется купольный шатёр.</p>
       </div>
-      <figure class="location-picture">
-        ${photo('./', 'grounds.webp', 'Банкетные столы среди деревьев')}
-        <figcaption>Иллюстративное фото</figcaption>
-      </figure>
-      <div class="location-map">
-        <svg viewBox="0 0 520 480" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true" focusable="false">
-          <path d="M0 273C107 260 156 214 202 155S268 64 313 0H520V480H0Z" fill="#d6cce4"/>
-          <path d="M0 415c142 16 177-115 279-122 100-7 113 77 241 50v137H0Z" fill="#cdd8cb"/>
-          <g stroke="#f7f3f9" stroke-width="2">
-            <path d="M-30 180 120 120 214 20M-10 231 151 167 282 0M23 308 191 217 356 0M91 335 264 242 409 0M134 404 347 241 511 92M190 415 396 284 525 175M373 479 521 391"/>
-            <path d="m82-10 141 131 144 38 180 147M17 54l164 110 130 64 210 143M-5 155l130 70 137 70 158 189M0 254l156 60 149 166M151-10l138 93 108 11 130 106"/>
-          </g>
-          <path d="M-30 309c95-21 194-52 290-116C356 129 418 75 536 55" stroke="#fbf8fd" stroke-width="15"/>
-          <path d="M247-15c-34 83-37 139 13 208 49 69 87 127 57 199-17 43-53 68-61 112" stroke="#fbf8fd" stroke-width="16"/>
-          <path class="location-road" d="M247-15c-34 83-37 139 13 208 49 69 87 127 57 199-17 43-53 68-61 112" stroke="#3c5549" stroke-width="5"/>
-          <path id="leonova-label-path" d="M242 49C232 93 237 132 266 175"/>
-          <g class="location-road-labels" fill="#3c5549" font-size="11" font-weight="600">
-            <text><textPath href="#leonova-label-path" startOffset="50%" text-anchor="middle">ул. Космонавта Леонова</textPath></text>
-            <text x="306" y="149" transform="rotate(-30 306 149)">ул. Архитектора Свиязева</text>
-          </g>
-        </svg>
-        <div class="location-address">
-          <address>${address}</address>
-          <p>Парковка на 20 машин</p>
-          ${mapLink()}
-        </div>
+      <div class="location-view">
+        <figure class="location-picture">
+          ${photo('./', 'location-woodland.webp', 'Тропинка среди деревьев ведёт к летней террасе', '', [1862, 845])}
+        </figure>
       </div>
-      <span class="location-map-label">Схема района</span>
+      <div class="location-address">
+        <address>${address}</address>
+        <p>Парковка на 20 машин</p>
+        ${mapLink()}
+      </div>
     </div>
   </section>`;
 }
@@ -250,13 +240,13 @@ function hospitality() {
   return `<section class="hospitality frame section" aria-labelledby="hospitality-title">
     <h2 id="hospitality-title">Что мы берём на себя</h2>
     <article class="hospitality-row" id="kitchen">
-      <span class="hospitality-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M9 31a15 15 0 0 1 30 0M6 34h36l-3 4H9l-3-4ZM24 16v-2m-2 0a2 2 0 1 1 4 0M15 27a10 10 0 0 1 5-6M33 9l2-3m4 8 4-1"/></svg></span>
+      <span class="hospitality-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path class="cloche-lid" d="M9 31a15 15 0 0 1 30 0M24 16v-2m-2 0a2 2 0 1 1 4 0M15 27a10 10 0 0 1 5-6"/><path d="M6 34h36l-3 4H9l-3-4Z"/><path class="cloche-rays" d="m33 9 2-3m4 8 4-1"/></svg></span>
       <h3>Своя кухня</h3>
       <p>Горячие блюда готовим на площадке к подаче. Меню составляем под формат праздника.</p>
       ${link('menu/', 'Посмотреть меню')}
     </article>
     <article class="hospitality-row" id="team">
-      <span class="hospitality-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M23 8c.9 8.7 4.3 12.1 13 13-8.7.9-12.1 4.3-13 13-.9-8.7-4.3-12.1-13-13 8.7-.9 12.1-4.3 13-13ZM37 7v8m-4-4h8M10 29v10m-5-5h10M34 32l2 4 4 2-4 2-2 4-2-4-4-2 4-2 2-4Z"/></svg></span>
+      <span class="hospitality-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M23 8c.9 8.7 4.3 12.1 13 13-8.7.9-12.1 4.3-13 13-.9-8.7-4.3-12.1-13-13 8.7-.9 12.1-4.3 13-13Z"/><path d="M37 7v8m-4-4h8"/><path d="M10 29v10m-5-5h10"/><path d="m34 32 2 4 4 2-4 2-2 4-2-4-4-2 4-2 2-4Z"/></svg></span>
       <h3>Организация праздника</h3>
       <p>Менеджер, ведущие, артисты, декор и сценарий. Можно собрать праздник с нашей командой или выбрать отдельные услуги.</p>
       ${link('prices/', 'Цены и услуги')}
@@ -293,12 +283,12 @@ function requestForm(base) {
           <label class="request-check"><input type="checkbox" name="fullService">Организация под ключ</label>
         </div>
         <p class="form-note">Черновик можно скачать. Данные остаются в браузере до скачивания.</p>
-        <button class="primary sage" type="submit">Подготовить заявку</button>
+        <button class="primary sage sweep-control" type="submit">${actionLabel('Подготовить заявку')}</button>
         </fieldset>
         <noscript><p class="form-note">Для подготовки черновика включите JavaScript.</p></noscript>
         <div class="request-result" data-request-result hidden>
           <p role="status" data-request-status></p>
-          <a class="text-link" data-request-download download="sluchaynosti-request.txt">Скачать черновик</a>
+          <a class="text-link sweep-action sweep-control" data-request-download download="sluchaynosti-request.txt">${actionLabel('Скачать черновик')}</a>
         </div>
       </form>
     </div>
@@ -308,7 +298,9 @@ function requestForm(base) {
 function calculator(standalone = false) {
   const heading = standalone ? 'h1' : 'h2';
   const fields = (standalone ? calculatorFields : calculatorFields.replaceAll('<h2 ', '<h3 ').replaceAll('</h2>', '</h3>'))
-    .replace('{{requestHref}}', standalone ? '../#request' : '#request');
+    .replace('{{requestHref}}', standalone ? '../#request' : '#request')
+    .replace('{{viewApplicationLabel}}', actionLabel('Посмотреть заявку'))
+    .replace('{{transferApplicationLabel}}', actionLabel('Перенести в заявку'));
   return `<section class="event-calculator${standalone ? ' event-calculator-page' : ''}" id="event-calculator" aria-labelledby="calculator-title">
     <div class="frame section">
       <${heading} id="calculator-title">Калькулятор мероприятия</${heading}>
@@ -343,7 +335,7 @@ function home() {
     home: true,
     body: `
     <section class="hero" aria-labelledby="hero-title">
-      <img class="hero-photo" src="prototype/hero-background.webp" width="1586" height="992" fetchpriority="high" alt="">
+      <img class="hero-photo" src="prototype/hero-detail.webp" width="1585" height="992" fetchpriority="high" alt="">
       <div class="hero-shade" aria-hidden="true"></div>
       ${paperEdge(paperEdges.arrival, 'bottom', 'white')}
       <div class="frame hero-content">
@@ -351,7 +343,13 @@ function home() {
         <p>Банкетная площадка в Перми для свадеб,<br>корпоративов и частных праздников.</p>
         <div class="actions">${link('contacts/#request', 'Выбрать дату', 'primary')}${link('#spaces', 'Посмотреть площадку', 'secondary')}</div>
       </div>
-      <p class="hero-media-note">Визуализация проекта</p>
+      <div class="frame hero-figures">
+        <a class="hero-glass hero-locator" href="#location" aria-label="Адрес площадки в Перми"><span class="glass glass-nav" aria-hidden="true"></span>${pinIcon()}<span>Пермь</span></a>
+        <div class="hero-glass hero-capacities" role="group" aria-label="Вместимость площадок, до указанного числа гостей">
+          <span class="glass glass-nav" aria-hidden="true"></span>
+          ${spaces.slice(0, 2).map(({ id, guests, title }) => `<a href="spaces/#${id}" aria-label="${title}, до ${guests} гостей"><span class="hero-capacity-number">до <strong>${guests}</strong></span><span>${title}</span></a>`).join('')}
+        </div>
+      </div>
     </section>
     ${location()}
     ${spaceGallery('./')}
@@ -359,7 +357,7 @@ function home() {
       <div class="frame section"><div class="section-intro" data-reveal><h2>Свадебные подарки от «Случайностей»</h2>
       ${link('weddings/#gifts', 'Все свадебные подарки')}</div>${giftGallery('./')}</div>
     </section>
-    ${feature({ id: 'production', title: 'Танцы под открытым небом', text: 'Свет, звук, экраны и уличная дискотека. Диджеи и техническая команда помогают собрать программу под ваш формат.', file: 'dance-panorama.webp', dimensions: [1919, 820], alt: 'Гости танцуют перед освещённой сценой среди деревьев', note: 'Иллюстрация', href: 'corporate/#production', action: 'Технические возможности', variant: 'feature-dark feature-film', torn: true })}
+    ${feature({ id: 'production', title: 'Танцы под открытым небом', text: 'Свет, звук, экраны и уличная дискотека. Диджеи и техническая команда помогают собрать программу под ваш формат.', file: 'dance-panorama.webp', dimensions: [1919, 820], alt: 'Гости танцуют перед освещённой сценой среди деревьев', href: 'corporate/#production', action: 'Технические возможности', variant: 'feature-dark feature-film', torn: true })}
     ${hospitality()}
     <section class="section frame home-gallery" id="gallery"><div class="section-intro"><h2>Как может выглядеть праздник</h2>${link('gallery/', 'Открыть галерею')}</div>${gallery('./')}</section>
     ${calculator()}

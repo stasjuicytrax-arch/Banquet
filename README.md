@@ -5,6 +5,7 @@
 - [Открыть сайт](https://stasjuicytrax-arch.github.io/Banquet/)
 - [Открыть калькулятор на главной](https://stasjuicytrax-arch.github.io/Banquet/#event-calculator)
 - [Сравнить шрифтовые пары](https://stasjuicytrax-arch.github.io/Banquet/design/type-pairs.html)
+- [Сравнить варианты логотипа](https://stasjuicytrax-arch.github.io/Banquet/design/logo-variants.html)
 
 Главная и восемь разделов собираются командой `node scripts/build-site.mjs`. Сборка записывает готовые HTML-страницы для GitHub Pages. Первые экраны ведут от первого кадра к адресу и трём пространствам. Вкладки показывают ресторан на 50 гостей, летнюю площадку на 60 и проект купольного шатра на 150. Фото и описание меняются в одной области. Надорванный край отмечает смену сцен. Шапка использует карту смещения и параметры SVG-преломления DIGITAL EVENTS. Зерно подключено общим слоем.
 
