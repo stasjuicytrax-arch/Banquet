@@ -2,7 +2,7 @@
 .event-calculator-page .section { padding-top: clamp(125px, 13vw, 175px); }
 .event-calculator h1 {
   font-size: clamp(2rem, 4.25vw, 4.65rem);
-  line-height: 1.09;
+  line-height: 1.02;
   letter-spacing: -.035em;
   text-wrap: balance;
 }

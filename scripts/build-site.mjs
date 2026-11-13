@@ -112,10 +112,37 @@ function header(base, current) {
 }
 
 function footer(base, current) {
+  const groups = [
+    ['Поводы', ['weddings', 'corporate']],
+    ['Площадка', ['spaces', 'menu', 'stay']],
+    ['Подготовка', ['gallery', 'prices', 'contacts']],
+  ];
   return `<footer class="site-footer">
-    <div class="frame footer-inner">
-      <div><a href="${base}" aria-label="Случайности, главная"><img src="${base}prototype/wordmark-light.svg" width="1376" height="222" alt=""></a><address>${address}</address></div>
-      <nav aria-label="Разделы сайта">${navLinks(base, current, 'footer-link')}</nav>
+    <div class="footer-panel">
+      <img class="footer-watermark" src="${base}prototype/wordmark.svg" width="1376" height="222" alt="" loading="lazy" decoding="async">
+      <div class="footer-intro">
+        <p>Банкетная площадка в Перми</p>
+        <p>Свадьбы, корпоративы и частные праздники.</p>
+      </div>
+      <nav class="footer-columns" aria-label="Разделы сайта и адрес площадки">
+          ${groups.map(([heading, ids]) => `<div class="footer-group">
+            <h2>${heading}</h2>
+            <ul>${ids.map((id) => {
+              const [, label] = routes.find(([route]) => route === id);
+              return `<li><a class="footer-link" href="${base}${id}/"${id === current ? ' aria-current="page"' : ''}>${label}</a></li>`;
+            }).join('')}</ul>
+          </div>`).join('\n')}
+        <div class="footer-group footer-visit">
+          <h2>Как добраться</h2>
+          <address>${address}</address>
+          <a class="footer-link footer-map" href="${mapUrl}" target="_blank" rel="noopener">${pinIcon()} Открыть на карте</a>
+        </div>
+      </nav>
+      <div class="footer-bottom">
+        <a class="footer-brand" href="${base}"><img src="${base}prototype/wordmark.svg" width="1376" height="222" alt="Случайности, главная"></a>
+        <a class="footer-link" href="${base}#event-calculator">Калькулятор</a>
+        <a class="footer-link footer-top" href="#top">Наверх <span aria-hidden="true">↑</span></a>
+      </div>
     </div>
   </footer>`;
 }
@@ -134,16 +161,16 @@ function layout({ title, description, base = './', current = '', body, home = fa
   <link rel="stylesheet" href="${base}prototype/site-effects.css">
   <link rel="preload" href="${base}prototype/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="${base}prototype/fonts/fonts.css?v=2">
-  <link rel="stylesheet" href="${base}prototype/site.css?v=11">
-  ${calculator ? `<link rel="stylesheet" href="${base}prototype/calculator.css?v=2">` : ''}
-  <script src="${base}prototype/site.js?v=6" defer></script>
+  <link rel="stylesheet" href="${base}prototype/site.css?v=12">
+  ${calculator ? `<link rel="stylesheet" href="${base}prototype/calculator.css?v=3">` : ''}
+  <script src="${base}prototype/site.js?v=7" defer></script>
   ${home ? `<script src="${base}prototype/vendor/gsap.min.js" defer></script>
   <script src="${base}prototype/vendor/ScrollTrigger.min.js" defer></script>
-  <script type="module" src="${base}prototype/venue-3d.js"></script>
+  <script type="module" src="${base}prototype/venue-3d.js?v=2"></script>
   <script src="${base}prototype/home-motion.js?v=2" defer></script>` : ''}
   ${calculator ? `<script src="${base}prototype/calculator.js" defer></script>` : ''}
 </head>
-<body${home ? ' class="home-page"' : ''}>
+<body id="top"${home ? ' class="home-page"' : ''}>
   <div class="site-grain" aria-hidden="true"></div>
   <svg class="glass-definition" width="0" height="0" aria-hidden="true" focusable="false">
     <filter id="de-liquid" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
@@ -176,7 +203,6 @@ function spaceGallery(base) {
         ${spaces.map((item, index) => `<article class="space-scene" id="space-panel-${item.id}" role="tabpanel" tabindex="0" aria-labelledby="space-tab-${item.id}" aria-hidden="${Boolean(index)}"${index ? ' inert' : ''}>
           <figure class="space-scene-media">
             <img src="${base}prototype/${item.file}" width="${item.image[0]}" height="${item.image[1]}" alt="${item.imageAlt}" loading="lazy" decoding="async">
-            ${item.id === 'dome' ? '<button type="button" class="dome-launch" data-dome-launch aria-haspopup="dialog" aria-controls="dome-preview" hidden>Посмотреть в 3D</button>' : ''}
             <figcaption>${item.imageNote}</figcaption>
           </figure>
           <div class="space-scene-copy">
@@ -187,24 +213,6 @@ function spaceGallery(base) {
       </div>
     </div>
     <noscript>${plainButton(base + 'spaces/', 'Посмотреть все пространства')}</noscript>
-    <dialog class="dome-dialog" id="dome-preview" aria-labelledby="dome-preview-title">
-      <div class="dome-dialog-header">
-        <h2 id="dome-preview-title">Купольный шатёр в 3D</h2>
-        <form method="dialog"><button class="icon-button" type="submit" autofocus aria-label="Закрыть 3D-модель"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></form>
-      </div>
-      <div class="dome-stage">
-        <img class="dome-fallback" src="${base}prototype/dome-concept.webp" width="1536" height="1024" alt="Визуализация купольного шатра" loading="lazy">
-        <canvas data-dome-canvas aria-hidden="true" hidden></canvas>
-      </div>
-      <p class="dome-status" role="status">Загружаем 3D-модель…</p>
-      <div class="dome-controls" hidden>
-        <p>Концепция шатра. Потяните модель или используйте кнопки поворота.</p>
-        <div class="dome-turns">
-          <button type="button" class="icon-button" data-turn="-1" aria-label="Повернуть влево"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 6-6 6 6 6M6 12h12"/></svg></button>
-          <button type="button" class="icon-button" data-turn="1" aria-label="Повернуть вправо"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 6 6 6-6 6m-6-6h12"/></svg></button>
-        </div>
-      </div>
-    </dialog>
   </section>`;
 }
 
@@ -231,6 +239,20 @@ function pinIcon() {
   return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 10c0 5-7 10.5-7 10.5S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.4"/></svg>';
 }
 
+function capacityCards() {
+  const icons = {
+    restaurant: '<path d="M4 16h16M6 16a6 6 0 0 1 12 0M12 10V8M3 19h18"/>',
+    summer: '<path d="m3 10 9-6 9 6M5 10h14v10H5zM9 20v-6h6v6"/>',
+  };
+  return `<div class="hero-capacities" role="group" aria-label="Вместимость площадок">
+    ${spaces.slice(0, 2).map(({ id, guests, title }) => `<a class="hero-glass hero-capacity" href="spaces/#${id}">
+      <span class="glass glass-nav" aria-hidden="true"></span>
+      <span class="hero-capacity-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${icons[id]}</svg>${title}</span>
+      <span class="hero-capacity-number">до <strong>${guests}</strong> гостей</span>
+    </a>`).join('')}
+  </div>`;
+}
+
 function mapLink() {
   return `<a class="map-link sweep-control" href="${mapUrl}" target="_blank" rel="noopener">
     ${pinIcon()}
@@ -248,6 +270,7 @@ function location() {
       <div class="location-view">
         <figure class="location-picture">
           ${photo('./', 'location-woodland.webp', 'Тропинка среди деревьев ведёт к летней террасе', '', [1862, 845])}
+          <canvas class="woodland-canvas" data-woodland aria-hidden="true" hidden></canvas>
         </figure>
       </div>
       <div class="location-address">
@@ -370,10 +393,7 @@ function home() {
       </div>
       <div class="frame hero-figures">
         <a class="hero-glass hero-locator" href="#location" aria-label="Адрес площадки в Перми"><span class="glass glass-nav" aria-hidden="true"></span>${pinIcon()}<span>Пермь</span></a>
-        <div class="hero-glass hero-capacities" role="group" aria-label="Вместимость площадок, до указанного числа гостей">
-          <span class="glass glass-nav" aria-hidden="true"></span>
-          ${spaces.slice(0, 2).map(({ id, guests, title }) => `<a href="spaces/#${id}" aria-label="${title}, до ${guests} гостей"><span class="hero-capacity-number">до <strong>${guests}</strong></span><span>${title}</span></a>`).join('')}
-        </div>
+        ${capacityCards()}
       </div>
     </section>
     ${location()}

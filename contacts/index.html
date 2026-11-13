@@ -11,13 +11,13 @@
   <link rel="stylesheet" href="../prototype/site-effects.css">
   <link rel="preload" href="../prototype/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../prototype/fonts/fonts.css?v=2">
-  <link rel="stylesheet" href="../prototype/site.css?v=11">
+  <link rel="stylesheet" href="../prototype/site.css?v=12">
 
-  <script src="../prototype/site.js?v=6" defer></script>
+  <script src="../prototype/site.js?v=7" defer></script>
 
 
 </head>
-<body>
+<body id="top">
   <div class="site-grain" aria-hidden="true"></div>
   <svg class="glass-definition" width="0" height="0" aria-hidden="true" focusable="false">
     <filter id="de-liquid" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
@@ -87,16 +87,36 @@
     </div>
   </section></main>
   <footer class="site-footer">
-    <div class="frame footer-inner">
-      <div><a href="../" aria-label="Случайности, главная"><img src="../prototype/wordmark-light.svg" width="1376" height="222" alt=""></a><address>Пермь, ул. Космонавта Леонова, 61/1</address></div>
-      <nav aria-label="Разделы сайта"><a href="../weddings/" class="footer-link" style="--i:0">Свадьбы</a>
-<a href="../corporate/" class="footer-link" style="--i:1">Корпоративы</a>
-<a href="../spaces/" class="footer-link" style="--i:2">Пространства</a>
-<a href="../menu/" class="footer-link" style="--i:3">Кухня и меню</a>
-<a href="../gallery/" class="footer-link" style="--i:4">Фото и видео</a>
-<a href="../stay/" class="footer-link" style="--i:5">Проживание</a>
-<a href="../prices/" class="footer-link" style="--i:6">Цены и услуги</a>
-<a href="../contacts/" class="footer-link" style="--i:7" aria-current="page">Контакты</a></nav>
+    <div class="footer-panel">
+      <img class="footer-watermark" src="../prototype/wordmark.svg" width="1376" height="222" alt="" loading="lazy" decoding="async">
+      <div class="footer-intro">
+        <p>Банкетная площадка в Перми</p>
+        <p>Свадьбы, корпоративы и частные праздники.</p>
+      </div>
+      <nav class="footer-columns" aria-label="Разделы сайта и адрес площадки">
+          <div class="footer-group">
+            <h2>Поводы</h2>
+            <ul><li><a class="footer-link" href="../weddings/">Свадьбы</a></li><li><a class="footer-link" href="../corporate/">Корпоративы</a></li></ul>
+          </div>
+<div class="footer-group">
+            <h2>Площадка</h2>
+            <ul><li><a class="footer-link" href="../spaces/">Пространства</a></li><li><a class="footer-link" href="../menu/">Кухня и меню</a></li><li><a class="footer-link" href="../stay/">Проживание</a></li></ul>
+          </div>
+<div class="footer-group">
+            <h2>Подготовка</h2>
+            <ul><li><a class="footer-link" href="../gallery/">Фото и видео</a></li><li><a class="footer-link" href="../prices/">Цены и услуги</a></li><li><a class="footer-link" href="../contacts/" aria-current="page">Контакты</a></li></ul>
+          </div>
+        <div class="footer-group footer-visit">
+          <h2>Как добраться</h2>
+          <address>Пермь, ул. Космонавта Леонова, 61/1</address>
+          <a class="footer-link footer-map" href="https://yandex.ru/maps/?text=%D0%9F%D0%B5%D1%80%D0%BC%D1%8C%2C%20%D1%83%D0%BB.%20%D0%9A%D0%BE%D1%81%D0%BC%D0%BE%D0%BD%D0%B0%D0%B2%D1%82%D0%B0%20%D0%9B%D0%B5%D0%BE%D0%BD%D0%BE%D0%B2%D0%B0%2C%2061%2F1" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 10c0 5-7 10.5-7 10.5S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.4"/></svg> Открыть на карте</a>
+        </div>
+      </nav>
+      <div class="footer-bottom">
+        <a class="footer-brand" href="../"><img src="../prototype/wordmark.svg" width="1376" height="222" alt="Случайности, главная"></a>
+        <a class="footer-link" href="../#event-calculator">Калькулятор</a>
+        <a class="footer-link footer-top" href="#top">Наверх <span aria-hidden="true">↑</span></a>
+      </div>
     </div>
   </footer>
 </body>
