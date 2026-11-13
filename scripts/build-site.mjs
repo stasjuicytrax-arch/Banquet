@@ -52,13 +52,12 @@ const pictures = [
 ];
 
 const paperEdges = {
-  arrival: 'M0 46Q15 50 25 52L34 50Q50 44 65 47L77 46Q89 37 107 35L119 36L132 32Q151 34 161 29Q169 26 179 35L190 39Q203 40 216 48L228 46Q246 48 260 54Q277 58 292 50L310 46Q322 41 335 43L349 45Q358 40 369 40Q381 39 391 48L403 49Q411 47 427 53Q442 57 456 52L471 54L483 51Q496 50 507 42Q514 36 527 42L539 47Q548 47 560 53L574 51Q587 54 603 58Q615 61 631 56L646 55Q660 49 677 52L691 48L706 48Q723 47 739 38Q749 34 758 38L771 35Q784 34 796 40L810 38Q819 31 828 32Q837 33 846 42L860 46Q871 46 885 52L900 52Q912 56 925 51L938 50L949 53Q962 52 978 44L991 45Q1007 43 1026 33Q1037 29 1044 35L1057 37Q1067 36 1080 47L1094 47Q1105 48 1118 55Q1131 60 1145 54L1158 50Q1173 52 1185 47L1201 47Q1214 44 1222 39Q1231 34 1244 40L1256 38Q1275 33 1286 40L1301 44L1317 43Q1327 39 1340 44L1354 46Q1369 46 1382 52L1397 50L1412 55Q1426 51 1440 50V80H0Z',
   eveningStart: 'M0 0H1440V42Q1428 36 1414 42L1397 46L1383 44Q1369 47 1356 53Q1348 56 1338 52L1324 50Q1308 46 1297 49L1284 46L1266 47Q1247 45 1235 39L1221 39Q1206 32 1194 38L1178 35Q1165 31 1153 40L1139 42Q1124 51 1108 48L1095 49Q1082 53 1071 50L1058 44Q1047 45 1036 39Q1029 36 1020 43L1005 48L987 48Q971 51 959 46L944 47Q929 48 916 54L904 53Q890 51 878 44L864 43Q851 36 839 41L824 44Q805 43 791 38L777 42Q759 45 748 51L733 51Q719 55 705 49L693 49Q680 56 665 51L652 47L638 48Q625 41 612 38L597 38Q585 39 568 33Q560 29 553 36L540 38Q529 46 515 46L502 48Q483 48 468 44L452 48L436 45Q422 41 412 47L396 50Q381 55 367 52L352 50Q341 55 326 50L312 46Q299 46 287 40L273 41L258 46Q244 42 231 42L216 44Q203 43 187 39L173 42Q160 41 145 36Q134 31 124 37L109 39Q96 44 82 46L68 45Q54 49 40 51L25 48Q12 51 0 49Z',
   eveningEnd: 'M0 52Q13 48 24 44L38 45Q52 41 66 38L79 39Q92 39 108 34Q117 31 126 36L142 41L157 46Q169 43 181 47L194 51Q208 54 223 50L238 49Q253 45 267 50L280 51Q294 49 306 45L318 47Q331 45 348 40L363 40Q380 40 392 35Q399 31 410 37L423 43Q436 48 448 50L463 48L477 54Q491 55 506 51L520 48Q532 42 547 45L561 46Q576 43 592 42L605 45Q617 43 629 38L644 41L655 43Q669 39 676 34Q686 30 698 36L712 41Q727 44 742 44L756 47Q768 51 781 48L797 48Q810 52 825 55Q835 56 848 52L864 53Q877 52 890 48L904 47L919 45Q933 41 946 37L961 38Q976 37 990 33Q1001 29 1009 35L1024 39Q1035 43 1049 46L1064 44Q1081 47 1094 50L1108 47L1125 48Q1138 53 1153 49L1167 47Q1183 48 1199 45Q1210 40 1224 42L1238 42Q1250 36 1261 35L1274 38Q1288 39 1303 45L1319 45L1332 47Q1345 51 1358 52L1373 50Q1387 52 1401 55L1416 52L1440 53V80H0Z',
 };
 
-function paperEdge(path, position, surface = '') {
-  return `<svg class="paper-edge paper-edge--${position}${surface ? ' paper-edge--' + surface : ''}" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="${path}"/></svg>`;
+function paperEdge(path, position) {
+  return `<svg class="paper-edge paper-edge--${position}" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="${path}"/></svg>`;
 }
 
 function photo(base, file, alt, css = '', dimensions) {
@@ -172,17 +171,18 @@ function layout({ title, description, base = './', current = '', body, home = fa
   <meta name="robots" content="noindex">
   <meta name="description" content="${description}">
   <title>${title}</title>
-  ${home ? '<link rel="preload" href="prototype/hero-detail.png" as="image">' : ''}
+  ${home ? '<link rel="preload" href="prototype/hero-bloom.png" as="image">' : ''}
   <link rel="stylesheet" href="${base}prototype/site-effects.css?v=2">
   <link rel="preload" href="${base}prototype/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="${base}prototype/fonts/fonts.css?v=2">
-  <link rel="stylesheet" href="${base}prototype/site.css?v=16">
-  ${calculator ? `<link rel="stylesheet" href="${base}prototype/calculator.css?v=5">` : ''}
-  <script src="${base}prototype/site.js?v=8" defer></script>
+  <link rel="stylesheet" href="${base}prototype/site.css?v=17">
+  ${home ? '<link rel="stylesheet" href="prototype/hero-bloom.css?v=1">' : ''}
+  ${calculator ? `<link rel="stylesheet" href="${base}prototype/calculator.css?v=6">` : ''}
+  <script src="${base}prototype/site.js?v=9" defer></script>
   ${home ? `<script src="${base}prototype/vendor/gsap.min.js" defer></script>
   <script src="${base}prototype/vendor/ScrollTrigger.min.js" defer></script>
   <script type="module" src="${base}prototype/venue-3d.js?v=3"></script>
-  <script src="${base}prototype/home-motion.js?v=3" defer></script>` : ''}
+  <script src="${base}prototype/home-motion.js?v=4" defer></script>` : ''}
   ${calculator ? `<script src="${base}prototype/calculator.js" defer></script>` : ''}
 </head>
 <body id="top"${home ? ' class="home-page"' : ''}>
@@ -232,9 +232,9 @@ function spaceGallery(base) {
   </section>`;
 }
 
-function giftGallery(base) {
-  return `<div class="gift-gallery">${gifts.map(([file, title, description, dimensions]) => `<article class="gift">
-    ${photo(base, file, '', '', dimensions)}<h3>${title}</h3><p>${description}</p>
+function giftGallery(base, ribbon = '') {
+  return `<div class="gift-gallery">${gifts.map(([file, title, description, dimensions], index) => `<article class="gift">
+    ${photo(base, file, '', '', dimensions)}${index === 0 ? ribbon : ''}<h3>${title}</h3><p>${description}</p>
   </article>`).join('\n')}</div>`;
 }
 
@@ -263,7 +263,7 @@ function capacityCards() {
     summer: '<path d="m3 10 9-6 9 6M5 10h14v10H5zM9 20v-6h6v6"/>',
   };
   return `<div class="hero-capacities" role="group" aria-label="Вместимость площадок">
-    ${spaces.slice(0, 2).map(({ id, guests, title }) => `<a class="hero-glass hero-capacity" href="spaces/#${id}">
+    ${spaces.slice(0, 2).map(({ id, guests, title }) => `<a class="hero-capacity" href="spaces/#${id}">
       <span class="hero-capacity-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${icons[id]}</svg>${title}</span>
       <span class="hero-capacity-number">до <strong>${guests}</strong> гостей</span>
     </a>`).join('')}
@@ -294,8 +294,8 @@ function location() {
         </div>
       </div>
       <div class="location-address">
-        <address>${address}</address>
-        <p>Парковка на 20 машин</p>
+        <address><span class="detail-icon" aria-hidden="true">${pinIcon()}</span>${address}</address>
+        <p><span class="detail-icon" aria-hidden="true">${ornament('parking-icon', '0 0 24 24', '<path d="M5 11l1.5-4.5h11L19 11M5 17v2m14-2v2M7.5 14h1m7 0h1M5 11h14l1 2v4H4v-4z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>')}</span>Парковка на 20 машин</p>
         ${mapLink()}
       </div>
     </div>
@@ -321,12 +321,14 @@ function hospitality() {
   <section class="stay-story" id="stay" aria-labelledby="stay-title">
     <div class="frame section stay-inner">
       <h2 id="stay-title"><span>Праздник закончился.</span> <span>Отдых продолжается.</span></h2>
-      <figure class="stay-picture">${photo('./', 'room.webp', 'Светлый гостевой номер')}</figure>
-      <div class="stay-details">
+      <div class="stay-media">
+        <figure class="stay-picture">${photo('./', 'room.webp', 'Светлый гостевой номер')}</figure>
         <p class="stay-count">
           ${ornament('stay-cord', '0 0 88 68', '<path d="M44 62c-1-13-20-12-26-28C12 17 28 7 42 13c17 7 23 32 8 39-11 6-17-6-10-12 7-6 19 0 26-9 6-8-1-20-8-26" stroke="var(--ink)" stroke-width="2.8" stroke-linecap="round"/><path d="M44 62c-1-13-20-12-26-28C12 17 28 7 42 13c17 7 23 32 8 39-11 6-17-6-10-12 7-6 19 0 26-9 6-8-1-20-8-26" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="2 3" stroke-linecap="round"/>')}
           <strong>7</strong> номеров
         </p>
+      </div>
+      <div class="stay-details">
         <p>Гости могут остаться после вечеринки, а молодожёнов ждёт отдельный номер.</p>
         ${plainButton('stay/', 'Посмотреть проживание')}
       </div>
@@ -404,22 +406,23 @@ function home() {
     description: 'Банкетная площадка «Случайности» в Перми. Ресторан, летняя площадка и проект купольного шатра.',
     home: true,
     body: `
-    <section class="hero" aria-labelledby="hero-title">
-      <img class="hero-photo" src="prototype/hero-detail.png" width="1585" height="992" fetchpriority="high" alt="">
-      <div class="hero-shade" aria-hidden="true"></div>
-      ${paperEdge(paperEdges.arrival, 'bottom', 'white')}
-      <div class="frame hero-content">
-        ${ornament('hero-flourish', '0 0 146 24', '<path d="M1 17C22 17 25 5 44 5c18 0 23 13 40 13h61" pathLength="1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="145" cy="18" r="1.5" fill="currentColor"/>')}
-        <h1 id="hero-title"><span>Случайности,</span><span>которые становятся</span><span>воспоминаниями</span></h1>
-        <p>Банкетная площадка в Перми для свадеб,<br>корпоративов и частных праздников.</p>
-        <div class="actions">
-          ${link('contacts/#request', 'Выбрать дату', 'primary hero-date-button')}
-          ${link('#spaces', 'Посмотреть площадку', 'secondary')}
-          <a class="hero-date-link" href="contacts/#request">Выбрать дату</a>
+    <section class="bloom-hero" aria-labelledby="hero-title">
+      <div class="bloom-art" aria-hidden="true">
+        <img src="prototype/hero-bloom.png" width="1536" height="1024" fetchpriority="high" alt="">
+      </div>
+      <div class="frame bloom-content">
+        <h1 id="hero-title">Случайности,<br>которые становятся<br>воспоминаниями</h1>
+        <div class="bloom-intro">
+          <p>Банкетная площадка среди зелени в Перми. Для свадеб, корпоративов и частных праздников.</p>
+          ${link('contacts/#request', 'Выбрать дату', 'primary')}
         </div>
       </div>
-      <div class="frame hero-figures">
-        <a class="hero-glass hero-locator" href="#location" aria-label="Адрес площадки в Перми"><span class="glass glass-nav" aria-hidden="true"></span>${pinIcon()}<span>Пермь</span></a>
+      <div class="frame bloom-bottom">
+        <a class="bloom-preview" href="#spaces">
+          <img src="prototype/veranda.png" width="1536" height="1024" alt="" decoding="async">
+          <span>Посмотреть площадку ${arrowIcon()}</span>
+        </a>
+        <a class="bloom-next" href="#location">О площадке ${ornament('bloom-chevron', '0 0 16 16', '<path d="m3 6 5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>')}</a>
         ${capacityCards()}
       </div>
     </section>
@@ -427,11 +430,8 @@ function home() {
     ${spaceGallery('./')}
     <section class="gifts-section" id="gifts">
       <div class="frame section gifts-home">
-        <div class="gifts-heading">
-          <h2>Свадебные подарки от «Случайностей»</h2>
-          ${ornament('gift-ribbon', '0 0 240 134', `<path d="M122 52C104 14 54 3 44 26 33 52 83 61 119 57c-15 5-43 18-58 46l-17 5 10 5-2 16c17-19 30-38 70-58 24 8 33 24 44 37 13 16 29 21 48 22l-8-13 19-11c-44 2-48-36-94-48 23 0 76-8 69-32-9-24-56-14-74 18Z" fill="var(--accent)" stroke="var(--accent-strong)" stroke-width="1.2" stroke-linejoin="round"/><path d="M120 55C99 33 64 23 56 33c-9 13 32 20 64 22Zm9 0c24-22 59-32 64-22 6 13-30 20-64 22Z" fill="var(--accent-soft)" stroke="var(--accent-strong)" stroke-width="1"/><path d="M58 114c26-29 37-32 63-45m10-4c38 15 37 53 75 58M54 27c15-11 46 2 62 20m15 0c24-22 53-31 63-20" stroke="var(--paper)" stroke-width="1.5" stroke-linecap="round"/><path d="m118 45 14-1c6 4 5 16 0 23l-13 1c-6-4-7-16-1-23Z" fill="var(--accent)" stroke="var(--accent-strong)" stroke-width="1.2"/>`)}
-        </div>
-        ${giftGallery('./')}
+        <h2>Свадебные подарки от «Случайностей»</h2>
+        ${giftGallery('./', ornament('gift-ribbon', '0 0 240 134', `<path d="M122 52C104 14 54 3 44 26 33 52 83 61 119 57c-15 5-43 18-58 46l-17 5 10 5-2 16c17-19 30-38 70-58 24 8 33 24 44 37 13 16 29 21 48 22l-8-13 19-11c-44 2-48-36-94-48 23 0 76-8 69-32-9-24-56-14-74 18Z" fill="var(--accent)" stroke="var(--accent-strong)" stroke-width="1.2" stroke-linejoin="round"/><path d="M120 55C99 33 64 23 56 33c-9 13 32 20 64 22Zm9 0c24-22 59-32 64-22 6 13-30 20-64 22Z" fill="var(--accent-soft)" stroke="var(--accent-strong)" stroke-width="1"/><path d="M58 114c26-29 37-32 63-45m10-4c38 15 37 53 75 58M54 27c15-11 46 2 62 20m15 0c24-22 53-31 63-20" stroke="var(--paper)" stroke-width="1.5" stroke-linecap="round"/><path d="m118 45 14-1c6 4 5 16 0 23l-13 1c-6-4-7-16-1-23Z" fill="var(--accent)" stroke="var(--accent-strong)" stroke-width="1.2"/>`))}
         ${plainButton('weddings/#gifts', 'Все свадебные подарки')}
       </div>
     </section>

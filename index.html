@@ -7,17 +7,18 @@
   <meta name="robots" content="noindex">
   <meta name="description" content="Банкетная площадка «Случайности» в Перми. Ресторан, летняя площадка и проект купольного шатра.">
   <title>Случайности · Банкетная площадка в Перми</title>
-  <link rel="preload" href="prototype/hero-detail.png" as="image">
+  <link rel="preload" href="prototype/hero-bloom.png" as="image">
   <link rel="stylesheet" href="./prototype/site-effects.css?v=2">
   <link rel="preload" href="./prototype/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="./prototype/fonts/fonts.css?v=2">
-  <link rel="stylesheet" href="./prototype/site.css?v=16">
-  <link rel="stylesheet" href="./prototype/calculator.css?v=5">
-  <script src="./prototype/site.js?v=8" defer></script>
+  <link rel="stylesheet" href="./prototype/site.css?v=17">
+  <link rel="stylesheet" href="prototype/hero-bloom.css?v=1">
+  <link rel="stylesheet" href="./prototype/calculator.css?v=6">
+  <script src="./prototype/site.js?v=9" defer></script>
   <script src="./prototype/vendor/gsap.min.js" defer></script>
   <script src="./prototype/vendor/ScrollTrigger.min.js" defer></script>
   <script type="module" src="./prototype/venue-3d.js?v=3"></script>
-  <script src="./prototype/home-motion.js?v=3" defer></script>
+  <script src="./prototype/home-motion.js?v=4" defer></script>
   <script src="./prototype/calculator.js" defer></script>
 </head>
 <body id="top" class="home-page">
@@ -66,27 +67,28 @@
     </div>
   </dialog>
   <main id="main">
-    <section class="hero" aria-labelledby="hero-title">
-      <img class="hero-photo" src="prototype/hero-detail.png" width="1585" height="992" fetchpriority="high" alt="">
-      <div class="hero-shade" aria-hidden="true"></div>
-      <svg class="paper-edge paper-edge--bottom paper-edge--white" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 46Q15 50 25 52L34 50Q50 44 65 47L77 46Q89 37 107 35L119 36L132 32Q151 34 161 29Q169 26 179 35L190 39Q203 40 216 48L228 46Q246 48 260 54Q277 58 292 50L310 46Q322 41 335 43L349 45Q358 40 369 40Q381 39 391 48L403 49Q411 47 427 53Q442 57 456 52L471 54L483 51Q496 50 507 42Q514 36 527 42L539 47Q548 47 560 53L574 51Q587 54 603 58Q615 61 631 56L646 55Q660 49 677 52L691 48L706 48Q723 47 739 38Q749 34 758 38L771 35Q784 34 796 40L810 38Q819 31 828 32Q837 33 846 42L860 46Q871 46 885 52L900 52Q912 56 925 51L938 50L949 53Q962 52 978 44L991 45Q1007 43 1026 33Q1037 29 1044 35L1057 37Q1067 36 1080 47L1094 47Q1105 48 1118 55Q1131 60 1145 54L1158 50Q1173 52 1185 47L1201 47Q1214 44 1222 39Q1231 34 1244 40L1256 38Q1275 33 1286 40L1301 44L1317 43Q1327 39 1340 44L1354 46Q1369 46 1382 52L1397 50L1412 55Q1426 51 1440 50V80H0Z"/></svg>
-      <div class="frame hero-content">
-        <svg class="hero-flourish" viewBox="0 0 146 24" fill="none" aria-hidden="true" focusable="false"><path d="M1 17C22 17 25 5 44 5c18 0 23 13 40 13h61" pathLength="1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="145" cy="18" r="1.5" fill="currentColor"/></svg>
-        <h1 id="hero-title"><span>Случайности,</span><span>которые становятся</span><span>воспоминаниями</span></h1>
-        <p>Банкетная площадка в Перми для свадеб,<br>корпоративов и частных праздников.</p>
-        <div class="actions">
-          <a class="primary hero-date-button sweep-control" href="contacts/#request"><span class="sweep-label">Выбрать дату</span><span class="sweep-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 13 13 3M5 3h8v8"/></svg></span></a>
-          <a class="secondary sweep-control" href="#spaces"><span class="sweep-label">Посмотреть площадку</span><span class="sweep-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 13 13 3M5 3h8v8"/></svg></span></a>
-          <a class="hero-date-link" href="contacts/#request">Выбрать дату</a>
+    <section class="bloom-hero" aria-labelledby="hero-title">
+      <div class="bloom-art" aria-hidden="true">
+        <img src="prototype/hero-bloom.png" width="1536" height="1024" fetchpriority="high" alt="">
+      </div>
+      <div class="frame bloom-content">
+        <h1 id="hero-title">Случайности,<br>которые становятся<br>воспоминаниями</h1>
+        <div class="bloom-intro">
+          <p>Банкетная площадка среди зелени в Перми. Для свадеб, корпоративов и частных праздников.</p>
+          <a class="primary sweep-control" href="contacts/#request"><span class="sweep-label">Выбрать дату</span><span class="sweep-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 13 13 3M5 3h8v8"/></svg></span></a>
         </div>
       </div>
-      <div class="frame hero-figures">
-        <a class="hero-glass hero-locator" href="#location" aria-label="Адрес площадки в Перми"><span class="glass glass-nav" aria-hidden="true"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 10c0 5-7 10.5-7 10.5S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.4"/></svg><span>Пермь</span></a>
+      <div class="frame bloom-bottom">
+        <a class="bloom-preview" href="#spaces">
+          <img src="prototype/veranda.png" width="1536" height="1024" alt="" decoding="async">
+          <span>Посмотреть площадку <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 13 13 3M5 3h8v8"/></svg></span>
+        </a>
+        <a class="bloom-next" href="#location">О площадке <svg class="bloom-chevron" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="m3 6 5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <div class="hero-capacities" role="group" aria-label="Вместимость площадок">
-    <a class="hero-glass hero-capacity" href="spaces/#restaurant">
+    <a class="hero-capacity" href="spaces/#restaurant">
       <span class="hero-capacity-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 16h16M6 16a6 6 0 0 1 12 0M12 10V8M3 19h18"/></svg>Ресторан</span>
       <span class="hero-capacity-number">до <strong>50</strong> гостей</span>
-    </a><a class="hero-glass hero-capacity" href="spaces/#summer">
+    </a><a class="hero-capacity" href="spaces/#summer">
       <span class="hero-capacity-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m3 10 9-6 9 6M5 10h14v10H5zM9 20v-6h6v6"/></svg>Летняя площадка</span>
       <span class="hero-capacity-number">до <strong>60</strong> гостей</span>
     </a>
@@ -109,8 +111,8 @@
         </div>
       </div>
       <div class="location-address">
-        <address>Пермь, ул. Космонавта Леонова, 61/1</address>
-        <p>Парковка на 20 машин</p>
+        <address><span class="detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 10c0 5-7 10.5-7 10.5S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.4"/></svg></span>Пермь, ул. Космонавта Леонова, 61/1</address>
+        <p><span class="detail-icon" aria-hidden="true"><svg class="parking-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M5 11l1.5-4.5h11L19 11M5 17v2m14-2v2M7.5 14h1m7 0h1M5 11h14l1 2v4H4v-4z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Парковка на 20 машин</p>
         <a class="map-link sweep-control" href="https://yandex.ru/maps/?text=%D0%9F%D0%B5%D1%80%D0%BC%D1%8C%2C%20%D1%83%D0%BB.%20%D0%9A%D0%BE%D1%81%D0%BC%D0%BE%D0%BD%D0%B0%D0%B2%D1%82%D0%B0%20%D0%9B%D0%B5%D0%BE%D0%BD%D0%BE%D0%B2%D0%B0%2C%2061%2F1" target="_blank" rel="noopener">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 10c0 5-7 10.5-7 10.5S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.4"/></svg>
     <span class="sweep-label">Открыть на карте</span><span class="sweep-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 13 13 3M5 3h8v8"/></svg></span>
@@ -178,12 +180,9 @@
   </section>
     <section class="gifts-section" id="gifts">
       <div class="frame section gifts-home">
-        <div class="gifts-heading">
-          <h2>Свадебные подарки от «Случайностей»</h2>
-          <svg class="gift-ribbon" viewBox="0 0 240 134" fill="none" aria-hidden="true" focusable="false"><path d="M122 52C104 14 54 3 44 26 33 52 83 61 119 57c-15 5-43 18-58 46l-17 5 10 5-2 16c17-19 30-38 70-58 24 8 33 24 44 37 13 16 29 21 48 22l-8-13 19-11c-44 2-48-36-94-48 23 0 76-8 69-32-9-24-56-14-74 18Z" fill="var(--accent)" stroke="var(--accent-strong)" stroke-width="1.2" stroke-linejoin="round"/><path d="M120 55C99 33 64 23 56 33c-9 13 32 20 64 22Zm9 0c24-22 59-32 64-22 6 13-30 20-64 22Z" fill="var(--accent-soft)" stroke="var(--accent-strong)" stroke-width="1"/><path d="M58 114c26-29 37-32 63-45m10-4c38 15 37 53 75 58M54 27c15-11 46 2 62 20m15 0c24-22 53-31 63-20" stroke="var(--paper)" stroke-width="1.5" stroke-linecap="round"/><path d="m118 45 14-1c6 4 5 16 0 23l-13 1c-6-4-7-16-1-23Z" fill="var(--accent)" stroke="var(--accent-strong)" stroke-width="1.2"/></svg>
-        </div>
+        <h2>Свадебные подарки от «Случайностей»</h2>
         <div class="gift-gallery"><article class="gift">
-    <img class="" src="./prototype/tesla.webp" width="1200" height="800" alt="" loading="lazy" decoding="async"><h3>Tesla с водителем</h3><p>Автомобиль с личным водителем на весь день свадьбы.</p>
+    <img class="" src="./prototype/tesla.webp" width="1200" height="800" alt="" loading="lazy" decoding="async"><svg class="gift-ribbon" viewBox="0 0 240 134" fill="none" aria-hidden="true" focusable="false"><path d="M122 52C104 14 54 3 44 26 33 52 83 61 119 57c-15 5-43 18-58 46l-17 5 10 5-2 16c17-19 30-38 70-58 24 8 33 24 44 37 13 16 29 21 48 22l-8-13 19-11c-44 2-48-36-94-48 23 0 76-8 69-32-9-24-56-14-74 18Z" fill="var(--accent)" stroke="var(--accent-strong)" stroke-width="1.2" stroke-linejoin="round"/><path d="M120 55C99 33 64 23 56 33c-9 13 32 20 64 22Zm9 0c24-22 59-32 64-22 6 13-30 20-64 22Z" fill="var(--accent-soft)" stroke="var(--accent-strong)" stroke-width="1"/><path d="M58 114c26-29 37-32 63-45m10-4c38 15 37 53 75 58M54 27c15-11 46 2 62 20m15 0c24-22 53-31 63-20" stroke="var(--paper)" stroke-width="1.5" stroke-linecap="round"/><path d="m118 45 14-1c6 4 5 16 0 23l-13 1c-6-4-7-16-1-23Z" fill="var(--accent)" stroke="var(--accent-strong)" stroke-width="1.2"/></svg><h3>Tesla с водителем</h3><p>Автомобиль с личным водителем на весь день свадьбы.</p>
   </article>
 <article class="gift">
     <img class="" src="./prototype/couple.webp" width="1290" height="860" alt="" loading="lazy" decoding="async"><h3>Номер для молодожёнов</h3><p>После праздника можно остаться на площадке.</p>
@@ -224,12 +223,14 @@
   <section class="stay-story" id="stay" aria-labelledby="stay-title">
     <div class="frame section stay-inner">
       <h2 id="stay-title"><span>Праздник закончился.</span> <span>Отдых продолжается.</span></h2>
-      <figure class="stay-picture"><img class="" src="./prototype/room.webp" alt="Светлый гостевой номер" loading="lazy" decoding="async"></figure>
-      <div class="stay-details">
+      <div class="stay-media">
+        <figure class="stay-picture"><img class="" src="./prototype/room.webp" alt="Светлый гостевой номер" loading="lazy" decoding="async"></figure>
         <p class="stay-count">
           <svg class="stay-cord" viewBox="0 0 88 68" fill="none" aria-hidden="true" focusable="false"><path d="M44 62c-1-13-20-12-26-28C12 17 28 7 42 13c17 7 23 32 8 39-11 6-17-6-10-12 7-6 19 0 26-9 6-8-1-20-8-26" stroke="var(--ink)" stroke-width="2.8" stroke-linecap="round"/><path d="M44 62c-1-13-20-12-26-28C12 17 28 7 42 13c17 7 23 32 8 39-11 6-17-6-10-12 7-6 19 0 26-9 6-8-1-20-8-26" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="2 3" stroke-linecap="round"/></svg>
           <strong>7</strong> номеров
         </p>
+      </div>
+      <div class="stay-details">
         <p>Гости могут остаться после вечеринки, а молодожёнов ждёт отдельный номер.</p>
         <a class="primary tonal plain-button" href="stay/">Посмотреть проживание</a>
       </div>
@@ -291,7 +292,10 @@
 
       <section class="summary" aria-labelledby="estimate-title">
         <div>
-          <h3 id="estimate-title">Пример расчёта</h3>
+          <div class="estimate-heading">
+            <h3 id="estimate-title">Пример расчёта</h3>
+            <span class="detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M6 4h12v16l-2-1.5-2 1.5-2-1.5-2 1.5-2-1.5L6 20V4ZM9 8h6m-6 3h6m-6 3h3"/></svg></span>
+          </div>
           <output id="estimate" class="estimate" form="calculator" for="guests guest-range" aria-describedby="pricing-note"></output>
           <p class="pricing-note" id="pricing-note">Условная стоимость для демонстрации</p>
         </div>

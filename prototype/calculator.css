@@ -83,6 +83,9 @@
 }
 .event-calculator .summary h2, .event-calculator .summary h3,
 .event-calculator .application h2, .event-calculator .application h3 { font-size: clamp(1.2rem, 2vw, 1.55rem); line-height: 1.15; letter-spacing: 0; }
+.event-calculator .summary > div:first-child { width: 100%; }
+.estimate-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.estimate-heading .detail-icon { background: var(--accent); }
 .event-calculator .estimate {
   display: block;
   margin-top: 6px;

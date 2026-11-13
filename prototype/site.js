@@ -48,7 +48,7 @@ function updateScroll() {
   scrollFrame = 0;
   const scroll = window.scrollY;
   const backdrop = document.elementFromPoint(1, 48);
-  header.toggleAttribute('data-light', !backdrop?.closest('.hero, .feature-dark'));
+  header.toggleAttribute('data-light', !backdrop?.closest('.feature-dark'));
   const dy = scroll - lastScroll;
   lastScroll = scroll;
   if (dy) {
