@@ -134,7 +134,7 @@ function layout({ title, description, base = './', current = '', body, home = fa
   <link rel="stylesheet" href="${base}prototype/site-effects.css">
   <link rel="preload" href="${base}prototype/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="${base}prototype/fonts/fonts.css">
-  <link rel="stylesheet" href="${base}prototype/site.css?v=8">
+  <link rel="stylesheet" href="${base}prototype/site.css?v=9">
   ${calculator ? `<link rel="stylesheet" href="${base}prototype/calculator.css?v=2">` : ''}
   <script src="${base}prototype/site.js?v=6" defer></script>
   ${home ? `<script src="${base}prototype/vendor/gsap.min.js" defer></script>
@@ -341,7 +341,11 @@ function home() {
       <div class="frame hero-content">
         <h1 id="hero-title"><span>Случайности,</span><span>которые становятся</span><span>воспоминаниями</span></h1>
         <p>Банкетная площадка в Перми для свадеб,<br>корпоративов и частных праздников.</p>
-        <div class="actions">${link('contacts/#request', 'Выбрать дату', 'primary')}${link('#spaces', 'Посмотреть площадку', 'secondary')}</div>
+        <div class="actions">
+          ${link('contacts/#request', 'Выбрать дату', 'primary hero-date-button')}
+          ${link('#spaces', 'Посмотреть площадку', 'secondary')}
+          <a class="hero-date-link" href="contacts/#request">Выбрать дату</a>
+        </div>
       </div>
       <div class="frame hero-figures">
         <a class="hero-glass hero-locator" href="#location" aria-label="Адрес площадки в Перми"><span class="glass glass-nav" aria-hidden="true"></span>${pinIcon()}<span>Пермь</span></a>
