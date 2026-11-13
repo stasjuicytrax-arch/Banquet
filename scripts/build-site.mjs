@@ -123,11 +123,11 @@ function layout({ title, description, base = './', current = '', body, home = fa
   <meta name="robots" content="noindex">
   <meta name="description" content="${description}">
   <title>${title}</title>
-  ${home ? '<link rel="preload" href="prototype/grounds.webp" as="image">' : ''}
+  ${home ? '<link rel="preload" href="prototype/hero-background.webp" as="image">' : ''}
   <link rel="stylesheet" href="${base}prototype/site-effects.css">
-  <link rel="stylesheet" href="${base}prototype/site.css?v=4">
+  <link rel="stylesheet" href="${base}prototype/site.css?v=5">
   ${calculator ? `<link rel="stylesheet" href="${base}prototype/calculator.css">` : ''}
-  <script src="${base}prototype/site.js?v=4" defer></script>
+  <script src="${base}prototype/site.js?v=5" defer></script>
   ${calculator ? `<script src="${base}prototype/calculator.js" defer></script>` : ''}
 </head>
 <body${home ? ' class="home-page"' : ''}>
@@ -206,19 +206,68 @@ function location() {
     <div class="location-inner frame section">
       <div class="location-copy">
         <h2 id="location-title">В Перми, среди зелени</h2>
-        <p>Ресторан и летняя площадка уже есть на территории. На большой поляне рядом планируем поставить купольный шатёр.</p>
+        <p>Ресторан и летняя площадка работают среди деревьев. На соседней поляне планируется купольный шатёр.</p>
       </div>
-      <div class="location-address">
-        <address>${address}</address>
-        <p>Парковка на 20 машин</p>
-        ${mapLink()}
+      <figure class="location-picture">
+        ${photo('./', 'grounds.webp', 'Банкетные столы среди деревьев')}
+        <figcaption>Иллюстративное фото</figcaption>
+      </figure>
+      <div class="location-map">
+        <svg viewBox="0 0 520 480" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true" focusable="false">
+          <path d="M0 273C107 260 156 214 202 155S268 64 313 0H520V480H0Z" fill="#d6cce4"/>
+          <path d="M0 415c142 16 177-115 279-122 100-7 113 77 241 50v137H0Z" fill="#cdd8cb"/>
+          <g stroke="#f7f3f9" stroke-width="2">
+            <path d="M-30 180 120 120 214 20M-10 231 151 167 282 0M23 308 191 217 356 0M91 335 264 242 409 0M134 404 347 241 511 92M190 415 396 284 525 175M373 479 521 391"/>
+            <path d="m82-10 141 131 144 38 180 147M17 54l164 110 130 64 210 143M-5 155l130 70 137 70 158 189M0 254l156 60 149 166M151-10l138 93 108 11 130 106"/>
+          </g>
+          <path d="M-30 309c95-21 194-52 290-116C356 129 418 75 536 55" stroke="#fbf8fd" stroke-width="15"/>
+          <path d="M247-15c-34 83-37 139 13 208 49 69 87 127 57 199-17 43-53 68-61 112" stroke="#fbf8fd" stroke-width="16"/>
+          <path class="location-road" d="M247-15c-34 83-37 139 13 208 49 69 87 127 57 199-17 43-53 68-61 112" stroke="#3c5549" stroke-width="5"/>
+          <g class="location-road-labels" fill="#3c5549" font-size="11" font-weight="600">
+            <text x="262" y="222" transform="rotate(55 262 222)">ул. Космонавта Леонова</text>
+            <text x="306" y="149" transform="rotate(-30 306 149)">ул. Архитектора Свиязева</text>
+          </g>
+        </svg>
+        <span class="location-map-label">Схема района</span>
+        <div class="location-address">
+          <address>${address}</address>
+          <p>Парковка на 20 машин</p>
+          ${mapLink()}
+        </div>
+      </div>
+    </div>
+  </section>`;
+}
+
+function hospitality() {
+  return `<section class="hospitality frame section" aria-labelledby="hospitality-title">
+    <h2 id="hospitality-title">Что мы берём на себя</h2>
+    <article class="hospitality-row" id="kitchen">
+      <h3>Своя кухня</h3>
+      <p>Горячие блюда готовим на площадке к подаче. Меню составляем под формат праздника.</p>
+      ${link('menu/', 'Посмотреть меню')}
+    </article>
+    <article class="hospitality-row" id="team">
+      <h3>Организация праздника</h3>
+      <p>Менеджер, ведущие, артисты, декор и сценарий. Можно собрать праздник с нашей командой или выбрать отдельные услуги.</p>
+      ${link('prices/', 'Цены и услуги')}
+    </article>
+  </section>
+  <section class="stay-story" id="stay" aria-labelledby="stay-title">
+    <div class="frame section stay-inner">
+      <h2 id="stay-title"><span>Праздник закончился.</span> <span>Отдых продолжается.</span></h2>
+      <figure class="stay-picture">${photo('./', 'room.webp', 'Светлый гостевой номер')}</figure>
+      <div class="stay-details">
+        <p class="stay-count"><strong>7</strong> номеров</p>
+        <p>Гости могут остаться после вечеринки, а молодожёнов ждёт отдельный номер.</p>
+        ${link('stay/', 'Посмотреть проживание')}
       </div>
     </div>
   </section>`;
 }
 
 function requestForm(base) {
-  return `<section class="request-section" id="request" aria-labelledby="request-title">
+  return `<section class="request-section${base === './' ? ' request-finale' : ''}" id="request" aria-labelledby="request-title">
     <div class="frame section request-layout">
       <div><h2 id="request-title">Давайте устроим вашу случайность</h2>
         <p>Подготовьте параметры праздника, чтобы обсудить их с командой площадки.</p>
@@ -285,7 +334,7 @@ function home() {
     home: true,
     body: `
     <section class="hero" aria-labelledby="hero-title">
-      <img class="hero-photo" src="prototype/grounds.webp" width="980" height="551" fetchpriority="high" alt="">
+      <img class="hero-photo" src="prototype/hero-background.webp" width="1586" height="992" fetchpriority="high" alt="">
       <div class="hero-shade" aria-hidden="true"></div>
       ${paperEdge(paperEdges.arrival, 'bottom', 'white')}
       <div class="frame hero-content">
@@ -293,7 +342,7 @@ function home() {
         <p>Банкетная площадка в Перми для свадеб,<br>корпоративов и частных праздников.</p>
         <div class="actions">${link('contacts/#request', 'Выбрать дату', 'primary')}${link('#spaces', 'Посмотреть площадку', 'secondary')}</div>
       </div>
-      <p class="hero-media-note">Иллюстративное фото</p>
+      <p class="hero-media-note">Визуализация проекта</p>
     </section>
     ${location()}
     ${spaceGallery('./')}
@@ -301,11 +350,9 @@ function home() {
       <div class="frame section"><div class="section-intro" data-reveal><h2>Свадебные подарки от «Случайностей»</h2>
       ${link('weddings/#gifts', 'Все свадебные подарки')}</div>${giftGallery('./')}</div>
     </section>
-    ${feature({ id: 'kitchen', title: 'Своя кухня', text: 'Готовим горячие блюда прямо на площадке. Составляем меню под формат праздника и подаём блюда к столу.', file: 'kitchen.webp', alt: 'Повар готовит блюда на кухне', href: 'menu/', action: 'Посмотреть меню' })}
-    ${feature({ id: 'production', title: 'Здесь праздник звучит по‑настоящему', text: 'Свет, звук, экраны и уличная дискотека. Диджеи и техническая команда помогают собрать программу под ваш формат.', file: 'dance.webp', alt: 'Танцы перед сценой на открытом воздухе', href: 'corporate/#production', action: 'Технические возможности', variant: 'feature-dark reversed', torn: true })}
-    ${feature({ id: 'team', title: 'От идеи до последнего танца', text: 'Персональный менеджер, ведущие, артисты, декор и сценарий. Можно доверить команде весь праздник или выбрать отдельные услуги.', file: 'team.webp', alt: 'Координатор готовит банкетный зал', href: 'prices/', action: 'Обсудить мероприятие' })}
-    ${feature({ id: 'stay', title: '<span>Праздник закончился.</span> <span>Отдых продолжается.</span>', text: 'На площадке семь номеров. Гости могут остаться после вечеринки, а молодожёнов ждёт отдельный номер.', file: 'room.webp', alt: 'Светлый гостевой номер', href: 'stay/', action: 'Посмотреть проживание', variant: 'feature-soft reversed feature-stay' })}
-    <section class="section frame" id="gallery"><div class="section-intro" data-reveal><h2>Как может выглядеть праздник</h2>${link('gallery/', 'Открыть галерею')}</div>${gallery('./')}</section>
+    ${feature({ id: 'production', title: 'Танцы под открытым небом', text: 'Свет, звук, экраны и уличная дискотека. Диджеи и техническая команда помогают собрать программу под ваш формат.', file: 'dance.webp', alt: 'Танцы перед сценой на открытом воздухе', href: 'corporate/#production', action: 'Технические возможности', variant: 'feature-dark feature-film', torn: true })}
+    ${hospitality()}
+    <section class="section frame home-gallery" id="gallery"><div class="section-intro"><h2>Как может выглядеть праздник</h2>${link('gallery/', 'Открыть галерею')}</div>${gallery('./')}</section>
     ${calculator()}
     ${requestForm('./')}`,
   });

@@ -143,6 +143,7 @@ document.querySelectorAll('[data-spaces]').forEach((gallery) => {
 
 document.querySelectorAll('[data-gallery]').forEach((gallery) => {
   const dialog = gallery.querySelector('dialog');
+  const image = dialog.querySelector('img');
   const empty = gallery.querySelector('[data-gallery-empty]');
   const pictures = [...gallery.querySelectorAll('[data-photo]')];
   const filters = [...gallery.querySelectorAll('[data-filter]')];
@@ -153,7 +154,6 @@ document.querySelectorAll('[data-gallery]').forEach((gallery) => {
   function display(index) {
     current = (index + visible.length) % visible.length;
     const { src, caption } = visible[current].dataset;
-    const image = dialog.querySelector('img');
     image.src = src;
     image.alt = caption;
     dialog.querySelector('.photo-controls p').textContent = caption;
@@ -161,8 +161,20 @@ document.querySelectorAll('[data-gallery]').forEach((gallery) => {
 
   pictures.forEach((picture) => picture.addEventListener('click', () => {
     trigger = picture;
+    const thumbnail = picture.getBoundingClientRect();
     display(visible.indexOf(picture));
     dialog.showModal();
+    if (reducedMotion.matches || !image.complete) return;
+
+    const expanded = image.getBoundingClientRect();
+    if (!expanded.width || !expanded.height) return;
+    const x = thumbnail.left + thumbnail.width / 2 - (expanded.left + expanded.width / 2);
+    const y = thumbnail.top + thumbnail.height / 2 - (expanded.top + expanded.height / 2);
+    const scale = Math.min(thumbnail.width / expanded.width, thumbnail.height / expanded.height);
+    image.animate([
+      { transform: `translate(${x}px, ${y}px) scale(${scale})`, opacity: .65 },
+      { transform: 'none', opacity: 1 },
+    ], { duration: 320, easing: 'cubic-bezier(.16, 1, .3, 1)' });
   }));
   filters.forEach((filter) => filter.addEventListener('click', () => {
     filters.forEach((control) => control.setAttribute('aria-pressed', String(control === filter)));
