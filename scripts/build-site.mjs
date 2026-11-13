@@ -70,6 +70,17 @@ function arrowIcon() {
   return `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 13 13 3M5 3h8v8"/></svg>`;
 }
 
+function ornament(name, viewBox, drawing) {
+  return `<svg class="${name}" viewBox="${viewBox}" fill="none" aria-hidden="true" focusable="false">${drawing}</svg>`;
+}
+
+const brandArc = '<path fill="currentColor" d="M0 24C16 8 36 0 57 0c22 0 42 8 57 24l-14 17c-12-12-27-18-43-18-17 0-31 6-43 18Z"/>';
+const spaceIcons = {
+  restaurant: '<path d="M5 20h30M8 20c0-7 5-12 12-12s12 5 12 12M20 8V5M4 24h32l-3 4H7z"/>',
+  summer: '<path d="M4 15 20 5l16 10M8 15h24M8 28V15m24 0v13M5 28h30M15 28v-7h10v7"/>',
+  dome: '<path d="M4 27a16 16 0 0 1 32 0ZM5 23l8-10 7 14 7-14 8 10M13 13h14"/>',
+};
+
 function actionLabel(label) {
   return `<span class="sweep-label">${label}</span><span class="sweep-arrow" aria-hidden="true">${arrowIcon()}</span>`;
 }
@@ -126,6 +137,7 @@ function footer(base, current) {
       <div class="footer-intro">
         <p>Банкетная площадка в Перми</p>
         <p>Свадьбы, корпоративы и частные праздники.</p>
+        ${ornament('footer-imprint', '0 0 146 86', `<path d="M12 46V23l11-11h100l11 11v40l-11 11H23L12 63V46ZM1 46h7m130 0h7M73 1v7m0 70v7" stroke="currentColor" stroke-width="1.3"/><g transform="translate(36 32) scale(.65)">${brandArc}</g>`)}
       </div>
       <nav class="footer-columns" aria-label="Разделы сайта и адрес площадки">
           ${groups.map(([heading, ids]) => `<div class="footer-group">
@@ -165,13 +177,13 @@ function layout({ title, description, base = './', current = '', body, home = fa
   <link rel="stylesheet" href="${base}prototype/site-effects.css">
   <link rel="preload" href="${base}prototype/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="${base}prototype/fonts/fonts.css?v=2">
-  <link rel="stylesheet" href="${base}prototype/site.css?v=14">
-  ${calculator ? `<link rel="stylesheet" href="${base}prototype/calculator.css?v=3">` : ''}
+  <link rel="stylesheet" href="${base}prototype/site.css?v=15">
+  ${calculator ? `<link rel="stylesheet" href="${base}prototype/calculator.css?v=4">` : ''}
   <script src="${base}prototype/site.js?v=8" defer></script>
   ${home ? `<script src="${base}prototype/vendor/gsap.min.js" defer></script>
   <script src="${base}prototype/vendor/ScrollTrigger.min.js" defer></script>
   <script type="module" src="${base}prototype/venue-3d.js?v=2"></script>
-  <script src="${base}prototype/home-motion.js?v=2" defer></script>` : ''}
+  <script src="${base}prototype/home-motion.js?v=3" defer></script>` : ''}
   ${calculator ? `<script src="${base}prototype/calculator.js" defer></script>` : ''}
 </head>
 <body id="top"${home ? ' class="home-page"' : ''}>
@@ -199,6 +211,7 @@ function spaceGallery(base) {
     <div class="space-gallery" data-spaces>
       <div class="space-tabs" role="tablist" aria-label="Пространства площадки">
         ${spaces.map((item, index) => `<button class="space-tab" type="button" role="tab" id="space-tab-${item.id}" aria-selected="${index === 0}" tabindex="${index ? '-1' : '0'}" aria-controls="space-panel-${item.id}">
+          ${ornament('space-tab-icon', '0 0 40 34', `<g stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round">${spaceIcons[item.id]}</g>`)}
           <span class="space-tab-title">${item.title}</span>
           <span class="space-tab-meta">До ${item.guests} гостей${item.planned ? ' <span>· В проекте</span>' : ''}</span>
         </button>`).join('\n')}
@@ -232,7 +245,9 @@ function feature({ base = './', id = '', title, text, file, alt, dimensions, hre
     ${torn ? '<canvas class="stage-lights" data-stage-lights aria-hidden="true" hidden></canvas>' : ''}
     <div class="frame section feature">
       ${photo(base, file, alt, 'feature-image', dimensions)}
-      <div class="feature-copy"${torn ? '' : ' data-reveal'}><h2>${title}</h2><p>${text}</p>
+      <div class="feature-copy"${torn ? '' : ' data-reveal'}>
+      ${torn ? ornament('stage-wave', '0 0 160 42', '<path d="M1 21h23l6-8 9 17 11-25 11 32 10-22 8 12 8-6h72" pathLength="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="158" cy="21" r="2" fill="currentColor"/>') : ''}
+      <h2>${title}</h2><p>${text}</p>
       ${href ? link(href, action) : ''}</div>
     </div>
     ${torn ? paperEdge(paperEdges.eveningEnd, 'bottom') : ''}
@@ -276,6 +291,9 @@ function location() {
           ${photo('./', 'location-woodland.webp', 'Тропинка среди деревьев ведёт к летней террасе', '', [1862, 845])}
           <canvas class="woodland-canvas" data-woodland aria-hidden="true" hidden></canvas>
         </figure>
+        <div class="location-press" aria-hidden="true">
+          ${ornament('pressed-leaf', '0 0 132 159', `<path d="M24 146c12-24 20-36 35-54M49 108C21 87 32 43 116 10c-4 54-23 102-67 98Z" fill="#d6dfc1" stroke="#4a694b" stroke-width="1.15" stroke-linejoin="round"/><path d="M31 134c18-31 44-58 72-108M55 101c5-15 1-29-3-41m13 28c4-15 1-30-2-39m13 23c2-13 1-24-1-32m11 16 1-21M51 107c14-8 25-10 38-13m-25-5c10-4 22-7 33-12m-22-3c7-4 18-8 27-14m-16-3 20-12" stroke="#4a694b" stroke-width=".9" stroke-linecap="round"/>`)}
+        </div>
       </div>
       <div class="location-address">
         <address>${address}</address>
@@ -307,7 +325,10 @@ function hospitality() {
       <h2 id="stay-title"><span>Праздник закончился.</span> <span>Отдых продолжается.</span></h2>
       <figure class="stay-picture">${photo('./', 'room.webp', 'Светлый гостевой номер')}</figure>
       <div class="stay-details">
-        <p class="stay-count"><strong>7</strong> номеров</p>
+        <p class="stay-count">
+          ${ornament('stay-cord', '0 0 88 68', '<path d="M44 62c-1-13-20-12-26-28C12 17 28 7 42 13c17 7 23 32 8 39-11 6-17-6-10-12 7-6 19 0 26-9 6-8-1-20-8-26" stroke="#645145" stroke-width="2.8" stroke-linecap="round"/><path d="M44 62c-1-13-20-12-26-28C12 17 28 7 42 13c17 7 23 32 8 39-11 6-17-6-10-12 7-6 19 0 26-9 6-8-1-20-8-26" stroke="#e8ccaa" stroke-width="1.5" stroke-dasharray="2 3" stroke-linecap="round"/>')}
+          <strong>7</strong> номеров
+        </p>
         <p>Гости могут остаться после вечеринки, а молодожёнов ждёт отдельный номер.</p>
         ${plainButton('stay/', 'Посмотреть проживание')}
       </div>
@@ -325,6 +346,7 @@ function requestForm(base) {
         ${base === '../' ? link('../#event-calculator', 'Калькулятор мероприятия') : ''}
       </div>
       <form class="request-form" data-request>
+        ${home ? ornament('request-seal', '0 0 72 72', `<path d="M36 2c8 0 11 4 16 6 8 4 11 8 14 15 4 8 4 18 1 24-3 9-7 13-15 17-8 4-13 6-21 5-9-1-17-5-22-12-4-5-7-12-7-20 0-9 4-16 8-22C17 6 26 2 36 2Z" fill="#e2b5bc" stroke="#bd818d"/><circle cx="36" cy="36" r="26" stroke="#be8a94"/><g transform="translate(18 29) scale(.32)" color="#8f5864">${brandArc}</g>`) : ''}
         <fieldset disabled>
         <div class="request-fields">
           <div><label for="request-event">Формат</label><select id="request-event" name="event"><option value="wedding">Свадьба</option><option value="corporate">Корпоратив</option><option value="birthday">День рождения</option><option value="other">Другое событие</option></select></div>
@@ -389,6 +411,7 @@ function home() {
       <div class="hero-shade" aria-hidden="true"></div>
       ${paperEdge(paperEdges.arrival, 'bottom', 'white')}
       <div class="frame hero-content">
+        ${ornament('hero-flourish', '0 0 146 24', '<path d="M1 17C22 17 25 5 44 5c18 0 23 13 40 13h61" pathLength="1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="145" cy="18" r="1.5" fill="currentColor"/>')}
         <h1 id="hero-title"><span>Случайности,</span><span>которые становятся</span><span>воспоминаниями</span></h1>
         <p>Банкетная площадка в Перми для свадеб,<br>корпоративов и частных праздников.</p>
         <div class="actions">
@@ -406,7 +429,10 @@ function home() {
     ${spaceGallery('./')}
     <section class="gifts-section" id="gifts">
       <div class="frame section gifts-home">
-        <h2>Свадебные подарки от «Случайностей»</h2>
+        <div class="gifts-heading">
+          <h2>Свадебные подарки от «Случайностей»</h2>
+          ${ornament('gift-ribbon', '0 0 240 134', `<path d="M122 52C104 14 54 3 44 26 33 52 83 61 119 57c-15 5-43 18-58 46l-17 5 10 5-2 16c17-19 30-38 70-58 24 8 33 24 44 37 13 16 29 21 48 22l-8-13 19-11c-44 2-48-36-94-48 23 0 76-8 69-32-9-24-56-14-74 18Z" fill="#c48896" stroke="#9c5267" stroke-width="1.2" stroke-linejoin="round"/><path d="M120 55C99 33 64 23 56 33c-9 13 32 20 64 22Zm9 0c24-22 59-32 64-22 6 13-30 20-64 22Z" fill="#e5b2bd" stroke="#a35e73" stroke-width="1"/><path d="M58 114c26-29 37-32 63-45m10-4c38 15 37 53 75 58M54 27c15-11 46 2 62 20m15 0c24-22 53-31 63-20" stroke="#f3cdd3" stroke-width="1.5" stroke-linecap="round"/><path d="m118 45 14-1c6 4 5 16 0 23l-13 1c-6-4-7-16-1-23Z" fill="#dca1ae" stroke="#9c5267" stroke-width="1.2"/>`)}
+        </div>
         ${giftGallery('./')}
         ${plainButton('weddings/#gifts', 'Все свадебные подарки')}
       </div>

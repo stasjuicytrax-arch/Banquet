@@ -67,6 +67,20 @@
   color: var(--paper);
   background: var(--sage);
 }
+.home-page .event-calculator .summary {
+  position: relative;
+  isolation: isolate;
+  border-radius: 14px 14px 0 0;
+}
+.home-page .event-calculator .summary::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 -7px;
+  height: 8px;
+  background: radial-gradient(circle at 8px 8px, transparent 4px, var(--sage) 4.6px) repeat-x;
+  background-size: 16px 8px;
+  pointer-events: none;
+}
 .event-calculator .summary h2, .event-calculator .summary h3,
 .event-calculator .application h2, .event-calculator .application h3 { font-size: clamp(1.2rem, 2vw, 1.55rem); line-height: 1.15; letter-spacing: 0; }
 .event-calculator .estimate {

@@ -18,6 +18,41 @@ if (gsap && ScrollTrigger) {
       scrollTrigger: { trigger: '.location-picture', start: 'top bottom', end: 'center 48%', scrub: true },
     });
 
+    gsap.fromTo('.hero-flourish path', { strokeDasharray: '1 1', strokeDashoffset: 1 }, {
+      strokeDashoffset: 0, duration: 1, ease: 'power2.out',
+    });
+
+    gsap.fromTo('.location-press', { y: -36, rotate: -7 }, {
+      y: 0,
+      rotate: 0,
+      ease: 'none',
+      scrollTrigger: { trigger: '.location-view', start: 'top bottom', end: 'center 48%', scrub: true },
+    });
+
+    gsap.fromTo('.stage-wave path', { strokeDasharray: '1 1', strokeDashoffset: 1 }, {
+      strokeDashoffset: 0,
+      duration: 1.15,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: '.stage-wave', start: 'top 88%', once: true },
+    });
+
+    gsap.fromTo('.stay-count', { rotation: -13 }, {
+      rotation: 0,
+      duration: .95,
+      ease: 'elastic.out(1, .63)',
+      transformOrigin: '48% 12%',
+      scrollTrigger: { trigger: '.stay-count', start: 'top 86%', once: true },
+    });
+
+    gsap.from('.home-gallery .photo-grid figure', {
+      y: desktop ? 24 : 13,
+      rotation: (index) => [5, -5, -7][index],
+      duration: .78,
+      ease: 'power3.out',
+      stagger: .1,
+      scrollTrigger: { trigger: '.home-gallery .photo-grid', start: 'top 84%', once: true },
+    });
+
     gsap.from('.gift', {
       y: desktop ? 34 : 15,
       opacity: .6,
