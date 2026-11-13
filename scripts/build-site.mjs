@@ -38,9 +38,9 @@ const spaces = [
   },
 ];
 const gifts = [
-  ['tesla.webp', 'Tesla с водителем', 'Автомобиль с личным водителем на весь день свадьбы.'],
-  ['couple.webp', 'Номер для молодожёнов', 'После праздника можно остаться на площадке.'],
-  ['spa.webp', 'Хамам и бассейн', 'Три часа отдыха на следующий день после свадьбы.'],
+  ['tesla.webp', 'Tesla с водителем', 'Автомобиль с личным водителем на весь день свадьбы.', [1200, 800]],
+  ['couple.webp', 'Номер для молодожёнов', 'После праздника можно остаться на площадке.', [1290, 860]],
+  ['spa.webp', 'Хамам и бассейн', 'Три часа отдыха на следующий день после свадьбы.', [800, 800]],
 ];
 const pictures = [
   ['dome.webp', 'Пример сервировки в купольном шатре', 'weddings'],
@@ -123,7 +123,6 @@ function footer(base, current) {
   ];
   return `<footer class="site-footer">
     <div class="footer-panel">
-      <img class="footer-watermark" src="${base}prototype/wordmark.svg" width="1376" height="222" alt="" loading="lazy" decoding="async">
       <div class="footer-intro">
         <p>Банкетная площадка в Перми</p>
         <p>Свадьбы, корпоративы и частные праздники.</p>
@@ -142,6 +141,7 @@ function footer(base, current) {
           <a class="footer-link footer-map" href="${mapUrl}" target="_blank" rel="noopener">${pinIcon()} Открыть на карте</a>
         </div>
       </nav>
+      <img class="footer-watermark" src="${base}prototype/wordmark.svg" width="1376" height="222" alt="" loading="lazy" decoding="async">
       <div class="footer-bottom">
         <a class="footer-brand" href="${base}"><img src="${base}prototype/wordmark.svg" width="1376" height="222" alt="Случайности, главная"></a>
         <a class="footer-link" href="${base}#event-calculator">Калькулятор</a>
@@ -165,7 +165,7 @@ function layout({ title, description, base = './', current = '', body, home = fa
   <link rel="stylesheet" href="${base}prototype/site-effects.css">
   <link rel="preload" href="${base}prototype/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="${base}prototype/fonts/fonts.css?v=2">
-  <link rel="stylesheet" href="${base}prototype/site.css?v=13">
+  <link rel="stylesheet" href="${base}prototype/site.css?v=14">
   ${calculator ? `<link rel="stylesheet" href="${base}prototype/calculator.css?v=3">` : ''}
   <script src="${base}prototype/site.js?v=8" defer></script>
   ${home ? `<script src="${base}prototype/vendor/gsap.min.js" defer></script>
@@ -221,8 +221,8 @@ function spaceGallery(base) {
 }
 
 function giftGallery(base) {
-  return `<div class="gift-gallery">${gifts.map(([file, title, description]) => `<article class="gift">
-    ${photo(base, file, '')}<h3>${title}</h3><p>${description}</p>
+  return `<div class="gift-gallery">${gifts.map(([file, title, description, dimensions]) => `<article class="gift">
+    ${photo(base, file, '', '', dimensions)}<h3>${title}</h3><p>${description}</p>
   </article>`).join('\n')}</div>`;
 }
 
@@ -318,7 +318,7 @@ function hospitality() {
 function requestForm(base) {
   const home = base === './';
   return `<section class="request-section${home ? ' request-finale' : ''}" id="request" aria-labelledby="request-title">
-    ${home ? photo(base, 'grounds.webp', '', 'request-backdrop', [980, 551]) : ''}
+    ${home ? photo(base, 'request-garden.webp', '', 'request-backdrop', [1536, 1024]) : ''}
     <div class="frame section request-layout">
       <div><h2 id="request-title">Давайте устроим вашу случайность</h2>
         <p>Подготовьте параметры праздника, чтобы обсудить их с командой площадки.</p>
@@ -405,8 +405,11 @@ function home() {
     ${location()}
     ${spaceGallery('./')}
     <section class="gifts-section" id="gifts">
-      <div class="frame section"><div class="section-intro" data-reveal><h2>Свадебные подарки от «Случайностей»</h2>
-      ${plainButton('weddings/#gifts', 'Все свадебные подарки')}</div>${giftGallery('./')}</div>
+      <div class="frame section gifts-home">
+        <h2>Свадебные подарки от «Случайностей»</h2>
+        ${giftGallery('./')}
+        ${plainButton('weddings/#gifts', 'Все свадебные подарки')}
+      </div>
     </section>
     ${feature({ id: 'production', title: 'Танцы под открытым небом', text: 'Свет, звук, экраны и уличная дискотека. Диджеи и техническая команда помогают собрать программу под ваш формат.', file: 'dance-panorama.webp', dimensions: [1919, 820], alt: 'Гости танцуют перед освещённой сценой среди деревьев', href: 'corporate/#production', action: 'Технические возможности', variant: 'feature-dark feature-film', torn: true })}
     ${hospitality()}
