@@ -185,7 +185,7 @@ document.querySelectorAll('[data-gallery]').forEach((gallery) => {
     const category = filter.dataset.filter;
     visible = pictures.filter((picture) => {
       const figure = picture.closest('figure');
-      const match = category === 'all' || figure.dataset.photoGroup === category;
+      const match = category === 'all' || figure.dataset.photoGroup.split(' ').includes(category);
       figure.hidden = !match;
       return match;
     });
