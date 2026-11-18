@@ -192,7 +192,7 @@ function layout({ title, description, base = './', current = '', body, home = fa
   ${home ? `<script src="${base}prototype/vendor/gsap.min.js" defer></script>
   <script src="${base}prototype/vendor/ScrollTrigger.min.js" defer></script>
   <script type="module" src="${base}prototype/venue-3d.js?v=4"></script>
-  <script src="${base}prototype/home-motion.js?v=5" defer></script>` : ''}
+  <script src="${base}prototype/home-motion.js?v=6" defer></script>` : ''}
   ${calculator ? `<script src="${base}prototype/calculator.js" defer></script>` : ''}
 </head>
 <body id="top"${home ? ' class="home-page"' : ''}>

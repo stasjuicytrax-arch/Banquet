@@ -4,6 +4,46 @@ if (gsap && ScrollTrigger) {
   gsap.registerPlugin(ScrollTrigger);
 
   const motion = gsap.matchMedia();
+  let heroIntroPlayed = false;
+  motion.add('(prefers-reduced-motion: no-preference)', () => {
+    const hero = document.querySelector('.bloom-hero');
+    if (heroIntroPlayed || !hero || window.scrollY > 0 || window.location.hash || document.hidden) return;
+    heroIntroPlayed = true;
+
+    const flower = hero.querySelector('.bloom-art');
+    const details = gsap.utils.toArray('.bloom-preview, .hero-capacities', hero);
+    const listeners = new AbortController();
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) finish();
+    });
+
+    function cleanUp() {
+      listeners.abort();
+      observer.disconnect();
+    }
+
+    const intro = gsap.timeline({
+      defaults: { ease: 'power2.out' },
+      onComplete: cleanUp,
+    });
+    intro.fromTo(flower, { opacity: .18 }, { opacity: 1, duration: 1.04, clearProps: 'opacity' })
+      .fromTo(details, { opacity: .3, y: 13 }, {
+        opacity: 1, y: 0, duration: .56, stagger: .11, clearProps: 'opacity,transform',
+      }, .48);
+
+    function finish() {
+      intro.progress(1);
+    }
+
+    hero.addEventListener('focusin', finish, { signal: listeners.signal });
+    hero.addEventListener('pointerdown', finish, { signal: listeners.signal });
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) finish();
+    }, { signal: listeners.signal });
+    observer.observe(hero);
+    return cleanUp;
+  });
+
   motion.add({
     enabled: '(prefers-reduced-motion: no-preference)',
     desktop: '(min-width: 761px)',
