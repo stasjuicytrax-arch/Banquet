@@ -19,20 +19,20 @@ const routes = [
 ];
 const spaces = [
   {
-    id: 'restaurant', title: 'Ресторан', file: 'restaurant-reference.png', guests: 50,
+    id: 'restaurant', title: 'Ресторан', tabTitle: 'Ресторан', file: 'restaurant-reference.png', guests: 50,
     image: [1536, 1024], imageNote: 'Иллюстрация интерьера',
     imageAlt: 'Длинный банкетный стол в зале ресторана',
     text: 'Для семейного праздника, небольшого банкета или ужина с командой. Меню готовит кухня площадки.',
   },
   {
-    id: 'summer', title: 'Летняя площадка', file: 'veranda.png', guests: 60,
+    id: 'summer', title: 'Летняя площадка', tabTitle: 'Летняя', file: 'veranda.png', guests: 60,
     image: [1536, 1024], imageNote: 'Иллюстрация летней площадки',
     imageAlt: 'Гости за столом на крытой площадке среди деревьев',
     text: 'Летний банкет среди зелени, встреча гостей или вечерняя программа на воздухе.',
     aliases: ['verandas', 'outdoors'],
   },
   {
-    id: 'dome', title: 'Купольный шатёр', file: projectMedia + 'marquee-front.jpg', guests: 150,
+    id: 'dome', title: 'Купольный шатёр', tabTitle: 'Шатёр', file: projectMedia + 'marquee-front.jpg', guests: 150,
     image: [2000, 1500], imageNote: 'Визуализация проекта', planned: true,
     imageAlt: 'Белый арочный шатёр перед деревянной террасой',
     text: 'На большой поляне планируется купольный шатёр для свадеб, корпоративов и больших банкетов.',
@@ -53,7 +53,6 @@ const pictures = [
   ['stage-pergola.jpg', 'Пергола-сцена на деревянной террасе', 'venue', [660, 880], true],
   ['water-pergola.jpg', 'Пергола с водяной завесой', 'venue', [660, 880], true],
   ['walkway-evening.jpg', 'Пергола и дорожки с подсветкой', 'venue', [657, 880], true],
-  ['site-plan.png', 'Эскизный план территории', 'venue', [880, 622], true],
   ['dancing-guests.webp', 'Вечерний ужин под гирляндами', 'weddings', [1290, 860]],
   ['dance.webp', 'Танцы под открытым небом', 'parties', [960, 720]],
   ['grounds.webp', 'Столы среди деревьев', 'venue', [980, 551]],
@@ -185,10 +184,11 @@ function layout({ title, description, base = './', current = '', body, home = fa
   <link rel="stylesheet" href="${base}prototype/site-effects.css?v=4">
   <link rel="preload" href="${base}prototype/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="${base}prototype/fonts/fonts.css?v=2">
-  <link rel="stylesheet" href="${base}prototype/site.css?v=21">
-  ${home ? '<link rel="stylesheet" href="prototype/hero-bloom.css?v=6">' : ''}
+  <link rel="stylesheet" href="${base}prototype/site.css?v=22">
+  ${home ? '<link rel="stylesheet" href="prototype/hero-bloom.css?v=7">' : ''}
+  ${current === 'gallery' ? `<link rel="stylesheet" href="${base}prototype/gallery-editorial.css?v=1">` : ''}
   ${calculator ? `<link rel="stylesheet" href="${base}prototype/calculator.css?v=7">` : ''}
-  <script src="${base}prototype/site.js?v=10" defer></script>
+  <script src="${base}prototype/site.js?v=11" defer></script>
   ${home ? `<script src="${base}prototype/vendor/gsap.min.js" defer></script>
   <script src="${base}prototype/vendor/ScrollTrigger.min.js" defer></script>
   <script type="module" src="${base}prototype/venue-3d.js?v=4"></script>
@@ -222,6 +222,7 @@ function spaceGallery(base) {
         ${spaces.map((item, index) => `<button class="space-tab" type="button" role="tab" id="space-tab-${item.id}" aria-selected="${index === 0}" tabindex="${index ? '-1' : '0'}" aria-controls="space-panel-${item.id}">
           <span class="space-tab-icon detail-icon" aria-hidden="true">${ornament('space-symbol', '0 0 40 34', `<g stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round">${spaceIcons[item.id]}</g>`)}</span>
           <span class="space-tab-title">${item.title}</span>
+          <span class="space-tab-title-mobile">${item.tabTitle}</span>
           <span class="space-tab-meta">До ${item.guests} гостей${item.planned ? ' <span>· В проекте</span>' : ''}</span>
         </button>`).join('\n')}
       </div>
@@ -231,6 +232,10 @@ function spaceGallery(base) {
             <img src="${base}prototype/${item.file}" width="${item.image[0]}" height="${item.image[1]}" alt="${item.imageAlt}" loading="lazy" decoding="async">
             <figcaption>${item.imageNote}</figcaption>
           </figure>
+          <header class="space-scene-summary">
+            <h3>${item.title}</h3>
+            <p>До ${item.guests} гостей${item.planned ? ' · В проекте' : ''}</p>
+          </header>
           <div class="space-scene-copy">
             <p>${item.text}</p>
             ${plainButton(base + 'spaces/#' + item.id, 'Подробнее')}
@@ -419,12 +424,13 @@ function gallery(base, full = false) {
     ${[['all', 'Все'], ['weddings', 'Свадьбы'], ['corporate', 'Корпоративы'], ['parties', 'Вечеринки'], ['venue', 'Площадка']].map(([key, label]) =>
       `<button type="button" data-filter="${key}" aria-pressed="${key === 'all'}">${label}</button>`).join('')}
   </div>` : '';
-  return `<div class="gallery" data-gallery>${controls}
-    <div class="photo-grid">${(full ? pictures : pictures.slice(0, 3)).map(([file, title, tag, size, fromProject]) => {
+  return `<div class="gallery" data-gallery${full ? ' data-category="all"' : ''}>${controls}
+    <div class="photo-grid">${(full ? pictures : pictures.slice(0, 3)).map(([file, title, tag, size, fromProject], index) => {
       const source = fromProject ? projectMedia + file : file;
       const thumbnail = fromProject ? projectMedia + 'thumb-' + file.replace(/\.[^.]+$/, '.jpg') : file;
-      const caption = fromProject && file !== 'site-plan.png' ? title + ' · Визуализация проекта' : title;
-      return `<figure data-photo-group="${tag}"${file === 'site-plan.png' ? ' class="project-plan"' : ''}>
+      const caption = fromProject ? title + ' · Визуализация проекта' : title;
+      const lead = full && index < 3 ? ` class="gallery-lead${index === 1 ? ' gallery-lead-wide' : ''}"` : '';
+      return `<figure data-photo-group="${tag}"${lead}>
       <button type="button" data-photo data-src="${base}prototype/${source}" data-caption="${caption}" aria-label="Открыть изображение: ${title}">${photo(base, thumbnail, '', '', size)}</button>
       <figcaption>${title}</figcaption>
     </figure>`;
@@ -435,6 +441,38 @@ function gallery(base, full = false) {
       <img alt=""><div class="photo-controls"><button type="button" data-prev aria-label="Предыдущее фото">←</button><p></p><button type="button" data-next aria-label="Следующее фото">→</button></div>
     </dialog>
   </div>`;
+}
+
+function galleryOpening() {
+  return `<section class="gallery-opening frame section" aria-labelledby="gallery-title">
+    <div class="gallery-opening-heading">
+      <h1 id="gallery-title">Фото и видео</h1>
+      <p>Проект шатра и территории, эскизный план и варианты оформления праздника.</p>
+    </div>
+    <div class="gallery-cover">
+      <img class="gallery-cover-image" src="../prototype/${projectMedia}grounds-overview.jpg" width="2400" height="1792" alt="Визуализация шатра и террасы на закате" fetchpriority="high" decoding="async">
+      <div class="gallery-cover-copy">
+        <h2>Территория с высоты</h2>
+        <div class="gallery-cover-actions">
+          <a class="primary" href="#project-videos">Смотреть обзор · 0:15</a>
+          <a class="gallery-plan-link" href="#project-plan">Открыть генплан</a>
+        </div>
+      </div>
+    </div>
+  </section>`;
+}
+
+function projectPlan() {
+  const source = '../prototype/' + projectMedia + 'site-plan.png';
+  return `<section class="frame section gallery-plan" id="project-plan" aria-labelledby="project-plan-title">
+    <div>
+      <h2 id="project-plan-title">Эскизный генплан</h2>
+      <p>Расположение шатра, террасы, сцены и прогулочных дорожек.</p>
+    </div>
+    <a href="${source}" aria-label="Открыть эскизный генплан в полном размере">
+      ${photo('../', projectMedia + 'thumb-site-plan.jpg', 'Вид сверху на проект территории с подписями', '', [880, 622])}
+    </a>
+  </section>`;
 }
 
 function projectVideos(base) {
@@ -545,8 +583,12 @@ const pages = {
     <div><dt>Пожелания гостей</dt><dd>Особые требования к блюдам можно указать при обсуждении меню.</dd></div></dl>
     ${link('../contacts/#request', 'Обсудить меню', 'primary tonal')}</section>`),
   gallery: page('gallery', 'Фото и видео', 'Визуализации шатра, эскизный план территории и видео проекта банкетной площадки.',
-    pageIntro('Фото и видео', 'Визуализации проекта шатра и территории, эскизный план и примеры оформления праздников.') +
-    `<section class="frame section gallery-page" aria-label="Галерея">${gallery('../', true)}<p class="fine-print">Кадры в галерее иллюстрируют проект и варианты оформления.</p></section>` + projectVideos('../')),
+    galleryOpening() +
+    `<section class="frame section gallery-page gallery-editorial" aria-labelledby="gallery-photos-title">
+      <div class="section-intro"><h2 id="gallery-photos-title">Кадры проекта</h2></div>
+      ${gallery('../', true)}
+      <p class="fine-print">Кадры в галерее иллюстрируют проект и варианты оформления.</p>
+    </section>` + projectVideos('../') + projectPlan()),
   stay: page('stay', 'Проживание', 'Семь гостевых номеров на банкетной площадке в Перми.',
     pageIntro('Проживание', 'Семь номеров для тех, кто хочет остаться после праздника. Для молодожёнов предусмотрен отдельный номер.', 'room.webp') +
     feature({ base: '../', title: 'Отдых после свадьбы', text: 'Гостям можно запланировать размещение на площадке. Молодожёны могут обсудить номер и отдых с друзьями в хамаме и бассейне на следующий день.', file: 'spa.webp', alt: 'Хамам с бассейном', href: '../weddings/#gifts', action: 'Свадебные подарки', variant: 'feature-soft' })),

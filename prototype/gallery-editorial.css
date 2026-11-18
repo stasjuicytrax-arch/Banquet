@@ -1,0 +1,203 @@
+.gallery-opening {
+  padding-top: clamp(112px, 11vw, 166px);
+  padding-bottom: clamp(30px, 6vw, 84px);
+}
+
+.gallery-opening-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 12px 48px;
+  margin-bottom: clamp(20px, 3.6vw, 52px);
+}
+
+.gallery-opening-heading h1 {
+  font-size: clamp(2.55rem, 6.4vw, 6.2rem);
+  line-height: .98;
+  letter-spacing: -.035em;
+}
+
+.gallery-opening-heading p {
+  max-width: 37ch;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.45vw, 1.3rem);
+}
+
+.gallery-cover {
+  position: relative;
+  display: grid;
+  align-items: end;
+  min-height: clamp(380px, min(42vw, 100svh - 280px), 620px);
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 16px 16px clamp(54px, 8vw, 120px) 16px;
+  background: var(--sage-dark);
+  color: var(--paper);
+}
+
+.gallery-cover-image {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 57%;
+}
+
+.gallery-cover::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(0deg, rgb(19 26 22 / .87), rgb(19 26 22 / .28) 48%, transparent 75%);
+  pointer-events: none;
+  content: '';
+}
+
+.gallery-cover-copy {
+  padding: clamp(24px, 4.6vw, 68px);
+}
+
+.gallery-cover-copy h2 {
+  max-width: 18ch;
+  font-size: clamp(2rem, 4.3vw, 4.6rem);
+  text-wrap: balance;
+}
+
+.gallery-cover-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 20px;
+  margin-top: clamp(14px, 2vw, 26px);
+}
+
+.gallery-cover-actions :focus-visible {
+  outline-color: var(--paper);
+}
+
+.gallery-plan-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 650;
+  text-decoration-color: var(--accent);
+}
+
+.gallery-plan-link:hover {
+  color: var(--accent-soft);
+}
+
+.gallery-editorial {
+  padding-top: 0;
+}
+
+.gallery-editorial .gallery-filters {
+  padding-block: 12px;
+  margin-bottom: clamp(25px, 3vw, 46px);
+  border-block: 1px solid var(--line);
+}
+
+.gallery-editorial .photo-grid figcaption {
+  margin-top: 9px;
+  text-wrap: pretty;
+}
+
+.gallery-plan {
+  display: grid;
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  align-items: center;
+  gap: clamp(24px, 6vw, 84px);
+  padding-top: 0;
+}
+
+.gallery-plan h2 {
+  text-wrap: balance;
+}
+
+.gallery-plan p {
+  max-width: 40ch;
+  margin-top: 12px;
+  color: var(--muted);
+}
+
+.gallery-plan > a {
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  cursor: zoom-in;
+}
+
+.gallery-plan img {
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 761px) {
+  .gallery-editorial .gallery[data-category='all'] .photo-grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  .gallery-editorial .gallery[data-category='all'] .photo-grid > figure {
+    grid-column: span 4;
+  }
+
+  .gallery-editorial .gallery[data-category='all'] .photo-grid > .gallery-lead {
+    grid-column: span 3;
+  }
+
+  .gallery-editorial .gallery[data-category='all'] .photo-grid > .gallery-lead-wide {
+    grid-column: span 6;
+  }
+
+  .gallery-editorial .gallery[data-category='all'] .gallery-lead img {
+    height: clamp(184px, 23vw, 360px);
+    object-position: 50% 53%;
+  }
+}
+
+@media (max-width: 760px) {
+  .gallery-opening {
+    padding-top: max(112px, calc(env(safe-area-inset-top) + 96px));
+  }
+
+  .gallery-cover {
+    display: block;
+    min-height: 0;
+    border-radius: 14px 14px 42px 14px;
+  }
+
+  .gallery-cover::after {
+    content: none;
+  }
+
+  .gallery-cover-image {
+    position: static;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-position: 52% 57%;
+  }
+
+  .gallery-cover-copy {
+    padding: 18px 16px 22px;
+  }
+
+  .gallery-cover-copy h2 {
+    font-size: clamp(1.7rem, 6vw, 2.25rem);
+  }
+
+  .gallery-cover-actions {
+    column-gap: 14px;
+  }
+
+  .gallery-cover-actions .primary {
+    padding-inline: 14px;
+  }
+
+  .gallery-plan {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

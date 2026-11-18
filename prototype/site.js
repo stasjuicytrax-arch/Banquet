@@ -183,6 +183,7 @@ document.querySelectorAll('[data-gallery]').forEach((gallery) => {
   filters.forEach((filter) => filter.addEventListener('click', () => {
     filters.forEach((control) => control.setAttribute('aria-pressed', String(control === filter)));
     const category = filter.dataset.filter;
+    gallery.dataset.category = category;
     visible = pictures.filter((picture) => {
       const figure = picture.closest('figure');
       const match = category === 'all' || figure.dataset.photoGroup.split(' ').includes(category);
