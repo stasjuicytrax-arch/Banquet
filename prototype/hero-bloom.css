@@ -108,6 +108,14 @@
 .bloom-next:hover { background: var(--accent); }
 .bloom-bottom .hero-capacities { justify-self: end; }
 
+@media (min-width: 1024px) {
+  .bloom-preview {
+    width: min(100%, clamp(205px, 20vw, 288px));
+    padding: 8px 8px 0;
+  }
+  .bloom-preview span { min-height: 48px; font-size: 1rem; }
+}
+
 @media (max-width: 760px) {
   .bloom-hero {
     min-height: 100svh;

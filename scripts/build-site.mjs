@@ -186,7 +186,7 @@ function layout({ title, description, base = './', current = '', body, home = fa
   <link rel="preload" href="${base}prototype/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="${base}prototype/fonts/fonts.css?v=2">
   <link rel="stylesheet" href="${base}prototype/site.css?v=21">
-  ${home ? '<link rel="stylesheet" href="prototype/hero-bloom.css?v=5">' : ''}
+  ${home ? '<link rel="stylesheet" href="prototype/hero-bloom.css?v=6">' : ''}
   ${calculator ? `<link rel="stylesheet" href="${base}prototype/calculator.css?v=7">` : ''}
   <script src="${base}prototype/site.js?v=10" defer></script>
   ${home ? `<script src="${base}prototype/vendor/gsap.min.js" defer></script>
